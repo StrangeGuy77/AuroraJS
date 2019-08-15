@@ -1,0 +1,52 @@
+body {
+    background-color: #dcdde1
+}
+
+.navbar-brand img {
+    width: 15%;
+}
+
+.navbar-adjustment{
+  width: 100%;
+}
+
+/* Style the input container */
+.form-group {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+/* Style the form icons */
+.icon {
+  padding: 10px;
+  background: #fc1b1b;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.sender-icon {
+  padding: 10px;
+  background: #298ac2;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Style the input fields */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}

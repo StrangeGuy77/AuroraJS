@@ -1,0 +1,86 @@
+<style>
+    body {
+        background-image: url("https://wallpaperplay.com/walls/full/8/4/a/44843.jpg");
+    }
+
+    .selection {
+        height: 120%
+    }
+</style>
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <h3 class="card-title text-white">
+            <i class="far fa-file-code"></i> Sube tu software
+        </h3>
+    </div>
+    <div class="card-body">
+        <form action="/software" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <i class="fas fa-file-code icon"></i>
+                        <input type="file" name="image" class="custom-file-input" id="inputGroup"
+                            aria-describedby="inputGroupFileAddon" required>
+                        <label for="inputGroupFile" class="custom-file-label">Escoge el archivo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-tag icon"></i>
+                <input type="text" name="title" class="form-control" placeholder="Título del software" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle icon"></i>
+                <textarea name="description" class="form-control" rows="2" placeholder="Descripción del software"
+                    required></textarea>
+            </div>
+            <div class="form-group">
+                <i class="fab fa-js icon"></i>
+                <select class="form-control selection" id="language" name="language" required>
+                    <option value="empty">Lenguaje principal</option>
+                    <option value="js">Javascript</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="python">Python</option>
+                    <option value="cpp">C++</option>
+                    <option value="cs">C#</option>
+                    <option value="c">C</option>
+                    <option value="java">Java</option>
+                    <option value="php">PHP</option>
+                    <option value="ts">Typescript</option>
+                    <option value="perl">Perl</option>
+                    <option value="net">.NET</option>
+                    <option value="asl">Assembler</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <i class="fas fa-dollar-sign icon"></i>
+                <input type="text" name="price" class="form-control"
+                    placeholder="Precio del software (Si es gratis, déjelo en blanco)">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success">
+                    <i class="fa fa-upload"></i> Subir
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="card mt-2">
+    <div class="card-header bg-dark text-white">
+        <h3> <i class="fas fa-file-code"></i> Subidas recientes</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {{#each softs}}
+            <div class="col-md-4">
+                <a href="/software/{{uniqueId}}">
+                    <img src="../public/upload/{{filename}}" alt="" class="w-100 h-100 img-thumbnail">
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

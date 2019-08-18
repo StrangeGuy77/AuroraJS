@@ -1,6 +1,6 @@
 module.exports = {
     database: {
-        URI: 'mongodb://localhost/socialnetwork'
+        URI: 'mongodb://localhost/auroradevelopmentjs'
     },
     Contactmailer: {
         user: "test@user.com",

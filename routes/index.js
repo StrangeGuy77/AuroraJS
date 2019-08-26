@@ -32,6 +32,7 @@ module.exports = app => {
   router.get("/login", user.login);
   router.get("/register", user.register);
   router.get("/profile", user.profile);
+  router.get("/users/:userid", user.visit);
   router.post("/afterlog", user.index);
 
   // Bancolombia router test

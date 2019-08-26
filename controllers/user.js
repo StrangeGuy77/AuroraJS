@@ -16,5 +16,9 @@ ctrl.profile = (req, res) => {
     res.send('user profile');
 };
 
+ctrl.visit = async (req, res) => {
+    res.send('x user profile');
+};
+
 
 module.exports = ctrl;

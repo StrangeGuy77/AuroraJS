@@ -29,7 +29,7 @@ ctrl.contact = (req, res) => {
 };
 
 ctrl.contactSend = async (req, res) => {
-  var transporter = mailer.createTransport({
+  let transporter = mailer.createTransport({
     service: "gmail",
     auth: {
       user: Contactmailer.user,
@@ -37,10 +37,11 @@ ctrl.contactSend = async (req, res) => {
     }
   });
 
-  var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   let email = req.body.sender;
 
-  var mailOptions = {
+  let mailOptions = {
     from: pattern.test(email) ? email.toLowerCase() : "emailnotavailable",
     to: "jhonatanrg@live.co",
     subject: req.body.subject,

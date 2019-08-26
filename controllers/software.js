@@ -7,7 +7,11 @@ const ctrl = {
   
 };
 
-ctrl.index = (req, res) => {};
+ctrl.index = async (req, res) => {
+  const soft = await software.findOne({filename: {$regex: req.params.software_id}});
+  console.log(soft);
+  res.render('software', {soft});
+};
 
 ctrl.create = async (req, res) => {
   let url, result;
@@ -41,7 +45,10 @@ ctrl.create = async (req, res) => {
 
 ctrl.like = (req, res) => {};
 
-ctrl.comment = (req, res) => {};
+ctrl.comment = (req, res) => {
+  console.log(req.body);
+  res.send('success');
+};
 
 ctrl.delete = (req, res) => {};
 

@@ -1,0 +1,31 @@
+{
+  "name": "redsocial",
+  "version": "1.0.0",
+  "description": "first try for a very high load page",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env=development nodemon src/index.js"
+  },
+  "author": "StrangeGuy77",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
+    "express-handlebars": "^3.1.0",
+    "fs-extra": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.2.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.7",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.3.0",
+    "request": "^2.88.0"
+  }
+}

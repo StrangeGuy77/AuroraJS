@@ -5,8 +5,6 @@ const multer = require("multer");
 const express = require("express");
 const routes = require("../routes/index");
 const errorHandler = require("errorhandler");
-const fileUpload = require("express-fileupload");
-const mailer = require("nodemailer");
 
 module.exports = app => {
   // Configuración

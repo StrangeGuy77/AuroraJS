@@ -23,24 +23,6 @@ ctrl.authorize = async (req, res) => {
     }
   };
 
-//    $.ajax({
-//     type: 'POST',
-//     url: 'http://redrock.com:6606/api/values/get',
-
-//     dataType: "jsonp",
-
-//     crossDomain: true,
-//     success: function (msg) {
-
-//         alert("success");
-
-//     },
-//     error: function (request, status, error) {
-
-//         alert(error);
-//     }
-// });
-
   await request(options, function(error, response, body) {
     if (error) return console.error("Failed: %s", error.message);
     console.log("Success: ", body);

@@ -47,8 +47,9 @@ module.exports = app => {
   router.get("/timeout", home.error504);
   router.get("*", home.error404);
 
-  // Process router
+  // Process handler
   process.on("UnhandledPromiseRejectionWarning", home.unhandledPromise);
+  process.on("UnhandledError", home.unhandledPromise);
 
   app.use(router);
 };

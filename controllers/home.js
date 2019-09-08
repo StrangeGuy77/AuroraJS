@@ -1,15 +1,16 @@
 const mailer = require("nodemailer");
 const { Contactmailer } = require("../keys");
 const { software } = require("../models/index");
+const sidebar = require('../helpers/sidebar');
 
 const ctrl = {};
 
 ctrl.index = async (req, res) => {
   const softwares = await software.find().sort({ timestamp: -1 });
-  res.render("index", {
-    softs: softwares,
-    title: "Software - Aurora Development"
-  });
+  let viewModel = {softs: [], title: "Software - Aurora Development"};
+  viewModel.softs = softwares;
+  viewModel = await sidebar(viewModel);
+  res.render("index", viewModel);
 };
 
 // For our services section
@@ -37,6 +38,7 @@ ctrl.contactSend = async (req, res) => {
     }
   });
 
+  // Pattern regex for email verification
   let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   let email = req.body.sender;

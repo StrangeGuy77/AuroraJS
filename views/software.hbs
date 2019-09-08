@@ -12,7 +12,8 @@
         </button>
     </div>
     <div class="card-body">
-        <p>{{soft.description}}</p>
+        <p>Precio: {{soft.price}}$</p>
+        <p>Descripción: {{soft.description}}</p>
         <div class="text-center">
             <img src="../public/upload/{{soft.filename}}" alt="" class="img-fluid">
         </div>
@@ -43,7 +44,7 @@
         </button>
     </div>
     <div class="card-body">
-        <blockquote>
+        <blockquote id="post-comment">
             <form action="/software/{{soft.uniqueId}}/comment" method="POST" enctype="multipart/form-data">   
                 <div class="form-group">
                     <input type="text" class="form-control" name="name" placeholder="Nombre">
@@ -61,5 +62,22 @@
                 </div>
             </form>
         </blockquote>
+        <ul class="list-group p-4">
+            {{#each comments}}
+                <li class="list-group-item">
+                    <div class="row">
+                        <a href="#" class="col text-center">
+                            <img src="http://gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45" alt="">
+                        </a>
+                        <blockquote class="col">
+                            <p class="lead">{{comment}}</p>
+                            <footer class="blockquote-footer">
+                                {{name}} - {{timeago timestamp}}
+                            </footer>
+                        </blockquote>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
     </div>
 </div>

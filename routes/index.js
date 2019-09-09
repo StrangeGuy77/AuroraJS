@@ -15,7 +15,8 @@ module.exports = app => {
   router.post("/our-services/send", home.servicesSend);
 
   // Software routes
-  router.get("/software/:software_id", software.index);
+  router.get("/software", software.index);
+  router.get("/software/:software_id", software.view);
   router.post("/software", software.create);
   router.post("/software/:software_id/like", software.like);
   router.post("/software/:software_id/comment", software.comment);

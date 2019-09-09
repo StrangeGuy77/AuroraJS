@@ -6,6 +6,14 @@ $("button[id=btn-like]").click(function() {
     });
 });
 
+if (true) {
+    document.cookie = "language=es"
+} else if (true) {
+    document.cookie = "language=en"
+} else if (true) {
+    document.cookie = "language=de"
+}
+
 $('#post-comment').hide();
 
 $('#btn-toggle-comment').click(function(e){

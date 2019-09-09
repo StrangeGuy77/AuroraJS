@@ -8,7 +8,7 @@ module.exports = {
         .sort({timestamp: -1});
 
         for(const comment of comments){
-            const soft = Software.findOne({_id: comment.soft_id});
+            const soft = await Software.findOne({_id: comment.soft_id});
             comment.soft = soft;
         }
 

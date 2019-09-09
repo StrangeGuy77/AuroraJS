@@ -2,16 +2,34 @@ const mailer = require("nodemailer");
 const { Contactmailer } = require("../keys");
 const { software } = require("../models/index");
 const sidebar = require('../helpers/sidebar');
+const fs = require('fs-extra');
 
 const ctrl = {};
 
 ctrl.index = async (req, res) => {
+
+  fs.readJSONSync('en.json', (err, languageFile) => {
+    if (err) {
+      console.log(`error: ${err}`);
+    }
+    console.log(languageFile);
+  });
+
+  let translation;
+  const softwares = await software.find().sort({ timestamp: -1 });
+  let viewModel = {softs: [], title: "Software - Aurora Development", language: []};
+  viewModel.softs = softwares;
+  viewModel = await sidebar(viewModel);
+  res.render("softwareIndex", viewModel);
+};
+
+ctrl.software = async (req, res) => {
   const softwares = await software.find().sort({ timestamp: -1 });
   let viewModel = {softs: [], title: "Software - Aurora Development"};
   viewModel.softs = softwares;
   viewModel = await sidebar(viewModel);
-  res.render("index", viewModel);
-};
+  res.render("softwareIndex", viewModel);
+}
 
 // For our services section
 

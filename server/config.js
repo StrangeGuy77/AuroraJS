@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const multer = require("multer");
 const express = require("express");
 const routes = require("../routes/index");
+const i18n = require("i18n");
 const errorHandler = require("errorhandler");
 
 module.exports = app => {
@@ -22,8 +23,16 @@ module.exports = app => {
   );
   app.set("view engine", ".hbs");
 
+  // Set i18n
+  i18n.configure({
+    locales: ["es", "en", "de", "fr"],
+    directory: path.join(__dirname, "../locales"),
+    cookie: 'language'
+  });
+
   // Middlewares
-  
+
+  app.use(i18n.init);
   app.use(morgan("dev"));
   app.use(
     multer({

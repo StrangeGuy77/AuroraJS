@@ -3,11 +3,24 @@ const helper = require("../helpers/libs");
 const fs = require("fs-extra");
 const { software, comment } = require("../models/index");
 const md5 = require("md5");
+const sidebar = require('../helpers/sidebar');
 
 const ctrl = {};
 
 ctrl.index = async (req, res) => {
-  const viewModel = { soft: {}, comments: {} };
+  let translation = require('../locales/de');
+  
+  const softwares = await software.find().sort({ timestamp: -1 });
+  let viewModel = {softs: [], title: "Software - Aurora Development", language: {}};
+  viewModel.language = JSON.parse(translation);
+  viewModel.softs = softwares;
+  viewModel = await sidebar(viewModel);
+  res.render("softwareIndex", viewModel);
+}
+
+ctrl.view = async (req, res) => {
+  let translation = require('../locales/de');
+  let viewModel = { soft: {}, comments: {}, language: {}};
 
   const soft = await software.findOne({
     filename: { $regex: req.params.software_id }
@@ -18,6 +31,7 @@ ctrl.index = async (req, res) => {
     await soft.save();
     const comments = await comment.find({ soft_id: soft._id });
     viewModel.comments = comments;
+    viewModel = await sidebar(viewModel);
     res.render("software", viewModel);
   } else {
     res.redirect("/");

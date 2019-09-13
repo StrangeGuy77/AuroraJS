@@ -33,5 +33,10 @@
     "signCommentName":"Vorname",
     "signCommentEmail":"E-Mail",
     "signCommentContent":"Inhalt",
-    "actionComment":"Kommentar zu"
+    "actionComment":"Kommentar zu",
+    "error404":"Die gesuchte Seite scheint nicht zu existieren.",
+    "error403":"Für die Seite, auf die Sie zugreifen möchten, sind besondere Berechtigungen erforderlich.",
+    "error500":"Huh, anscheinend ist beim Hochladen der Datei ein Fehler aufgetreten. Versuche es erneut und stelle sicher, dass du eine richtige Datei hochlädst. Wenn dies weiterhin besteht, wenden Sie sich an einen Administrator.",
+    "error503":"Service nicht verfügbar. Wir haben interne Probleme, wir erwarten von Ihnen Verständnis.",
+    "error504":"Beim Senden von Daten an den Server ist ein Problem aufgetreten. Überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut."
 }

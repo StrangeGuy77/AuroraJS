@@ -7,12 +7,13 @@ const { DefaultLocale } = require("../keys");
 const ctrl = {};
 
 ctrl.firstRedirect = (req, res) => {
-  res.redirect(`/${DefaultLocale.defaultLanguage}`);
+  res.redirect(`/${DefaultLocale.preferedUserLanguage}`);
 };
 
 ctrl.index = async (req, res) => {
   let lang = req.params.language;
   if (lang === "es" || lang === "en" || lang === "de" || lang === "fr") {
+    DefaultLocale.preferedUserLanguage = lang;
     let toTranslateJSON = require(`../locales/${req.params.language}.json`);
 
     let viewModel = { title: "Inicio - Aurora Development" };
@@ -21,10 +22,10 @@ ctrl.index = async (req, res) => {
 
     res.render("sections/homeSection/homeIndex", viewModel);
   } else {
-    let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+    let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
     let viewModel = { title: "Error 404", language: {} };
     viewModel.language = toTranslateJSON;
-    viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+    viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
     res.render("partials/errors/error404", viewModel);
   }
 };
@@ -85,9 +86,9 @@ ctrl.contactSend = async (req, res) => {
     await transporter.sendMail(mailOptions, function(error, info) {
       if (error) {
         console.log(error);
-        res.redirect("/timeout");
+        res.redirect(`/${DefaultLocale.preferedUserLanguage}/timeout`);
       } else {
-        res.redirect("/contact-us");
+        res.redirect(`/${DefaultLocale.preferedUserLanguage}/contact-us`);
         console.log("Email sent: " + info.response);
       }
     });
@@ -97,34 +98,34 @@ ctrl.contactSend = async (req, res) => {
 // Errors
 
 ctrl.error404 = (req, res) => {
-  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 404", language: {} };
   viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   res.render("partials/errors/error404", viewModel);
 };
 
 ctrl.error403 = (req, res) => {
-  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 403", language: {} };
   viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   res.render("partials/errors/error403", viewModel);
 };
 
 ctrl.error503 = (req, res) => {
-  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 503", language: {} };
   viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   res.render("partials/errors/error503", viewModel);
 };
 
 ctrl.error504 = (req, res) => {
-  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 504", language: {} };
   viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   res.render("partials/errors/error504", viewModel);
 };
 

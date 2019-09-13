@@ -101,10 +101,7 @@ ctrl.create = async (req, res) => {
   } else {
     // Not correct image extension? unlink from marked path before.
     await fs.unlink(imageTempPath);
-    res.render("partials/errors/error500", {
-      reason: `Huh, al parecer hubo un error al subir el archivo, intenta de nuevo y asegúrate de subir un archivo correcto.
-    Si esto persiste, contacta a un administrador.`
-    });
+    res.render("partials/errors/error500");
   }
 };
 
@@ -120,7 +117,7 @@ ctrl.like = async (req, res) => {
     await soft.save();
     res.json({ likes: soft.likes });
   } else {
-    res.render('partials/errors/error504', {reason: "Ha ocurrido un error interno del servidor"});
+    res.render('partials/errors/error504');
   }
 
 };
@@ -140,10 +137,7 @@ ctrl.comment = async (req, res) => {
     await newComment.save();
     res.redirect(`/${req.params.language}/software/${soft.uniqueId}`);
   } else {
-    res.render("partials/errors/error504", {
-      reason:
-        "Ha habido un problema al publicar el comentario, por favor inténtelo una vez más"
-    });
+    res.render("partials/errors/error504");
   }
 };
 
@@ -161,10 +155,7 @@ ctrl.delete = async (req, res) => {
     await soft.remove();
     res.redirect(`/${req.params.language}/software`);
   } else {
-    res.render('partials/errors/error504', {
-      reason:
-        "Ha habido un problema al eliminar la imagen, por favor inténtelo una vez más"
-    });
+    res.render('partials/errors/error504');
   }
 
 };

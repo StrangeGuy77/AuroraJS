@@ -33,5 +33,10 @@
     "signCommentName":"Nom",
     "signCommentEmail":"E-Mail",
     "signCommentContent":"Commentaire",
-    "actionComment":"Commenter sur"
+    "actionComment":"Commenter sur",
+    "error404":"Hein, il semble que la page que vous recherchez n'existe pas.",
+    "error403":"La page à laquelle nous avons l'intention de demander des permis spéciaux.",
+    "error500":"Oui, si vous voulez une erreur de subir une erreur, avez-vous l'intention de gagner et de subir un autre acte? Si vous êtes persiste, contactez un administrateur.",
+    "error503":"Service non disponible. Nous avons des problèmes internes, nous nous attendons à une compréhension de votre part.",
+    "error504":"Un problème est survenu lors de l'envoi des données au serveur. Vérifiez votre connexion Internet et réessayez."
 }

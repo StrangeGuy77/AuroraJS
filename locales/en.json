@@ -33,5 +33,10 @@
     "signCommentName":"Your name",
     "signCommentEmail":"E-Mail",
     "signCommentContent":"Content",
-    "actionComment":"Comment"
+    "actionComment":"Comment",
+    "error404":"Huh, it seems the page you're searching for doesn't exist.",
+    "error403":"The page you are trying to access requires special permissions.",
+    "error500":"Huh, apparently there was an error uploading the file, try again and make sure you upload a correct file. If this persists, contact an administrator.",
+    "error503":"Service not available. We are having internal problems, we expect understanding on your part.",
+    "error504":"There was a problem sending data to the server. Check your internet connection and try again."
 }

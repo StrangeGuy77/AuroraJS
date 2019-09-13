@@ -33,5 +33,10 @@
     "signCommentName":"Nombre",
     "signCommentEmail":"Correo electrónico",
     "signCommentContent":"Comentario",
-    "actionComment":"Comentar"
+    "actionComment":"Comentar",
+    "error404":"Huh, parece que la página que estás buscando no existe.",
+    "error403":"La página a la que intentas acceder requiere de permisos especiales.",
+    "error500":"Huh, al parecer hubo un error al subir el archivo, intenta de nuevo y asegúrate de subir un archivo correcto. Si esto persiste, contacta a un administrador.",
+    "error503":"Servicio no disponible. Estamos teniendo problemas internos, esperamos comprensión de su parte.",
+    "error504":"Hubo un problema de envío de datos al servidor. Revisa tu conexión a internet e inténtalo de nuevo."
 }

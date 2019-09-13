@@ -1,13 +1,13 @@
 {{#if sidebar.comments}}
 <div class="card mt-2">
     <div class="card-header bg-dark text-white">
-        <h5> <i class="fas fa-comments"></i> Últimos comentarios</h5>
+        <h5> <i class="fas fa-comments"></i> {{language.latestComments}}</h5>
     </div>
     <div class="card-body">
         {{#each sidebar.comments}}
             <div class="row">
                 <div class="col">
-                    <a href="/software/{{soft.uniqueId}}">
+                    <a href="/{{languageFinder}}/software/{{soft.uniqueId}}">
                         <img src="/public/upload/{{soft.filename}}" class="img-thumbnail w-70">
                     </a>
                 </div>

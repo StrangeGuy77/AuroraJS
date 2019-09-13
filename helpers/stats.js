@@ -15,7 +15,7 @@ async function softwareTotalViewsCounter(){
         _id: '1',
         viewsTotal: {$sum: '$views'}
     }}]);
-    return result[0].viewsTotal;
+    return result[0].viewsTotal === undefined ? 0 : result[0].viewsTotal;
 }
 
 async function likesTotalCounter(){

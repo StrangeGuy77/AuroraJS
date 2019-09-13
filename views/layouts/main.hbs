@@ -30,35 +30,35 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link" href="/">{{language.home}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/library">Biblioteca</a>
+                    <a class="nav-link" href="/{{language.CurrentLanguage}}/library">{{language.library}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/software">Software</a>
+                    <a class="nav-link" href="/{{language.CurrentLanguage}}/software">{{language.software}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/forum">Foro</a>
+                    <a class="nav-link" href="/{{language.CurrentLanguage}}/forum">{{language.foro}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/our-services">Nuestros servicios</a>
+                    <a class="nav-link" href="/{{language.CurrentLanguage}}/our-services">{{language.ourServices}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact-us">Contáctenos</a>
+                    <a class="nav-link" href="/{{language.CurrentLanguage}}/contact-us">{{language.contactUs}}</a>
                 </li>
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                         <div class="dropdown">
                             
                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"> <i class="fas fa-language"></i>
-                             Lenguaje
+                             {{language.language}}
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#"><i class=""></i> Español</a>
-                                <a class="dropdown-item" href="#"><i class=""></i> English</a>
-                                <a class="dropdown-item" href="#"><i class=""></i> Deutsch</a>
-                                <a class="dropdown-item" href="#"><i class=""></i> Francais</a>
+                                <a class="dropdown-item" href="/es"><i class=""></i> Español</a>
+                                <a class="dropdown-item" href="/en"><i class=""></i> English</a>
+                                <a class="dropdown-item" href="/de"><i class=""></i> Deutsch</a>
+                                <a class="dropdown-item" href="/fr"><i class=""></i> Francais</a>
                             </div>
                         </div>
                     </ul>

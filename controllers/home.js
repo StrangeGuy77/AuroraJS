@@ -1,40 +1,45 @@
 const mailer = require("nodemailer");
 const { Contactmailer } = require("../keys");
 const { software } = require("../models/index");
-const sidebar = require('../helpers/sidebar');
-const fs = require('fs-extra');
+const sidebar = require("../helpers/sidebar");
+const { DefaultLocale } = require("../keys");
 
 const ctrl = {};
 
-ctrl.index = async (req, res) => {
-
-  fs.readJSONSync('en.json', (err, languageFile) => {
-    if (err) {
-      console.log(`error: ${err}`);
-    }
-    console.log(languageFile);
-  });
-
-  let translation;
-  const softwares = await software.find().sort({ timestamp: -1 });
-  let viewModel = {softs: [], title: "Software - Aurora Development", language: []};
-  viewModel.softs = softwares;
-  viewModel = await sidebar(viewModel);
-  res.render("softwareIndex", viewModel);
+ctrl.firstRedirect = (req, res) => {
+  res.redirect(`/${DefaultLocale.defaultLanguage}`);
 };
 
-ctrl.software = async (req, res) => {
-  const softwares = await software.find().sort({ timestamp: -1 });
-  let viewModel = {softs: [], title: "Software - Aurora Development"};
-  viewModel.softs = softwares;
-  viewModel = await sidebar(viewModel);
-  res.render("softwareIndex", viewModel);
-}
+ctrl.index = async (req, res) => {
+  let lang = req.params.language;
+  if (lang === "es" || lang === "en" || lang === "de" || lang === "fr") {
+    let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+
+    let viewModel = { title: "Inicio - Aurora Development" };
+    viewModel.language = toTranslateJSON;
+    viewModel.language.CurrentLanguage = lang;
+
+    res.render("sections/homeSection/homeIndex", viewModel);
+  } else {
+    let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+    let viewModel = { title: "Error 404", language: {} };
+    viewModel.language = toTranslateJSON;
+    viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+    res.render("partials/errors/error404", viewModel);
+  }
+};
 
 // For our services section
 
 ctrl.services = (req, res) => {
-  res.render("index", { title: "Nuestros servicios - Aurora Development" });
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let viewModel = {
+    title: "Nuestros servicios - Aurora Development",
+    language: {}
+  };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = req.params.language;
+  res.render("sections/ourServicesSection/ourServicesView", viewModel);
 };
 
 ctrl.servicesSend = (req, res) => {
@@ -44,7 +49,11 @@ ctrl.servicesSend = (req, res) => {
 // Mailers
 
 ctrl.contact = (req, res) => {
-  res.render("mailer", { title: "Contacto - Aurora Development" });
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let viewModel = { title: "Contacto - Aurora Development", language: {} };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = req.params.language;
+  res.render("sections/contactUsSection/mailer", viewModel);
 };
 
 ctrl.contactSend = async (req, res) => {
@@ -56,7 +65,7 @@ ctrl.contactSend = async (req, res) => {
     }
   });
 
-  // Pattern regex for email verification
+  // Regex pattern for email verification
   let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   let email = req.body.sender;
@@ -88,23 +97,39 @@ ctrl.contactSend = async (req, res) => {
 // Errors
 
 ctrl.error404 = (req, res) => {
-  res.render("partials/errors/error404", { title: "Error 404" });
+  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let viewModel = { title: "Error 404", language: {} };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  res.render("partials/errors/error404", viewModel);
 };
 
 ctrl.error403 = (req, res) => {
-  res.render("partials/errors/error403", { title: "Error 403" });
+  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let viewModel = { title: "Error 403", language: {} };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  res.render("partials/errors/error403", viewModel);
 };
 
 ctrl.error503 = (req, res) => {
-  res.render("partials/errors/error503", { title: "Error 503" });
+  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let viewModel = { title: "Error 503", language: {} };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  res.render("partials/errors/error503", viewModel);
 };
 
 ctrl.error504 = (req, res) => {
-  res.render("partials/errors/error504", { title: "Error 504" });
+  let toTranslateJSON = require(`../locales/${DefaultLocale.defaultLanguage}.json`);
+  let viewModel = { title: "Error 504", language: {} };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = DefaultLocale.defaultLanguage;
+  res.render("partials/errors/error504", viewModel);
 };
 
 ctrl.unhandledPromise = (req, res) => {
-  console.log('Rechazo de promesa sin manejar');
-}
+  console.log("Rechazo de promesa sin manejar");
+};
 
 module.exports = ctrl;

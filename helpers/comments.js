@@ -2,8 +2,9 @@ const Software = require('../models/software');
 const Comment = require('../models/comment');
 
 module.exports = {
-    async newest(){
-        const comments = await Comment.find()
+    async newest(currentLanguage){
+
+        let comments = await Comment.find()
         .limit(5)
         .sort({timestamp: -1});
 

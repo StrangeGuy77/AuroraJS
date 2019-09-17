@@ -1,3 +1,5 @@
+$(".dropdown-trigger").dropdown();
+
 $("button[id=btn-like]").click(function() {
     let softid = $(this).data('id');
 
@@ -6,18 +8,49 @@ $("button[id=btn-like]").click(function() {
     });
 });
 
-if (true) {
-    document.cookie = "language=es"
-} else if (true) {
-    document.cookie = "language=en"
-} else if (true) {
-    document.cookie = "language=de"
-}
-
 $('#post-comment').hide();
 
+
+// Contact us toggling info
+$('#howToUploadASoftware').hide();
+$('#howToUploadABook').hide();
+$('#howLongDoesItTakesForAnAnswer').hide();
+$('#whereToFindCookiesAndUserAgreement').hide();
+$('#whereToFindAModerator').hide();
+
+$('#toggle-howToUploadASoftware').click(function(e){
+    $('#howToUploadASoftware').slideToggle();
+});
+
+$('#toggle-howToUploadABook').click(function(e){
+    $('#howToUploadABook').slideToggle();
+});
+
+$('#toggle-howLongDoesItTakesForAnAnswer').click(function(e){
+    $('#howLongDoesItTakesForAnAnswer').slideToggle();
+});
+
+$('#toggle-whereToFindCookiesAndUserAgreement').click(function(e){
+    $('#whereToFindCookiesAndUserAgreement').slideToggle();
+});
+
+$('#toggle-whereToFindAModerator').click(function(e){
+    $('#whereToFindAModerator').slideToggle();
+});
+
+
+
+
+
+
+
+
+
+
+
+// Software comment toggling
+
 $('#btn-toggle-comment').click(function(e){
-    e.preventDefault();
     $('#post-comment').slideToggle();
 });
 
@@ -35,7 +68,5 @@ $("button[id=btn-delete]").click(function(){
             $this.find('i').removeClass('fa-times').addClass('fa-check');
             $this.append('<span>Eliminado!</span>');
         });
-    } else {
-        
     }
 });

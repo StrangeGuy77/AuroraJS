@@ -28,12 +28,13 @@
             </div>
             <div class="form-group">
                 <i class="fas fa-tag icon"></i>
-                <input type="text" name="title" class="form-control" placeholder="{{language.signSoftwareTitle}}" required>
+                <input type="text" name="title" class="form-control" placeholder="{{language.signSoftwareTitle}}"
+                    required>
             </div>
             <div class="form-group">
                 <i class="fas fa-info-circle icon"></i>
-                <textarea name="description" class="form-control" rows="2" placeholder="{{language.signSoftwareDescription}}"
-                    required></textarea>
+                <textarea name="description" class="form-control" rows="2"
+                    placeholder="{{language.signSoftwareDescription}}" required></textarea>
             </div>
             <div class="form-group">
                 <i class="fab fa-js icon"></i>
@@ -52,12 +53,10 @@
                     <option value="net">.NET</option>
                     <option value="asl">Assembler</option>
                 </select>
-
             </div>
             <div class="form-group">
                 <i class="fas fa-dollar-sign icon"></i>
-                <input type="text" name="price" class="form-control"
-                    placeholder="{{language.signSoftwarePrice}}">
+                <input type="text" name="price" class="form-control" placeholder="{{language.signSoftwarePrice}}">
             </div>
             <div class="form-group">
                 <button class="btn btn-success">
@@ -65,7 +64,6 @@
                 </button>
             </div>
         </form>
-
     </div>
 </div>
 <div class="card mt-2">
@@ -76,12 +74,20 @@
         <div class="row">
             {{#each softs}}
             <div class="col-md-4">
-                <a href="/{{languageFinder}}/software/{{uniqueId}}">
-                    <img src="/public/upload/{{filename}}" alt="" class="w-100 h-100 img-thumbnail">
-                </a>
+                <div class="card">
+                    <div class="card-image">
+                        <a href="/{{languageFinder}}/software/{{uniqueId}}">
+                            <img src="/public/upload/{{filename}}" alt="" class="w-100 h-100 img-thumbnail">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">{{title}}</span>
+                        <p>{{description}}</p>
+                        <p>{{price}}$</p>                       
+                    </div>
+                </div>
             </div>
             {{/each}}
         </div>
     </div>
 </div>
-

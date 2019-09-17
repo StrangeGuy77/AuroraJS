@@ -10,14 +10,18 @@ module.exports = app => {
   // Index or single pages routes
   router.get("/", home.firstRedirect);
   router.get("/:language", home.index);
-  router.get("/:language/our-services", home.services);
   router.get("/:language/contact-us", home.contact);
   router.post("/contact-us/send", home.contactSend);
+
+  // Our services routes
+  router.get("/:language/our-services", home.services);
   router.post("/our-services/send", home.servicesSend);
+  
 
   // Software routes
   router.get("/:language/software", software.index);
   router.get("/:language/software/:software_id", software.view);
+  router.get("/:language/software/:software_id/download", software.download);
   router.post("/:language/software", software.create);
   router.post("/software/:software_id/like", software.like);
   router.post("/software/:software_id/comment", software.comment);
@@ -25,6 +29,7 @@ module.exports = app => {
 
   // Library routes
   router.get("/:language/library", library.index);
+  router.get("/:language/library/:book_id", library.view);
   router.post("/library/upload", library.create);
   router.post("/library/:book_id/like", library.like);
   router.post("/library/:book_id/comment", library.comment);

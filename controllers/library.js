@@ -8,6 +8,10 @@ ctrl.index = (req, res) => {
   res.render("sections/librarySection/libraryIndex", viewModel);
 };
 
+ctrl.view = (req, res) => {
+  
+}
+
 ctrl.create = (req, res) => {
   console.log(req.file);
   res.send("Completado!");

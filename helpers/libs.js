@@ -12,10 +12,10 @@ helper.randomName = () => {
 
 helper.size = (obj) => {
     let size = 0, key;
-    for (const key in object) {
-        if (object.hasOwnProperty(key)) size++;
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
     }
     return size;
-}
+};
 
 module.exports = helper;

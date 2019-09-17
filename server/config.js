@@ -33,7 +33,9 @@ module.exports = app => {
   // Middlewares
 
   app.use(i18n.init);
-  app.use(morgan("dev"));
+  if (process.env.env === "development") {
+    app.use(morgan("dev"));
+  }
   app.use(
     multer({
       dest: path.join(__dirname, `../public/upload/temp`)
@@ -49,7 +51,7 @@ module.exports = app => {
   routes(app);
 
   // Error handler
-  "development" === app.get("env") ? app.use(errorHandler) : null;
+  "development" === process.env.env ? app.use(errorHandler) : null;
 
   return app;
 };

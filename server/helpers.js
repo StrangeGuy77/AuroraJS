@@ -8,6 +8,6 @@ helpers.timeago = timestamp => {
 
 helpers.languageFinder = () => {
     return DefaultLocale.preferedUserLanguage;
-}
+};
 
 module.exports = helpers;

@@ -29,8 +29,8 @@ async function likesTotalCounter(){
 module.exports = async () => {
     const results = await Promise.all([
         softwaresCounter(),
-        softwareTotalViewsCounter(),
         commentsCounter(),
+        softwareTotalViewsCounter(),
         likesTotalCounter()
     ]);
 
@@ -41,4 +41,4 @@ module.exports = async () => {
         likes: results[3]
     }
 
-}
+};

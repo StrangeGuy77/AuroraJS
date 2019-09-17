@@ -1,7 +1,5 @@
 const mailer = require("nodemailer");
 const { Contactmailer } = require("../keys");
-const { software } = require("../models/index");
-const sidebar = require("../helpers/sidebar");
 const { DefaultLocale } = require("../keys");
 
 const ctrl = {};
@@ -12,7 +10,7 @@ ctrl.firstRedirect = (req, res) => {
 
 ctrl.index = async (req, res) => {
   let lang = req.params.language;
-  if (lang === "es" || lang === "en" || lang === "de" || lang === "fr") {
+  if (lang === "es" || lang === "en" || lang === "de" || lang === "fr" || lang === "it" || lang === "jp") {
     DefaultLocale.preferedUserLanguage = lang;
     let toTranslateJSON = require(`../locales/${req.params.language}.json`);
 

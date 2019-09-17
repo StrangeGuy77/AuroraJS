@@ -5,7 +5,7 @@ const { software, comment } = require("../models/index");
 const md5 = require("md5");
 const sidebar = require('../helpers/sidebar');
 const { DefaultLocale } = require('../keys');
- 
+
 const ctrl = {};
 
 ctrl.index = async (req, res) => {
@@ -13,7 +13,7 @@ ctrl.index = async (req, res) => {
   // First of all load the JSON where's the language to translate the page
   let CurrentLanguage = req.params.language;
   let toTranslateJSON = require(`../locales/${CurrentLanguage}.json`);
-  
+
   // Search & load 'softwares' with the search of softwares within the MongoDB database
   const softwares = await software.find().sort({ timestamp: -1 });
 
@@ -26,10 +26,14 @@ ctrl.index = async (req, res) => {
   // Reassign preferedLanguage to the current selected language.
   DefaultLocale.preferedUserLanguage = CurrentLanguage;
 
-  // Load sidebar with data from db then render it.
-  viewModel = await sidebar(viewModel);
-  res.render("sections/softwareSection/softwareIndex", viewModel);
-}
+  if (softwares[0] === undefined) {
+    res.render("sections/softwareSection/softwareIndex", viewModel);
+  } else {
+    // Load sidebar with data from db then render it ONLY if there's any existant software.
+    viewModel = await sidebar(viewModel);
+    res.render("sections/softwareSection/softwareIndex", viewModel);
+  }
+};
 
 ctrl.view = async (req, res) => {
 
@@ -38,10 +42,10 @@ ctrl.view = async (req, res) => {
 
   let viewModel = { soft: {}, comments: {}, language: {}, title: "Software - Aurora Development"};
   viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = CurrentLanguage
-  
+  viewModel.language.CurrentLanguage = CurrentLanguage;
+
   // Software which will be rendered.
-  let softwareToFind = req.params.software_id
+  let softwareToFind = req.params.software_id;
 
   const soft = await software.findOne({
     filename: { $regex: softwareToFind }
@@ -51,10 +55,9 @@ ctrl.view = async (req, res) => {
   if (soft) {
     soft.views = soft.views + 1;
     viewModel.soft = soft;
-    viewModel.soft.CurrentLanguage = req.params.language
+    viewModel.soft.CurrentLanguage = req.params.language;
     await soft.save();
-    const comments = await comment.find({ soft_id: soft._id });
-    viewModel.comments = comments;
+    viewModel.comments = await comment.find({soft_id: soft._id});
     viewModel = await sidebar(viewModel);
     res.render("sections/softwareSection/softwareView", viewModel);
   } else {
@@ -62,9 +65,17 @@ ctrl.view = async (req, res) => {
   }
 };
 
+ctrl.download = (req, res) => {
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let viewModel = { title: "Software - Aurora Development", language: {} };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = req.params.language;
+  res.render("sections/softwareSection/softwareDownload", viewModel);
+}
+
 ctrl.create = async (req, res) => {
 
-  let CurrentLanguage = req.params.language
+  let CurrentLanguage = req.params.language;
 
   // Verification for duplicated softwares within database before renaming one
   let url, result;
@@ -88,10 +99,10 @@ ctrl.create = async (req, res) => {
       description: req.body.description,
       princLanguage: req.body.language,
       price: req.body.price.trim() !== "" ? parseInt(req.body.price) : 0,
-      placeFromUploaded: req.params.language,
+      timesDownloaded: 0,
       filename: url + ext
     });
-    
+
     const savedFile = await file.save().catch(reason => {
       console.log(`Error: ${reason}`);
     });
@@ -115,7 +126,7 @@ ctrl.like = async (req, res) => {
   if (soft) {
     soft.likes = soft.likes + 1;
     await soft.save();
-    res.json({ likes: soft.likes });
+    await res.json({likes: soft.likes});
   } else {
     res.render('partials/errors/error504');
   }

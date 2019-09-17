@@ -7,4 +7,4 @@ module.exports = {
         .sort({likes: -1});
         return softwares;
     }
-}
+};

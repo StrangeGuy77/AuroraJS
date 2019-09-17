@@ -10,7 +10,6 @@ $("button[id=btn-like]").click(function() {
 
 $('#post-comment').hide();
 
-
 // Contact us toggling info
 $('#howToUploadASoftware').hide();
 $('#howToUploadABook').hide();
@@ -38,21 +37,14 @@ $('#toggle-whereToFindAModerator').click(function(e){
     $('#whereToFindAModerator').slideToggle();
 });
 
-
-
-
-
-
-
-
-
-
-
 // Software comment toggling
 
 $('#btn-toggle-comment').click(function(e){
     $('#post-comment').slideToggle();
 });
+
+
+// Software like event listening
 
 $("button[id=btn-delete]").click(function(){
     let $this = $(this);

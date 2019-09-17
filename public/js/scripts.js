@@ -1,13 +1,4 @@
 $(".dropdown-trigger").dropdown();
-
-$("button[id=btn-like]").click(function() {
-    let softid = $(this).data('id');
-
-    $.post(`/software/${softid}/like`).done(data => {
-        $('.likes-count').text(data.likes);
-    });
-});
-
 $('#post-comment').hide();
 
 // Contact us toggling info
@@ -61,4 +52,14 @@ $("button[id=btn-delete]").click(function(){
             $this.append('<span>Eliminado!</span>');
         });
     }
+});
+
+// Software like event listening
+
+$("button[id=btn-like]").click(function() {
+    let softid = $(this).data('id');
+
+    $.post(`/software/${softid}/like`).done(data => {
+        $('.likes-count').text(data.likes);
+    });
 });

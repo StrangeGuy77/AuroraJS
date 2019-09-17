@@ -44,7 +44,7 @@ $('#btn-toggle-comment').click(function(e){
 });
 
 
-// Software like event listening
+// Software delete event listening
 
 $("button[id=btn-delete]").click(function(){
     let $this = $(this);

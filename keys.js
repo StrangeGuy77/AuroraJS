@@ -3,8 +3,8 @@ module.exports = {
         URI: 'mongodb://localhost/socialnetwork'
     },
     Contactmailer: {
-        user: "strangeguy94@gmail.com",
-        pass: "losdelsur123"
+        user: "test@test.com",
+        pass: "password123"
     },
     Api: {
         client_id: '0a17b0f0-4ec4-4530-af1a-f460a6b66716',

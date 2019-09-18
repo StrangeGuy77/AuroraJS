@@ -18,7 +18,7 @@ ctrl.index = async (req, res) => {
   const softwares = await software.find().sort({ timestamp: -1 });
 
   // Load viewModel with an array for softwares and title.
-  let viewModel = {softs: [], title: "Software - Aurora Development"};
+  let viewModel = {softs: [], title: `${toTranslateJSON.software} - Aurora Development`};
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = CurrentLanguage;
   viewModel.softs = softwares;
@@ -40,7 +40,7 @@ ctrl.view = async (req, res) => {
   let CurrentLanguage = req.params.language;
   let toTranslateJSON = require(`../locales/${CurrentLanguage}.json`);
 
-  let viewModel = { soft: {}, comments: {}, language: {}, title: "Software - Aurora Development"};
+  let viewModel = { soft: {}, comments: {}, language: {}, title: `${toTranslateJSON.software} - Aurora Development`};
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = CurrentLanguage;
 
@@ -67,7 +67,7 @@ ctrl.view = async (req, res) => {
 
 ctrl.download = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = { title: "Software - Aurora Development", language: {} };
+  let viewModel = { title: `${toTranslateJSON.software} - Aurora Development`, language: {} };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   res.render("sections/softwareSection/softwareDownload", viewModel);

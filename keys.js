@@ -3,8 +3,8 @@ module.exports = {
         URI: 'mongodb://localhost/socialnetwork'
     },
     Contactmailer: {
-        user: "test@test.com",
-        pass: "password123"
+        user: "strangeguy94@gmail.com",
+        pass: "losdelsur123"
     },
     Api: {
         client_id: '0a17b0f0-4ec4-4530-af1a-f460a6b66716',
@@ -13,5 +13,9 @@ module.exports = {
     DefaultLocale: {
         defaultLanguage: 'en',
         preferedUserLanguage: 'en'
+    },
+    userSession: {
+        defaultUserSession: 1,
+        loggedUserSession: Number
     }
 };

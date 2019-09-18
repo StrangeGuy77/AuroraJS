@@ -14,7 +14,7 @@ ctrl.index = async (req, res) => {
     DefaultLocale.preferedUserLanguage = lang;
     let toTranslateJSON = require(`../locales/${req.params.language}.json`);
 
-    let viewModel = { title: "Inicio - Aurora Development" };
+    let viewModel = { title: `${toTranslateJSON.home} - Aurora Development` };
     viewModel.language = toTranslateJSON;
     viewModel.language.CurrentLanguage = lang;
 
@@ -33,7 +33,7 @@ ctrl.index = async (req, res) => {
 ctrl.services = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
   let viewModel = {
-    title: "Nuestros servicios - Aurora Development",
+    title: `${toTranslateJSON.ourServices} - Aurora Development`,
     language: {}
   };
   viewModel.language = toTranslateJSON;
@@ -49,7 +49,7 @@ ctrl.servicesSend = (req, res) => {
 
 ctrl.contact = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = { title: "Contacto - Aurora Development", language: {} };
+  let viewModel = { title: `${toTranslateJSON.contactUs} - Aurora Development`, language: {} };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   res.render("sections/contactUsSection/mailer", viewModel);

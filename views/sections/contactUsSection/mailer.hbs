@@ -18,8 +18,7 @@
             </div>
             <div class="form-group">
                 <i class="fas fa-envelope sender-icon"></i>
-                <input type="text" name="sender" class="form-control" placeholder="{{language.signEmail}}"
-                    required>
+                <input type="text" name="sender" class="form-control" placeholder="{{language.signEmail}}" required>
             </div>
             <div class="form-group">
                 <i class="fas fa-info-circle sender-icon"></i>
@@ -55,7 +54,7 @@
         <div class="card-body" id="howToUploadABook">
             <p class="lead">{{language.faq.htuBAnswer}}</p>
         </div>
-        
+
         <div class="card-header" id="toggle-howLongDoesItTakesForAnAnswer">
             {{language.faq.howLongDoesItTakesForAnAnswer}} <i class="fas fa-sort-down"></i>
         </div>
@@ -68,6 +67,68 @@
         </div>
         <div class="card-body" id="whereToFindCookiesAndUserAgreement">
             <p class="lead">{{language.faq.wtfcAnswer}}</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target=".bd-example-modal-lg">{{language.userAgreementPolicy.userAgreementModal}}</button>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                {{language.userAgreementPolicy.userAgreementTitle}}
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <p style="font-weight: 700">{{language.userAgreementPolicy.userAgreementPolicyTitle}}</p>
+                            <span>{{language.userAgreementPolicy.userAgreementPrivacyPolicyFP}}</span> <br>
+                            <br>
+                            <span>{{language.userAgreementPolicy.userAgreementPrivacyPolicySP}}</span> <br>
+                            <br>
+                            <p style="font-weight: 700">{{language.userAgreementPolicy.userAgreementReceivedDataTitle}}
+                            </p>
+                            <span>{{language.userAgreementPolicy.userAgreementReceivedData}}</span> <br>
+                            <br>
+
+                            <p style="font-weight: 700">{{language.userAgreementPolicy.userAgreementDataUseTitle}}
+                            </p>
+                            <span>{{language.userAgreementPolicy.userAgreementDataUseFP}}</span> <br>
+                            <br>
+                            <span>{{language.userAgreementPolicy.userAgreementDataUseSP}}</span> <br>
+                            <br>
+
+                            <p style="font-weight: 700">
+                                Cookies
+                            </p>
+                            <span>{{language.userAgreementPolicy.userAgreementCookiesFP}}</span> <br>
+                            <br>
+                            <span>{{language.userAgreementPolicy.userAgreementCookiesSP}}</span> <br>
+                            <br>
+                            <span>{{language.userAgreementPolicy.userAgreementCookiesTP}}</span> <br>
+                            <br>
+
+                            <p style="font-weight: 700">
+                                {{language.userAgreementPolicy.userAgreementThirdPartyLinksTitle}}
+                            </p>
+                            <span>{{language.userAgreementPolicy.userAgreementThirdPartyLinks}}</span> <br>
+                            <br>
+
+                            <p style="font-weight: 700">
+                                {{language.userAgreementPolicy.userAgreementPersonalInformationControlTitle}}
+                            </p>
+                            <span>{{language.userAgreementPolicy.userAgreementPersonalInformationControl}}</span> <br>
+                            <br>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{language.userAgreementPolicy.userAgreementDecline}}</button>
+                            <button type="button"
+                                class="btn btn-primary">{{language.userAgreementPolicy.userAgreementAccept}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="card-header" id="toggle-whereToFindAModerator">
@@ -76,6 +137,6 @@
         <div class="card-body" id="whereToFindAModerator">
             <p class="lead">{{language.faq.htfmAnswer}}</p>
         </div>
-        
+
     </div>
 </div>

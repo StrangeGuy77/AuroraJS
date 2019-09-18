@@ -2,7 +2,7 @@ const ctrl = {};
 
 ctrl.index = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = { title: "Biblioteca - Aurora Development", language: {} };
+  let viewModel = { title: `${toTranslateJSON.library} - Aurora Development`, language: {} };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   res.render("sections/librarySection/libraryIndex", viewModel);

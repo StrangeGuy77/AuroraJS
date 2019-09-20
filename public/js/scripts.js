@@ -1,4 +1,68 @@
-// Contact us toggling info
+var translation = {};
+
+$(document).ready(function() {
+  $.ajax({
+    type: "POST",
+    url: "/getLanguageJSON",
+    data: null,
+    dataType: "json",
+    contentType: "application/x-www-form-urlencoded",
+    success: data => {
+      Object.assign(translation, data);
+    },
+    error: data => {
+      console.log(data);
+    }
+  });
+});
+
+// Login button
+
+$("#login-button").click(function(e) {
+  let email = document.getElementById("loginModalEmail").value;
+  let password = document.getElementById("loginModalPassword").value;
+
+  data = {
+    email: email,
+    password: password
+  };
+
+  JSON.stringify(data);
+
+  $.ajax({
+    type: "POST",
+    url: "/signup",
+    data: data,
+    dataType: "json",
+    contentType: "application/x-www-form-urlencoded",
+    success: data => {
+      window.location.href = data;
+    },
+    error: data => {
+      document.getElementById("signup-alert-section").innerHTML = data;
+    }
+  });
+});
+
+// Sign out button
+
+$("#signout-button").click(function(e) {
+  $.ajax({
+    type: "POST",
+    url: "/signout",
+    data: null,
+    dataType: "json",
+    contentType: "application/x-www-form-urlencoded",
+    success: data => {
+      window.location.href = data;
+    },
+    error: data => {
+      console.log(data);
+    }
+  });
+});
+
+// Sign up form verification
 $("#signup-button").click(function(e) {
   let username = document.getElementById("signupModalUsername").value;
   let email = document.getElementById("signupModalEmail").value;
@@ -28,35 +92,49 @@ $("#signup-button").click(function(e) {
                 dataType: "json",
                 contentType: "application/x-www-form-urlencoded",
                 success: data => {
-                  window.location.href = data.redirectLink;
+                  if (data.length <= 3) {
+                    window.location.href = data;
+                  } else {
+                    document.getElementById(
+                      "signup-alert-section"
+                    ).innerHTML = data;
+                  }
+                },
+                error: data => {
+                  document.getElementById(
+                    "signup-alert-section"
+                  ).innerHTML = data;
                 }
               });
             } else {
               document.getElementById("signup-alert-section").innerHTML =
-                "Las contraseñas no coinciden.";
+                translation.signUpInfo.passwordDoesntMatch;
             }
           } else {
             document.getElementById("signup-alert-section").innerHTML =
-              "Debes confirmar tu contraseña.";
+              translation.signUpInfo.youMustConfirmYourPassword;
           }
         } else {
           document.getElementById("signup-alert-section").innerHTML =
-            "Debes ingresar una contraseña.";
+            translation.signUpInfo.youMustEnterAPassword;
         }
       } else {
         document.getElementById("signup-alert-section").innerHTML =
-          "El correo no es válido. Verifica que esté bien escrito. \n Ejemplo: user@useremail.com";
+          translation.signUpInfo.yourEmailIsWrong;
       }
     } else {
       document.getElementById("signup-alert-section").innerHTML =
-        "Debes ingresar un correo.";
+        translation.signUpInfo.youMustEnterAnEmail;
     }
   } else {
     document.getElementById("signup-alert-section").innerHTML =
-      "Debes ingresar un usuario.";
+      translation.signUpInfo.youMustEnterAnUser;
   }
 });
 
+// Sign up form cleaning if closed
+
+// Contact us toggling info
 $("#howToUploadASoftware").hide();
 $("#howToUploadABook").hide();
 $("#howLongDoesItTakesForAnAnswer").hide();

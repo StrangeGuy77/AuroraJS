@@ -13,6 +13,7 @@ module.exports = app => {
   router.get("/:language/user-agreement-terms", home.userAgreement);
   router.get("/:language/contact-us", home.contact);
   router.post("/contact-us/send", home.contactSend);
+  router.post("/getLanguageJSON", home.getLanguageJSON);
 
   // Our services routes
   router.get("/:language/our-services", home.services);
@@ -42,6 +43,7 @@ module.exports = app => {
   router.get("/:language/users/:userid", user.visit);
   router.post("/login", user.loginProcess);
   router.post("/signup", user.signup);
+  router.post("/signout", user.signout);
 
   // Bancolombia router test
   router.get("/oauth2/authorize/customers", bcmb.authorize), (bcmb.session = 1);

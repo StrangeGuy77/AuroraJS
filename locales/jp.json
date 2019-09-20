@@ -16,6 +16,16 @@
         "cellphone": "携帯電話",
         "onceRegisteredAgreementAccepted": "登録することにより、あなたは私たちを受け入れることを宣言します"
     },
+    "signUpInfo": {
+        "passwordDoesntMatch": "パスワードが一致しません.",
+        "youMustEnterAPassword": "パスワードを入力する必要があります.",
+        "youMustConfirmYourPassword": "パスワードを確認する必要があります。.",
+        "yourEmailIsWrong": "電子メールが無効です。 よく書かれていることを確認します。 \n 例：user@useremail.com",
+        "youMustEnterAnEmail": "メールアドレスを入力してください.",
+        "youMustEnterAnUser": "ユーザーを入力する必要があります.",
+        "TheresAnUserWithThatEmail": "そのメールを既に登録しているユーザーがいます。",
+        "TheresAnUserWithThatUsername": "その名前のユーザーが既に登録されています。"
+    },
     "ourServices": "私たちのサービス",
     "contactUs": "お問い合わせ",
     "language": "言語",

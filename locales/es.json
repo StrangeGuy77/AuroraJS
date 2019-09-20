@@ -13,6 +13,16 @@
         "cellphone": "Celular",
         "onceRegisteredAgreementAccepted": "Al registrarse, usted admite que acepta nuestros"
     },
+    "signUpInfo": {
+        "passwordDoesntMatch": "Las contraseñas no coinciden.",
+        "youMustEnterAPassword": "Debes ingresar una contraseña.",
+        "youMustConfirmYourPassword": "Debes confirmar tu contraseña.",
+        "yourEmailIsWrong": "El correo no es válido. Verifica que esté bien escrito. \n Ejemplo: user@useremail.com",
+        "youMustEnterAnEmail": "Debes ingresar un correo.",
+        "youMustEnterAnUser": "Debes ingresar un usuario.",
+        "TheresAnUserWithThatEmail": "Hay un usuario con ese correo electrónico ya registrado.",
+        "TheresAnUserWithThatUsername": "Hay un usuario con ese nombre ya registrado."
+    },
     "library": "Biblioteca",
     "software": "Software",
     "foro": "Foro",

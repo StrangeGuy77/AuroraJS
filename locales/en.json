@@ -16,6 +16,16 @@
         "cellphone": "Cellphone",
         "onceRegisteredAgreementAccepted": "By registering, you declare that you accept our "
     },
+    "signUpInfo": {
+        "passwordDoesntMatch": "Password doesn't match.",
+        "youMustEnterAPassword": "You must enter a password.",
+        "youMustConfirmYourPassword": "You must confirm your password.",
+        "yourEmailIsWrong": "The email is not valid. Verify that it is well written. \n Example: user@useremail.com",
+        "youMustEnterAnEmail": "You must enter an email.",
+        "youMustEnterAnUser": "You must enter an user.",
+        "TheresAnUserWithThatEmail": "There is an user with that email already registered.",
+        "TheresAnUserWithThatUsername": "There is an user with that name already registered."
+    },
     "ourServices": "Our services",
     "contactUs": "Contact us",
     "language": "Language",

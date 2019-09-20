@@ -16,6 +16,16 @@
         "cellphone": "Cellulare",
         "onceRegisteredAgreementAccepted": "Registrandoti, dichiari di accettare il nostro "
     },
+    "signUpInfo": {
+        "passwordDoesntMatch": "La password non corrisponde.",
+        "youMustEnterAPassword": "Devi inserire una password.",
+        "youMustConfirmYourPassword": "Devi confermare la tua password.",
+        "yourEmailIsWrong": "Die E-Mail ist ungültig. Stellen Sie sicher, dass es gut geschrieben ist. \n Beispiel: user@useremail.com",
+        "youMustEnterAnEmail": "Devi inserire un'e-mail.",
+        "youMustEnterAnUser": "Devi inserire un utente.",
+        "TheresAnUserWithThatEmail": "C'è un utente con quell'email già registrato.",
+        "TheresAnUserWithThatUsername": "C'è un utente con quel nome già registrato."
+    },
     "ourServices": "Nostri servizi",
     "contactUs": "Contattaci",
     "language": "Lingua",

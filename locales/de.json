@@ -16,6 +16,16 @@
         "cellphone": "Mobiltelefon",
         "onceRegisteredAgreementAccepted": "Mit der Registrierung erklären Sie, dass Sie unsere Allgemeinen Geschäftsbedingungen akzeptieren"
     },
+    "signUpInfo": {
+        "passwordDoesntMatch": "Passwort stimmt nicht überein.",
+        "youMustEnterAPassword": "Sie müssen ein Passwort eingeben.",
+        "youMustConfirmYourPassword": "Sie müssen Ihr Passwort bestätigen.",
+        "yourEmailIsWrong": "Die E-Mail ist ungültig. Stellen Sie sicher, dass es gut geschrieben ist. \n Beispiel: user@useremail.com",
+        "youMustEnterAnEmail": "Sie müssen eine E-Mail eingeben.",
+        "youMustEnterAnUser": "Sie müssen einen Benutzer eingeben.",
+        "TheresAnUserWithThatEmail": "Es ist ein Benutzer mit dieser E-Mail bereits registriert.",
+        "TheresAnUserWithThatUsername": "Es ist bereits ein Benutzer mit diesem Namen registriert."
+    },
     "ourServices": "Unsere Leistungen",
     "contactUs": "Sprechen Sie uns an",
     "language": "Sprache",

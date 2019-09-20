@@ -36,6 +36,7 @@ ctrl.index = async (req, res) => {
     viewModel.language = toTranslateJSON;
     viewModel.language.CurrentLanguage = lang;
     viewModel.session = userProperties;
+    viewModel.session.username = userSession.username;
 
     res.render("sections/homeSection/homeIndex", viewModel);
   } else {
@@ -51,12 +52,19 @@ ctrl.index = async (req, res) => {
 
 ctrl.services = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
+
   let viewModel = {
     title: `${toTranslateJSON.ourServices} - Aurora Development`,
     language: {}
   };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
+  viewModel.session = userProperties;
   res.render("sections/ourServicesSection/ourServicesView", viewModel);
 };
 
@@ -68,23 +76,36 @@ ctrl.servicesSend = (req, res) => {
 
 ctrl.contact = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
+
   let viewModel = {
     title: `${toTranslateJSON.contactUs} - Aurora Development`,
     language: {}
   };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
+  viewModel.session = userProperties;
   res.render("sections/contactUsSection/mailer", viewModel);
 };
 
 ctrl.userAgreement = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
   let viewModel = {
     title: `${toTranslateJSON.userAgreementPolicy.userAgreementPolicyTitle} - Aurora Development`,
     language: {}
   };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
+  viewModel.session = userProperties;
   res.render("partials/extras/userAgreementTerms", viewModel);
 };
 
@@ -126,37 +147,68 @@ ctrl.contactSend = async (req, res) => {
   }
 };
 
+// Translation helper
+
+ctrl.getLanguageJSON = (req, res) => {
+  let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
+  res.send(JSON.stringify(toTranslateJSON));
+};
+
 // Errors
 
 ctrl.error404 = (req, res) => {
   let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 404", language: {} };
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
+  viewModel.session = userProperties;
   res.render("partials/errors/error404", viewModel);
 };
 
 ctrl.error403 = (req, res) => {
   let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 403", language: {} };
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
+  viewModel.session = userProperties;
   res.render("partials/errors/error403", viewModel);
 };
 
 ctrl.error503 = (req, res) => {
   let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 503", language: {} };
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
+  viewModel.session = userProperties;
   res.render("partials/errors/error503", viewModel);
 };
 
 ctrl.error504 = (req, res) => {
   let toTranslateJSON = require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
   let viewModel = { title: "Error 504", language: {} };
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
+  viewModel.session = userProperties;
   res.render("partials/errors/error504", viewModel);
 };
 

@@ -54,6 +54,8 @@ ctrl.view = async (req, res) => {
     actualUserSession
   );
 
+  console.log(userProperties);
+
   let viewModel = {
     soft: {},
     comments: {},

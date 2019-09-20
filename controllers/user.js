@@ -12,7 +12,7 @@ ctrl.login = (req, res) => {
   res.send("user login");
 };
 
-ctrl.loginProcess = (req, res) => {
+ctrl.loginProcess = async (req, res) => {
   res.send("user login");
 };
 
@@ -25,41 +25,61 @@ ctrl.profile = (req, res) => {
 };
 
 ctrl.signup = async (req, res) => {
+  let toTranslateJSON = {};
+  toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
+
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
 
-  let usernameResult = await user.findOne({ username: username });
-
-  if (usernameResult > 0) {
-    res.json("Hay un usuario con ese nombre ya registrado.");
+  let usernameResult = {};
+  usernameResult = await user.find({ username: username });
+  if (usernameResult.length > 0) {
+    let toStringifyAnswer =
+      toTranslateJSON.signUpInfo.TheresAnUserWithThatUsername;
+    res.send(JSON.stringify(toStringifyAnswer));
+    res.status(500);
   } else {
-    let emailResult = await user.findOne({ email: email });
-    if (emailResult > 0) {
-      res.json("Hay un usuario con ese correo ya registrado");
+    let emailResult = {};
+    emailResult = await user.find({ user_email: email });
+    if (emailResult.length > 0) {
+      let toStringifyAnswer =
+        toTranslateJSON.signUpInfo.TheresAnUserWithThatEmail;
+      res.send(JSON.stringify(toStringifyAnswer));
+      res.status(500);
     } else {
       let userId;
-      let idResult;
+      let idResult = 0;
       do {
         userId = helper.randomId();
-        idResult = await user.findOne({ userId: userId });
-      } while (idResult > 0);
+        idResult = await user.find({ userId: userId });
+      } while (idResult !== null);
       const newUser = new user({
         userId: userId,
         username: username,
         password: password,
         user_email: email,
-        user_registered_date: Date.now,
-        user_activation_key: { type: Number },
+        user_activation_key: helper.verificationCode(),
         user_status: 1,
-        user_role: 2
+        user_role: 1
       });
-      console.log(newUser);
+      await newUser.save().catch(reason => {
+        console.log("Error registering a new user: " + reason);
+      });
+      userSession.username = username;
+      userSession.actualUserSession = 1;
+      userSession.userId = userId;
+      let redirectLink = `/${DefaultLocale.preferedUserLanguage}`;
+      res.send(JSON.stringify(redirectLink));
     }
   }
+};
 
+ctrl.signout = (req, res) => {
+  userSession.username = "defaultUsername";
+  userSession.actualUserSession = 0;
+  userSession.userId = 0;
   let redirectLink = `/${DefaultLocale.preferedUserLanguage}`;
-
   res.send(JSON.stringify(redirectLink));
 };
 

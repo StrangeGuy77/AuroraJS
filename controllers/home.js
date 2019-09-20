@@ -1,22 +1,41 @@
 const mailer = require("nodemailer");
-const { Contactmailer } = require("../keys");
-const { DefaultLocale } = require("../keys");
+const { Contactmailer, DefaultLocale, userSession } = require("../keys");
+const userSessionVerification = require("../helpers/userVerification");
 
 const ctrl = {};
 
 ctrl.firstRedirect = (req, res) => {
+  let ip = req.ip;
+  userSession.userIp = ip;
   res.redirect(`/${DefaultLocale.preferedUserLanguage}`);
 };
 
 ctrl.index = async (req, res) => {
   let lang = req.params.language;
-  if (lang === "es" || lang === "en" || lang === "de" || lang === "fr" || lang === "it" || lang === "jp") {
+  if (
+    lang === "es" ||
+    lang === "en" ||
+    lang === "de" ||
+    lang === "fr" ||
+    lang === "it" ||
+    lang === "jp"
+  ) {
     DefaultLocale.preferedUserLanguage = lang;
     let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+    // User session verification
+    let actualUserSession = userSession.actualUserSession;
+    let userProperties = {};
+    userProperties = userSessionVerification.userSessionResponse(
+      actualUserSession
+    );
 
-    let viewModel = { title: `${toTranslateJSON.home} - Aurora Development` };
+    let viewModel = {
+      title: `${toTranslateJSON.home} - Aurora Development`,
+      session: {}
+    };
     viewModel.language = toTranslateJSON;
     viewModel.language.CurrentLanguage = lang;
+    viewModel.session = userProperties;
 
     res.render("sections/homeSection/homeIndex", viewModel);
   } else {
@@ -49,10 +68,24 @@ ctrl.servicesSend = (req, res) => {
 
 ctrl.contact = (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = { title: `${toTranslateJSON.contactUs} - Aurora Development`, language: {} };
+  let viewModel = {
+    title: `${toTranslateJSON.contactUs} - Aurora Development`,
+    language: {}
+  };
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   res.render("sections/contactUsSection/mailer", viewModel);
+};
+
+ctrl.userAgreement = (req, res) => {
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let viewModel = {
+    title: `${toTranslateJSON.userAgreementPolicy.userAgreementPolicyTitle} - Aurora Development`,
+    language: {}
+  };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = req.params.language;
+  res.render("partials/extras/userAgreementTerms", viewModel);
 };
 
 ctrl.contactSend = async (req, res) => {

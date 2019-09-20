@@ -1,6 +1,18 @@
 {
     "CurrentLanguage": "",
     "home": "Inicio",
+    "cancel": "Cancelar",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "userWhoUploaded": "Subido por",
+    "userInfo": {
+        "username": "Nombre de usuario",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "cellphone": "Celular",
+        "onceRegisteredAgreementAccepted": "Al registrarse, usted admite que acepta nuestros"
+    },
     "library": "Biblioteca",
     "software": "Software",
     "foro": "Foro",

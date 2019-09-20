@@ -7,18 +7,22 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h2 class="card-title">{{soft.title}}</h2>
+        {{#if (or (or session.superuser)(or session.adminuser) (or session.moduser))}}
         <button class="btn btn-danger" id="btn-delete" data-id="{{soft.uniqueId}}">
             <i class="fa fa-times"></i> {{language.delete}}
         </button>
+        {{/if}}
     </div>
     <div class="card-body">
-        <p>{{language.price}}: {{soft.price}}$</p>
-        <p>{{language.description}}: {{soft.description}}</p>
+        <p style="font-weight: 700">{{language.userWhoUploaded}}: {{soft.userUploaderName}}</p>
+        <p style="font-weight: 700">{{language.price}}: {{soft.price}}$</p>
+        <p style="font-weight: 700">{{language.description}}: {{soft.description}}</p>
         <div class="text-center">
             <img src="/public/upload/{{soft.filename}}" alt="" class="img-fluid">
         </div>
         <p></p>
-        <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'" class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
+        <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'"
+            class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
             <i class="fas fa-download"></i> {{language.download}}
         </button>
     </div>

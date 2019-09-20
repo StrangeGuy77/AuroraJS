@@ -10,13 +10,13 @@ module.exports = app => {
   // Index or single pages routes
   router.get("/", home.firstRedirect);
   router.get("/:language", home.index);
+  router.get("/:language/user-agreement-terms", home.userAgreement);
   router.get("/:language/contact-us", home.contact);
   router.post("/contact-us/send", home.contactSend);
 
   // Our services routes
   router.get("/:language/our-services", home.services);
   router.post("/our-services/send", home.servicesSend);
-  
 
   // Software routes
   router.get("/:language/software", software.index);
@@ -40,12 +40,13 @@ module.exports = app => {
   router.get("/:language/register", user.register);
   router.get("/:language/profile", user.profile);
   router.get("/:language/users/:userid", user.visit);
-  router.post("/afterlog", user.index);
+  router.post("/login", user.loginProcess);
+  router.post("/signup", user.signup);
 
   // Bancolombia router test
-  router.get("/oauth2/authorize/customers", bcmb.authorize), bcmb.session = 1;
+  router.get("/oauth2/authorize/customers", bcmb.authorize), (bcmb.session = 1);
   router.get("/oauth2/authorize/customers/success", bcmb.checkUser);
-  router.get("/oauth2/authorize/paying", bcmb.authorize), bcmb.session = 2;
+  router.get("/oauth2/authorize/paying", bcmb.authorize), (bcmb.session = 2);
   router.get("/oauth2/authorize/paying/success", bcmb.payUser);
 
   // Error router

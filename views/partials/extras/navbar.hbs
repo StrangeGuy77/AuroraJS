@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md navbar-dark nav-color">
+    <div class="row">
+        <a class="navbar-brand" href="/"><img src="/public/img/80.png" alt="logo">
+            <h3 class="navbar-brand"> Aurora Development</h3>
+        </a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="collapsibleNavbar">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">{{language.home}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/library">{{language.library}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/software">{{language.software}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/forum">{{language.foro}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/our-services">{{language.ourServices}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/contact-us">{{language.contactUs}}</a>
+            </li>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto nav-item">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> <i
+                                class="fas fa-language"></i>
+                            {{language.language}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/es"><i class=""></i> Español</a>
+                            <a class="dropdown-item" href="/en"><i class=""></i> English</a>
+                            <a class="dropdown-item" href="/de"><i class=""></i> Deutsch</a>
+                            <a class="dropdown-item" href="/fr"><i class=""></i> Francais</a>
+                            <a class="dropdown-item" href="/jp"><i class=""></i> 日本語</a>
+                            <a class="dropdown-item" href="/it"><i class=""></i> Italiano</a>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </ul>
+        {{#if session.nonlogged}}
+        {{> components/loginButton}}
+        {{> components/signupButton}}
+        {{/if}}
+    </div>
+</nav>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark nav-color">
     <div class="row">
         <a class="navbar-brand" href="/"><img src="/public/img/80.png" alt="logo">
-            <h3 class="navbar-brand"> Aurora Development</h3>
+            <p class="navbar-brand"> Aurora Development</p>
         </a>
     </div>
 
@@ -50,6 +50,46 @@
         {{#if session.nonlogged}}
         {{> components/loginButton}}
         {{> components/signupButton}}
+        {{/if}}
+        {{#if (or (or session.loggeduser) (or session.nonverified))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/logged}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+        {{#if (or (or session.moduser))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/mod}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+        {{#if (or (or session.adminuser))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/admin}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+        {{#if (or (or session.superuser))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/superuser}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
         {{/if}}
     </div>
 </nav>

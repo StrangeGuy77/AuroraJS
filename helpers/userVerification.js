@@ -2,14 +2,19 @@ module.exports = {
   userSessionResponse: currentSession => {
     let userSessionProperties = {
       nonlogged: false,
+      nonverified: false,
       loggeduser: false,
       moduser: false,
       adminuser: false,
       superuser: false
     };
     switch (currentSession) {
-      case 1:
+      case 0:
         userSessionProperties.nonlogged = true;
+        return userSessionProperties;
+        break;
+      case 1:
+        userSessionProperties.nonverified = true;
         return userSessionProperties;
         break;
       case 2:

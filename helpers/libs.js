@@ -19,6 +19,15 @@ helper.randomId = () => {
   return randomId;
 };
 
+helper.verificationCode = () => {
+  const possible = "0123456789";
+  let randomId = 0;
+  for (let index = 0; index < 8; index++) {
+    randomId += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return randomId;
+};
+
 helper.size = obj => {
   let size = 0,
     key;

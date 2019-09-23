@@ -10,9 +10,14 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="/public/css/styles.css">
     <link rel="stylesheet" href="/public/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/public/css/mdb.min.css">
+    <link rel="stylesheet" href="/public/css/style.min.css">
     <script src="https://kit.fontawesome.com/747fbeff96.js"></script>
 
 
@@ -20,18 +25,9 @@
 
 <body>
     {{> extras/navbar}}
-    <div class="container p-5">
+    <div class="container-fluid p-5">
         <div class="row">
-            <div class="col-md-8">
-                {{{body}}}
-            </div>
-            {{#if sidebar.stats.softwares}}
-            <div class="col-md-4">
-                {{> sidebar/stats}}
-                {{> sidebar/popular}}
-                {{> sidebar/comments}}
-            </div>
-            {{/if}}
+            {{{body}}}
         </div>
     </div>
 

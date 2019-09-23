@@ -4,89 +4,106 @@
     }
 </style>
 
-<div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h2 class="card-title">{{soft.title}}</h2>
-        {{#if (or (or session.superuser)(or session.adminuser) (or session.moduser))}}
-        <button class="btn btn-danger" id="btn-delete" data-id="{{soft.uniqueId}}">
-            <i class="fa fa-times"></i> {{language.delete}}
-        </button>
-        {{/if}}
-    </div>
-    <div class="card-body">
-        <p style="font-weight: 700">{{language.userWhoUploaded}}: {{soft.userUploaderName}}</p>
-        <p style="font-weight: 700">{{language.price}}: {{soft.price}}$</p>
-        <p style="font-weight: 700">{{language.description}}: {{soft.description}}</p>
-        <div class="text-center">
-            <img src="/public/upload/{{soft.filename}}" alt="" class="img-fluid">
-        </div>
-        <p></p>
-        <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'"
-            class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
-            <i class="fas fa-download"></i> {{language.download}}
-        </button>
-    </div>
-    <div class="card-footer d-flex justify-content-between align-items-center">
-        <button class="btn btn-success" id="btn-like" data-id="{{soft.filename}}">
-            <i class="fas fa-thumbs-up"></i> {{language.like}}
-        </button>
-        <p>
-            <span class="likes-count">{{soft.likes}}</span>
-            <i class="fas fa-heart"></i>
-        </p>
-        <p>
-            {{soft.views}} <i class="fas fa-eye"></i>
-        </p>
-        <p>
-            <i class="far fa-clock"></i>
-            {{timeago soft.timestamp}}
-        </p>
-    </div>
-</div>
-
-<div class="card mt-2">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h3>{{language.comments}}</h3>
-        <button class="btn btn-info" id="btn-toggle-comment">
-            <i class="fa fa-comment-o"></i> {{language.shareAcomment}}
-        </button>
-    </div>
-    <div class="card-body">
-        <blockquote id="post-comment">
-            <form action="/software/{{soft.uniqueId}}/comment" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="{{language.signCommentName}}">
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="card-title">{{soft.title}}</h2>
+                    {{#if (or (or session.superuser)(or session.adminuser) (or session.moduser))}}
+                    <button class="btn btn-danger" id="btn-delete" data-id="{{soft.uniqueId}}">
+                        <i class="fa fa-times"></i> {{language.delete}}
+                    </button>
+                    {{/if}}
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="{{language.signCommentEmail}}">
-                </div>
-                <div class="form-group">
-                    <textarea name="comment" rows="2" class="form-control"
-                        placeholder="{{language.signCommentContent}}"></textarea>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-success" id="btn-comment">
-                        <i class="fas fa-comment"> {{language.actionComment}} </i>
+                <div class="card-body">
+                    <p style="font-weight: 700">{{language.userWhoUploaded}}: <a
+                            href="/{{language.CurrentLanguage}}/users/{{soft.userUploaderName}}">{{soft.userUploaderName}}</a>
+                    </p>
+                    <p style="font-weight: 700">{{language.price}}: {{soft.price}}$</p>
+                    <p style="font-weight: 700">{{language.description}}: {{soft.description}}</p>
+                    <div class="text-center">
+                        <img src="/public/upload/{{soft.filename}}" alt="" class="img-fluid">
+                    </div>
+                    <p></p>
+                    <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'"
+                        class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
+                        <i class="fas fa-download"></i> {{language.download}}
                     </button>
                 </div>
-            </form>
-        </blockquote>
-        <ul class="list-group p-4">
-            {{#each comments}}
-            <li class="list-group-item">
-                <div class="row">
-                    <a href="#" class="col text-center">
-                        <img src="http://gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45" alt="">
-                    </a>
-                    <blockquote class="col">
-                        <p class="lead">{{comment}}</p>
-                        <footer class="blockquote-footer">
-                            {{name}} - {{timeago timestamp}}
-                        </footer>
-                    </blockquote>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <button class="btn btn-success" id="btn-like" data-id="{{soft.filename}}">
+                        <i class="fas fa-thumbs-up"></i> {{language.like}}
+                    </button>
+                    <p>
+                        <span class="likes-count">{{soft.likes}}</span>
+                        <i class="fas fa-heart"></i>
+                    </p>
+                    <p>
+                        {{soft.views}} <i class="fas fa-eye"></i>
+                    </p>
+                    <p>
+                        <i class="far fa-clock"></i>
+                        {{timeago soft.timestamp}}
+                    </p>
                 </div>
-            </li>
-            {{/each}}
-        </ul>
+            </div>
+
+            <div class="card mt-2">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3>{{language.comments}}</h3>
+                    <button class="btn btn-info" id="btn-toggle-comment">
+                        <i class="fa fa-comment-o"></i> {{language.shareAcomment}}
+                    </button>
+                </div>
+                <div class="card-body">
+                    <blockquote id="post-comment">
+                        <form action="/software/{{soft.uniqueId}}/comment" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name"
+                                    placeholder="{{language.signCommentName}}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="email"
+                                    placeholder="{{language.signCommentEmail}}">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="comment" rows="2" class="form-control"
+                                    placeholder="{{language.signCommentContent}}"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" id="btn-comment">
+                                    <i class="fas fa-comment"> {{language.actionComment}} </i>
+                                </button>
+                            </div>
+                        </form>
+                    </blockquote>
+                    <ul class="list-group p-4">
+                        {{#each comments}}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <a href="#" class="col text-center">
+                                    <img src="http://gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45" alt="">
+                                </a>
+                                <blockquote class="col">
+                                    <p class="lead">{{comment}}</p>
+                                    <footer class="blockquote-footer">
+                                        {{name}} - {{timeago timestamp}}
+                                    </footer>
+                                </blockquote>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{#if sidebar.stats.softwares}}
+        <div class="col-md-4">
+            {{> sidebar/stats}}
+            {{> sidebar/popular}}
+            {{> sidebar/comments}}
+        </div>
+        {{/if}}
     </div>
 </div>

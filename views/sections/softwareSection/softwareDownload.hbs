@@ -4,8 +4,17 @@
     }
 </style>
 
-<div>
-    <div class="card">
-        
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
     </div>
+    {{#if sidebar.stats.softwares}}
+    <div class="col-md-4">
+        {{> sidebar/stats}}
+        {{> sidebar/popular}}
+        {{> sidebar/comments}}
+    </div>
+    {{/if}}
 </div>

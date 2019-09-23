@@ -32,6 +32,7 @@ ctrl.index = async (req, res) => {
   viewModel.language.CurrentLanguage = CurrentLanguage;
   viewModel.softs = softwares;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
 
   // Reassign preferedLanguage to the current selected language.
   DefaultLocale.preferedUserLanguage = CurrentLanguage;
@@ -54,8 +55,6 @@ ctrl.view = async (req, res) => {
     actualUserSession
   );
 
-  console.log(userProperties);
-
   let viewModel = {
     soft: {},
     comments: {},
@@ -65,6 +64,7 @@ ctrl.view = async (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = CurrentLanguage;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
 
   // Software which will be rendered.
   let softwareToFind = req.params.software_id;
@@ -101,6 +101,7 @@ ctrl.download = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("sections/softwareSection/softwareDownload", viewModel);
 };
 
@@ -138,8 +139,6 @@ ctrl.create = async (req, res) => {
     const savedFile = await file.save().catch(reason => {
       console.log(`Error: ${reason}`);
     });
-
-    console.log(file);
 
     res.redirect(`/${CurrentLanguage}/software`);
   } else {

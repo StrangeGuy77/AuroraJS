@@ -65,11 +65,18 @@ ctrl.services = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("sections/ourServicesSection/ourServicesView", viewModel);
 };
 
 ctrl.servicesSend = (req, res) => {
   res.send("sent!");
+};
+
+// About us
+
+ctrl.aboutUs = (req, res) => {
+  res.send("about us section");
 };
 
 // Mailers
@@ -89,6 +96,7 @@ ctrl.contact = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("sections/contactUsSection/mailer", viewModel);
 };
 
@@ -106,6 +114,7 @@ ctrl.userAgreement = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = req.params.language;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("partials/extras/userAgreementTerms", viewModel);
 };
 
@@ -167,6 +176,7 @@ ctrl.error404 = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("partials/errors/error404", viewModel);
 };
 
@@ -181,6 +191,7 @@ ctrl.error403 = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("partials/errors/error403", viewModel);
 };
 
@@ -195,6 +206,7 @@ ctrl.error503 = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("partials/errors/error503", viewModel);
 };
 
@@ -209,6 +221,7 @@ ctrl.error504 = (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = DefaultLocale.preferedUserLanguage;
   viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
   res.render("partials/errors/error504", viewModel);
 };
 

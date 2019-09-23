@@ -1,6 +1,7 @@
 const { user } = require("../models/index");
 const helper = require("../helpers/libs");
 const { DefaultLocale, userSession } = require("../keys");
+const userSessionVerification = require("../helpers/userVerification");
 
 const ctrl = {};
 
@@ -13,7 +14,24 @@ ctrl.login = (req, res) => {
 };
 
 ctrl.loginProcess = async (req, res) => {
-  res.send("user login");
+  let toTranslateJSON = {};
+  toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
+
+  let email = req.body.email;
+  let password = req.body.password;
+
+  let userToLogin = await user.find({ user_email: email, password: password });
+  if (userToLogin.length > 0) {
+    userSession.username = userToLogin[0].username;
+    userSession.actualUserSession = userToLogin[0].user_role;
+    userSession.userId = userToLogin[0].userId;
+    let redirectLink = `/${DefaultLocale.preferedUserLanguage}`;
+    res.send(JSON.stringify(redirectLink));
+  } else {
+    let toStringifyAnswer = toTranslateJSON.signUpInfo.WrongEmailOrPassword;
+    res.send(JSON.stringify(toStringifyAnswer));
+    res.status(500);
+  }
 };
 
 ctrl.register = (req, res) => {
@@ -21,7 +39,26 @@ ctrl.register = (req, res) => {
 };
 
 ctrl.profile = (req, res) => {
-  res.send("user profile");
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
+
+  if (userProperties.nonlogged) {
+    res.redirect(`/${DefaultLocale.preferedUserLanguage}/login`);
+  } else {
+    let viewModel = {
+      title: `${toTranslateJSON.userInfo.MyProfile} - Aurora Development`,
+      language: {}
+    };
+    viewModel.language = toTranslateJSON;
+    viewModel.language.CurrentLanguage = req.params.language;
+    viewModel.session = userProperties;
+    viewModel.session.username = userSession.username;
+    res.render("sections/userSections/normalUserSections/profile", viewModel);
+  }
 };
 
 ctrl.signup = async (req, res) => {
@@ -53,7 +90,7 @@ ctrl.signup = async (req, res) => {
       do {
         userId = helper.randomId();
         idResult = await user.find({ userId: userId });
-      } while (idResult !== null);
+      } while (idResult.length > 0);
       const newUser = new user({
         userId: userId,
         username: username,
@@ -75,6 +112,10 @@ ctrl.signup = async (req, res) => {
   }
 };
 
+ctrl.saveProfileSettings = (req, res) => {
+  res.send("ok!");
+};
+
 ctrl.signout = (req, res) => {
   userSession.username = "defaultUsername";
   userSession.actualUserSession = 0;
@@ -83,8 +124,52 @@ ctrl.signout = (req, res) => {
   res.send(JSON.stringify(redirectLink));
 };
 
+ctrl.userVerification = () => {
+  res.send("Everything goes well!");
+};
+
 ctrl.visit = async (req, res) => {
-  res.send("x user profile");
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
+
+  res.redirect(`/${DefaultLocale.preferedUserLanguage}/login`);
+
+  let viewModel = {
+    title: `${toTranslateJSON.userInfo.MyProfile} - Aurora Development`,
+    language: {}
+  };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = req.params.language;
+  viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
+  res.render("sections/userSections/normalUserSections/profile", viewModel);
+};
+
+ctrl.stats = async (req, res) => {
+  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
+
+  if (!userProperties.adminuser && !userProperties.superuser) {
+    res.redirect(`/${DefaultLocale.preferedUserLanguage}/admin`);
+  } else {
+    let viewModel = {
+      title: `${toTranslateJSON.stats} - Aurora Development`,
+      language: {}
+    };
+    viewModel.language = toTranslateJSON;
+    viewModel.language.CurrentLanguage = req.params.language;
+    viewModel.session = userProperties;
+    viewModel.session.username = userSession.username;
+    res.render("sections/userSections/adminSections/stats", viewModel);
+  }
 };
 
 module.exports = ctrl;

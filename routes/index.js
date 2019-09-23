@@ -12,6 +12,7 @@ module.exports = app => {
   router.get("/:language", home.index);
   router.get("/:language/user-agreement-terms", home.userAgreement);
   router.get("/:language/contact-us", home.contact);
+  router.get("/:language/about-us", home.aboutUs);
   router.post("/contact-us/send", home.contactSend);
   router.post("/getLanguageJSON", home.getLanguageJSON);
 
@@ -41,9 +42,14 @@ module.exports = app => {
   router.get("/:language/register", user.register);
   router.get("/:language/profile", user.profile);
   router.get("/:language/users/:userid", user.visit);
+  router.get("/:language/users/verification/:userid", user.userVerification);
   router.post("/login", user.loginProcess);
   router.post("/signup", user.signup);
   router.post("/signout", user.signout);
+  router.post("/save-settings", user.saveProfileSettings);
+
+  // User profile routes
+  router.get("/:language/stats", user.stats);
 
   // Bancolombia router test
   router.get("/oauth2/authorize/customers", bcmb.authorize), (bcmb.session = 1);

@@ -29,19 +29,41 @@ $("#login-button").click(function(e) {
 
   JSON.stringify(data);
 
-  $.ajax({
-    type: "POST",
-    url: "/signup",
-    data: data,
-    dataType: "json",
-    contentType: "application/x-www-form-urlencoded",
-    success: data => {
-      window.location.href = data;
-    },
-    error: data => {
-      document.getElementById("signup-alert-section").innerHTML = data;
+  if (!(email === "")) {
+    let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    let result = pattern.test(email);
+    if (result) {
+      if (password !== "") {
+        $.ajax({
+          type: "POST",
+          url: "/login",
+          data: data,
+          dataType: "json",
+          contentType: "application/x-www-form-urlencoded",
+          success: data => {
+            if (data.length <= 3) {
+              window.location.href = data;
+            } else {
+              document.getElementById("login-alert-section").innerHTML = data;
+            }
+          },
+          error: data => {
+            console.log(data);
+          }
+        });
+      } else {
+        document.getElementById("login-alert-section").innerHTML =
+          translation.signUpInfo.youMustEnterAPassword;
+      }
+    } else {
+      document.getElementById("login-alert-section").innerHTML =
+        translation.signUpInfo.yourEmailIsWrong;
     }
-  });
+  } else {
+    password = document.getElementById("login-alert-section").innerHTML =
+      translation.signUpInfo.youMustEnterAnEmail;
+  }
 });
 
 // Sign out button
@@ -78,6 +100,8 @@ $("#signup-button").click(function(e) {
 
   if (!(username === "") || !username === "Username") {
     if (!(email === "")) {
+      // Pattern verifies:
+      // An @, something after and before the @, a dot '.' after whatever comes after @, and something after the dot.
       let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       result = pattern.test(email);
@@ -133,6 +157,13 @@ $("#signup-button").click(function(e) {
 });
 
 // Sign up form cleaning if closed
+$("#signup-dismiss").click(function(e) {
+  e.preventDefault();
+  document.getElementById("signupModalUsername").innerHTML = "";
+  document.getElementById("signupModalEmail").innerHTML = "";
+  document.getElementById("signupModalPassword").innerHTML = "";
+  document.getElementById("signupModalConfirmPassword").innerHTML = "";
+});
 
 // Contact us toggling info
 $("#howToUploadASoftware").hide();

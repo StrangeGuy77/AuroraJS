@@ -37,4 +37,18 @@ helper.size = obj => {
   return size;
 };
 
+helper.toBoolean = string => {
+  switch (string) {
+    case "true":
+      return true;
+      break;
+    case "false":
+      return false;
+      break;
+    default:
+      return false;
+      break;
+  }
+};
+
 module.exports = helper;

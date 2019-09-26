@@ -35,10 +35,10 @@ ctrl.loginProcess = async (req, res) => {
 };
 
 ctrl.register = (req, res) => {
-  res.send("user register");
+  console.log(req.body);
 };
 
-ctrl.profile = (req, res) => {
+ctrl.profile = async (req, res) => {
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
   let actualUserSession = userSession.actualUserSession;
   let userProperties = {};
@@ -49,6 +49,7 @@ ctrl.profile = (req, res) => {
   if (userProperties.nonlogged) {
     res.redirect(`/${DefaultLocale.preferedUserLanguage}/login`);
   } else {
+    let userSettings = await user.find({ userId: userSession.userId });
     let viewModel = {
       title: `${toTranslateJSON.userInfo.MyProfile} - Aurora Development`,
       language: {}
@@ -56,7 +57,8 @@ ctrl.profile = (req, res) => {
     viewModel.language = toTranslateJSON;
     viewModel.language.CurrentLanguage = req.params.language;
     viewModel.session = userProperties;
-    viewModel.session.username = userSession.username;
+    viewModel.session.userSettings = userSettings[0];
+    console.log(viewModel.session);
     res.render("sections/userSections/normalUserSections/profile", viewModel);
   }
 };
@@ -112,8 +114,104 @@ ctrl.signup = async (req, res) => {
   }
 };
 
-ctrl.saveProfileSettings = (req, res) => {
-  res.send("ok!");
+ctrl.saveProfileSettings = async (req, res) => {
+  let toTranslateJSON = {};
+  toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
+
+  let temporal = req.body;
+  let settings = {};
+
+  let actualUserInfo = await user.find({ userId: userSession.userId });
+
+  settings = {
+    password:
+      temporal.changePassword === "" || temporal.changePassword === null
+        ? actualUserInfo[0].password
+        : temporal.changePassword,
+    user_email:
+      temporal.email === "" || temporal.email === null
+        ? actualUserInfo[0].user_email
+        : temporal.email,
+    name:
+      temporal.name === "" || temporal.name === null
+        ? actualUserInfo[0].name
+        : temporal.name,
+    lastname:
+      temporal.lastname === "" || temporal.lastname === null
+        ? actualUserInfo[0].lastname
+        : temporal.lastname,
+    cellphone:
+      temporal.cellphone === "" || temporal.cellphone === null
+        ? actualUserInfo[0].cellphone
+        : temporal.cellphone,
+    worksite:
+      temporal.worksite === "" || temporal.worksite === null
+        ? actualUserInfo[0].worksite
+        : temporal.worksite,
+    enterprise:
+      temporal.enterprise === "" || temporal.enterprise === null
+        ? actualUserInfo[0].enterprise
+        : temporal.enterprise,
+    country:
+      temporal.country === "" || temporal.country === null
+        ? actualUserInfo[0].country
+        : temporal.country,
+    city:
+      temporal.city === "" || temporal.city === null
+        ? actualUserInfo[0].city
+        : temporal.city,
+    github:
+      temporal.github === "" || temporal.github === null
+        ? actualUserInfo[0].github
+        : temporal.github,
+    webpage:
+      temporal.webpage === "" || temporal.webpage === null
+        ? actualUserInfo[0].webpage
+        : temporal.webpage,
+    show_public_name:
+      temporal.show_public_name === actualUserInfo[0].show_public_name
+        ? actualUserInfo[0].show_public_name
+        : temporal.show_public_name,
+    show_public_email:
+      temporal.show_public_email === actualUserInfo[0].show_public_email
+        ? actualUserInfo[0].show_public_email
+        : temporal.show_public_email,
+    show_public_location:
+      temporal.show_public_location === actualUserInfo[0].show_public_location
+        ? actualUserInfo[0].show_public_location
+        : temporal.show_public_location
+  };
+
+  var query = { userId: userSession.userId };
+
+  let checkIfUserIsNotRepeated = await user.find({
+    user_email: settings.user_email
+  });
+
+  if (
+    checkIfUserIsNotRepeated.length > 0 &&
+    checkIfUserIsNotRepeated[0].userId !== userSession.userId
+  ) {
+    let toStringifyAnswer =
+      toTranslateJSON.userInfo.TheresAnUserWithThatEmailAlready;
+    res.send(JSON.stringify(toStringifyAnswer));
+    res.status(500);
+  } else {
+    user
+      .findOneAndUpdate(query, settings, { upsert: true }, function(err, doc) {
+        if (err) {
+          res.status(500);
+          res.send("There was an error saving the information");
+        }
+        let toStringifyAnswer =
+          toTranslateJSON.userInfo.InformationSuccessfullySaved;
+        res.status(200);
+        res.send(JSON.stringify(toStringifyAnswer));
+      })
+      .catch(reason => {
+        res.send(JSON.stringify("There was an error saving the information"));
+      });
+  }
 };
 
 ctrl.signout = (req, res) => {

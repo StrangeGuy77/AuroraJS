@@ -15,8 +15,8 @@ module.exports = {
     preferedUserLanguage: "en"
   },
   userSession: {
-    actualUserSession: 1,
-    userId: 123,
+    actualUserSession: 5,
+    userId: 962330304877519,
     username: "StrangeGuy77",
     userIp: ""
   }

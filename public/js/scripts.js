@@ -226,3 +226,158 @@ $("button[id=btn-like]").click(function() {
     $(".likes-count").text(data.likes);
   });
 });
+
+// Profile Settings Saving Control
+
+$("#saveSettings").click(function(e) {
+  let userSettings = {
+    name: document.getElementById("firstname").value,
+    lastname: document.getElementById("lastname").value,
+    cellphone: document.getElementById("cellphone").value,
+    email: document.getElementById("email").value,
+    worksite: document.getElementById("worksite").value,
+    enterprise: document.getElementById("enterprise").value,
+    country: document.getElementById("country").value,
+    city: document.getElementById("city").value,
+    changePassword: document.getElementById("changepassword").value,
+    confirmPassword: document.getElementById("confirmpassword").value,
+    github: document.getElementById("usergithub").value,
+    webpage: document.getElementById("userwebpage").value,
+    show_public_name: document.getElementById("showpublicname").checked,
+    show_public_email: document.getElementById("showpublicemail").checked,
+    show_public_location: document.getElementById("showpubliclocation").checked
+  };
+
+  function checkProperties(obj) {
+    let objectToReturn = {
+      emptyProperties: 0,
+      emptyPropertyValues: []
+    };
+    for (var key in obj) {
+      if (obj[key] === null || obj[key] === "") {
+        objectToReturn.emptyProperties += 1;
+        objectToReturn.emptyPropertyValues[key] = obj[key];
+      }
+    }
+    return objectToReturn;
+  }
+
+  let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  result = pattern.test(userSettings.email);
+
+  // If userSettings ain't completely empty
+  if (checkProperties(userSettings).emptyProperties == 12) {
+    JSON.stringify(userSettings);
+    $.ajax({
+      type: "POST",
+      url: "/save-settings",
+      data: userSettings,
+      dataType: "json",
+      contentType: "application/x-www-form-urlencoded",
+      success: data => {
+        if (data.length <= 3) {
+          window.location.href = data;
+        } else {
+          document.getElementById("settingsWarning").innerHTML = data;
+        }
+      },
+      error: data => {
+        document.getElementById("settingsWarning").innerHTML = data;
+      }
+    });
+  } else {
+    // Verify if user wants to change its password
+    if (
+      userSettings.changePassword !== "" ||
+      userSettings.confirmPassword !== ""
+    ) {
+      // If none of both fields are empty
+      if (
+        userSettings.changePassword !== "" &&
+        userSettings.confirmPassword !== "" &&
+        userSettings.changePassword === userSettings.confirmPassword
+      ) {
+        if (result) {
+          userSettings.withPassword = true;
+          JSON.stringify(userSettings);
+          $.ajax({
+            type: "POST",
+            url: "/save-settings",
+            data: userSettings,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: data => {
+              if (data.length <= 3) {
+                window.location.href = data;
+              } else {
+                document.getElementById("settingsWarning").innerHTML = data;
+              }
+            },
+            error: data => {
+              document.getElementById("settingsWarning").innerHTML = data;
+            }
+          });
+        } else {
+          document.getElementById("settingsWarning").innerHTML =
+            translation.signUpInfo.yourEmailIsWrong;
+        }
+        // If any of both fields are empty check which it is, then, advice the user.
+      } else if (userSettings.changePassword === "") {
+        document.getElementById("settingsWarning").innerHTML =
+          translation.signUpInfo.youMustEnterAPassword;
+      } else if (userSettings.confirmPassword === "") {
+        document.getElementById("settingsWarning").innerHTML =
+          translation.signUpInfo.youMustConfirmYourPassword;
+      } else if (userSettings.confirmPassword !== userSettings.changePassword) {
+        document.getElementById("settingsWarning").innerHTML =
+          translation.signUpInfo.passwordDoesntMatch;
+      }
+      // Else, if user do not want to change its password, then:
+    } else if (userSettings.email !== "") {
+      if (result) {
+        JSON.stringify(userSettings);
+        $.ajax({
+          type: "POST",
+          url: "/save-settings",
+          data: userSettings,
+          dataType: "json",
+          contentType: "application/x-www-form-urlencoded",
+          success: data => {
+            if (data.length <= 3) {
+              window.location.href = data;
+            } else {
+              document.getElementById("settingsWarning").innerHTML = data;
+            }
+          },
+          error: data => {
+            document.getElementById("settingsWarning").innerHTML = data;
+          }
+        });
+      } else {
+        document.getElementById("settingsWarning").innerHTML =
+          translation.signUpInfo.yourEmailIsWrong;
+      }
+    } else {
+      userSettings.withPassword = false;
+      JSON.stringify(userSettings);
+      $.ajax({
+        type: "POST",
+        url: "/save-settings",
+        data: userSettings,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded",
+        success: data => {
+          if (data.length <= 3) {
+            window.location.href = data;
+          } else {
+            document.getElementById("settingsWarning").innerHTML = data;
+          }
+        },
+        error: data => {
+          document.getElementById("settingsWarning").innerHTML = data;
+        }
+      });
+    }
+  }
+});

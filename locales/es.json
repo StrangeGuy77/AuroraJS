@@ -43,7 +43,8 @@
         "SaveSettings": "Guardar configuración",
         "ShowPublicName": "Mostrar público el nombre",
         "ShowPublicEmail": "Mostrar público el correo electrónico",
-        "ShowPublicLocation": "Mostrat pública la ubicación"
+        "ShowPublicLocation": "Mostrar pública la ubicación",
+        "InformationSuccessfullySaved": "La información ha sido guardada exitosamente."
     },
     "signUpInfo": {
         "passwordDoesntMatch": "Las contraseñas no coinciden.",

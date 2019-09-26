@@ -45,7 +45,9 @@
         "SaveSettings": "Save settings",
         "ShowPublicName": "Show public name",
         "ShowPublicEmail": "Show public email",
-        "ShowPublicLocation": "Show public location"
+        "ShowPublicLocation": "Show public location",
+        "InformationSuccessfullySaved": "The information was saved succesfully.",
+        "TheresAnUserWithThatEmailAlready": "There's an user with that email registered."
     },
     "signUpInfo": {
         "passwordDoesntMatch": "Password doesn't match.",

@@ -1,11 +1,12 @@
 const path = require("path");
 const helper = require("../helpers/libs");
 const fs = require("fs-extra");
-const { software, comment } = require("../models/index");
+const { software, comment, user } = require("../models/index");
 const md5 = require("md5");
 const sidebar = require("../helpers/sidebar");
 const { DefaultLocale, userSession } = require("../keys");
 const userSessionVerification = require("../helpers/userVerification");
+const stripe = require("stripe")("sk_test_PbVyc5UdjKaPyLjN1wQrVNOh00GsVyog6c");
 
 const ctrl = {};
 
@@ -64,7 +65,11 @@ ctrl.view = async (req, res) => {
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = CurrentLanguage;
   viewModel.session = userProperties;
+  userProperties.nonlogged === true
+    ? (viewModel.session.aintLogged = true)
+    : null;
   viewModel.session.username = userSession.username;
+  viewModel.session.email = userSession.email;
 
   // Software which will be rendered.
   let softwareToFind = req.params.software_id;
@@ -72,6 +77,23 @@ ctrl.view = async (req, res) => {
   const soft = await software.findOne({
     filename: { $regex: softwareToFind }
   });
+
+  if (!(userProperties.nonlogged === true)) {
+    let userInfo = await user.findOne({
+      userId: userSession.userId
+    });
+    let verifyIfSoftwareIsAlreadyBought = await helper.checkBuy(
+      userInfo.software_collection,
+      soft.id
+    );
+    if (
+      verifyIfSoftwareIsAlreadyBought ||
+      userInfo.userId === soft.userUploaderId ||
+      userSession.actualUserSession >= 3
+    ) {
+      viewModel.session.isAlreadyBought = true;
+    }
+  }
 
   // Increase software views whenever page is loaded.
   if (soft) {
@@ -87,7 +109,33 @@ ctrl.view = async (req, res) => {
   }
 };
 
-ctrl.download = (req, res) => {
+ctrl.download = async (req, res) => {
+  let softwareInformation = await software.findOne({
+    filename: { $regex: req.params.software_id }
+  });
+
+  const customer = await stripe.paymentIntents.create({
+    amount: softwareInformation.price * 100,
+    description: softwareInformation.description,
+    currency: "usd",
+    payment_method_types: ["card"]
+  });
+
+  let saveUserPaymentInformation = await user.findOne({
+    userId: userSession.userId
+  });
+
+  saveUserPaymentInformation.software_collection.push(softwareInformation);
+
+  await saveUserPaymentInformation
+    .save()
+    .catch(reason => {
+      console.log("Error saving information ", reason);
+    })
+    .then(data => {
+      console.log(data);
+    });
+
   let toTranslateJSON = require(`../locales/${req.params.language}.json`);
   let actualUserSession = userSession.actualUserSession;
   let userProperties = {};
@@ -127,6 +175,7 @@ ctrl.create = async (req, res) => {
     // Model instance
     const file = new software({
       title: req.body.title,
+      id: helper.randomId(),
       description: req.body.description,
       princLanguage: req.body.language,
       price: req.body.price.trim() !== "" ? parseInt(req.body.price) : 0,
@@ -194,10 +243,12 @@ ctrl.delete = async (req, res) => {
     await fs.unlink(path.resolve(`./src/public/upload/${soft.filename}`));
     await comment.deleteOne({ soft_id: soft._id });
     await soft.remove();
+    res.status(200);
+    let redirectLink = `/${DefaultLocale.preferedUserLanguage}/software`;
+    res.send(JSON.stringify(redirectLink));
   } else {
     res.render("partials/errors/error504");
   }
-  res.redirect(`/${DefaultLocale.preferedUserLanguage}/software`);
 };
 
 module.exports = ctrl;

@@ -59,15 +59,22 @@ npm install -D @babel/cli @babel/core @babel/preset-env ember-cli-materialize no
 To run a development environment run the next scripts:
 
 
-Install the packages named above, then, start the server running:
+Install the packages named above, then, within the package.json write the following script:
 
+```
+"dev":"env=development && nodemon src/index.js"
+```
+Then:
 ```
 npm run dev
 ```
 
 Have in mind that morgan will log everything you do in localhost if you start with development environment, to avoid this, run production environment
 
-
+```
+"start":"env=production && node src/index.js"
+```
+Then:
 ```
 npm start
 ```

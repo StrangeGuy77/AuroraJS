@@ -1,9 +1,9 @@
 ![alt text](https://github.com/StrangeGuy77/AuroraJS/blob/master/public/img/cover.png)
 
 
-# Project Title
+# Aurora Development
 
-Aurora Development
+The project made for those developers who wanted to achieve more than just study or search for help.
 
 ## Getting Started
 

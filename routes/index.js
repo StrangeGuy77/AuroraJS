@@ -39,12 +39,12 @@ module.exports = app => {
 
   // User routes
   router.get("/:language/login", user.login);
-  router.get("/:language/register", user.register);
+  router.get("/:language/signup", user.signup);
   router.get("/:language/profile", user.profile);
   router.get("/:language/users/:userid", user.visit);
   router.get("/:language/users/verification/:userid", user.userVerification);
   router.post("/login", user.loginProcess);
-  router.post("/signup", user.signup);
+  router.post("/signup", user.signupProcess);
   router.post("/signout", user.signout);
   router.post("/save-settings", user.saveProfileSettings);
 

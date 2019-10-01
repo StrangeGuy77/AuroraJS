@@ -19,16 +19,19 @@ const UserSchema = new Schema({
   city: { type: String, default: "" },
   github: { type: String, default: "" },
   webpage: { type: String, default: "" },
-  show_public_name: { type: String, default: false },
-  show_public_email: { type: String, default: false },
-  show_public_location: { type: String, default: false },
+  show_public_name: { type: String, default: "false" },
+  show_public_email: { type: String, default: "false" },
+  show_public_location: { type: String, default: "false" },
   followers: { type: Number, default: 0 },
   times_liked: { type: Number, default: 0 },
-  times_posted: { type: Number, default: 0 }
+  times_posted: { type: Number, default: 0 },
+  software_collection: { type: Array, default: [] },
+  book_collection: { type: Array, default: [] },
+  payment_collection: { type: Array, default: [] }
 });
 
 UserSchema.virtual("userUniqueId").get(function() {
-  return this.userId;
+  return this._id;
 });
 
 module.exports = mongoose.model("user", UserSchema);

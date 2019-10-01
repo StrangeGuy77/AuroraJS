@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const helper = require("../helpers/libs");
 const { Schema } = mongoose;
 
-const SoftwareSchema = new Schema({
+const bookSchema = new Schema({
   title: { type: String },
   id: { type: Number, default: helper.randomId() },
   description: { type: String },
-  princLanguage: { type: String },
+  author: { type: String },
   price: { type: Number, default: 0 },
   filename: { type: String },
   views: { type: Number, default: 0 },
@@ -18,8 +18,8 @@ const SoftwareSchema = new Schema({
   timestamp: { type: Date, default: Date.now }
 });
 
-SoftwareSchema.virtual("uniqueId").get(function() {
+bookSchema.virtual("uniqueId").get(function() {
   return this.filename.replace(path.extname(this.filename), "");
 });
 
-module.exports = mongoose.model("software", SoftwareSchema);
+module.exports = mongoose.model("book", bookSchema);

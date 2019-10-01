@@ -1,6 +1,24 @@
 <style>
     body {
         background-image: url("https://wallpaperplay.com/walls/full/8/4/a/44843.jpg");
+
+        /* Background image is centered vertically and horizontally at all times */
+        background-position: center center;
+
+        /* Background image doesn't tile */
+        background-repeat: no-repeat;
+
+        /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+        background-attachment: fixed;
+
+        /* This is what makes the background image rescale based
+     on the container's size */
+        background-size: cover;
+
+        /* Set a background color that will be displayed
+     while the background image is loading */
+        background-color: #464646;
     }
 </style>
 
@@ -26,10 +44,35 @@
                         <img src="/public/upload/{{soft.filename}}" alt="" class="img-fluid">
                     </div>
                     <p></p>
+                    {{#if session.isAlreadyBought}}
                     <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'"
                         class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
                         <i class="fas fa-download"></i> {{language.download}}
                     </button>
+                    {{else}}
+                    <div class="card-footer">
+                        <form action="/{{languageFinder}}/software/{{soft.uniqueId}}/download" method="GET">
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_Z5JZQq8QxBrvoKf8bgss1PkH0072q9LKtb" data-amount="{{soft.price}}00"
+                                data-name="{{soft.title}}" data-description="{{soft.description}}"
+                                data-image="/public/upload/{{soft.filename}}" data-locale="auto" data-currency="usd"
+                                data-email="{{session.email}}">
+                                </script>
+                            <script>
+                                document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+                            </script>
+                            {{#if session.aintLogged}}
+                            <button class="btn btn-dark btn-block" disabled>
+                                {{language.buyInfo.youNeedToBeLogged}} <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            {{else}}
+                            <button class="btn btn-dark btn-block">
+                                {{language.buyInfo.buy}} <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            {{/if}}
+                        </form>
+                    </div>
+                    {{/if}}
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
                     <button class="btn btn-success" id="btn-like" data-id="{{soft.filename}}">

@@ -1,3 +1,29 @@
+<style>
+    body {
+        background-image: url("https://wallpaperplay.com/walls/full/b/2/d/44859.jpg");
+
+        background-position: center center;
+
+        /* Background image doesn't tile */
+        background-repeat: no-repeat;
+
+        /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+        background-attachment: fixed;
+
+        /* This is what makes the background image rescale based
+     on the container's size */
+        background-size: cover;
+
+        /* Set a background color that will be displayed
+     while the background image is loading */
+        background-color: #fcd6d6;
+
+        color: black;
+    }
+</style>
+
+
 <div class="container-fluid">
     <hr>
 </div>
@@ -56,14 +82,16 @@
                 </ul>
                 <hr>
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{language.userInfo.Website}} <i class="fa fa-link fa-1x"></i></div>
-                    <div class="panel-body"><a href="http://bootnipets.com">{{session.userSettings.webpage}}</a>
+                    <div class="panel-heading">{{language.userInfo.Website}} <i class="fa fa-link fa-1x"></i>
+                    </div>
+                    <div class="panel-body"><a
+                            href="https://{{session.userSettings.webpage}}">{{session.userSettings.webpage}}</a>
                     </div>
                     <hr>
                     <div class="panel-heading">Github <i class="fa fa-link fa-1x"></i> <i
                             class="fab fa-github-square"></i> </div>
                     <div class="panel-body"><a
-                            href="http://bootnipets.com">github.com/{{session.userSettings.github}}</a>
+                            href="https://www.github.com/{{session.userSettings.github}}">github.com/{{session.userSettings.github}}</a>
                     </div>
                     <hr>
                 </div>

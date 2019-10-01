@@ -16,39 +16,39 @@ Dependencies are the following:
 
 Production:
 
-Errorhandler @ 1.5.1__
-Express @ 4.17.1__
-Express-handlebars @ 3.1.0__
-Filesystem-extra @ 8.1.0__
-i18n @ 0.8.3__
-Jsonwebtoken @ 8.5.1__
-Materialize-css @ 1.0.0-rc.2__
-MD5 @ 2.2.1__
-Moment @ 2.24.0__
-Morgan @ 1.9.1__
-Multer @ 1.4.2__
-Nodemailer @ 6.3.0__
-Object.fromentries @ 2.0.0__
-Request @ 2.88.0__
-Requirejs @ 2.3.6__
-Stripe @ 7.9.1__
-__
-Development:__
-__
-Babel/cli @ 7.6.0__
-Babel/core @ 7.6.0__
-Babel/preset-env @ 7.6.0__
-Ember-cli-materialize @ 0.22.0__
-Nodemon @ 1.19.1__
-__
+Errorhandler @ 1.5.1<br />
+Express @ 4.17.1<br />
+Express-handlebars @ 3.1.0<br />
+Filesystem-extra @ 8.1.0<br />
+i18n @ 0.8.3<br />
+Jsonwebtoken @ 8.5.1<br />
+Materialize-css @ 1.0.0-rc.2<br />
+MD5 @ 2.2.1<br />
+Moment @ 2.24.0<br />
+Morgan @ 1.9.1<br />
+Multer @ 1.4.2<br />
+Nodemailer @ 6.3.0<br />
+Object.fromentries @ 2.0.0<br />
+Request @ 2.88.0<br />
+Requirejs @ 2.3.6<br />
+Stripe @ 7.9.1<br />
+
+Development:<br />
+
+Babel/cli @ 7.6.0<br />
+Babel/core @ 7.6.0<br />
+Babel/preset-env @ 7.6.0<br />
+Ember-cli-materialize @ 0.22.0<br />
+Nodemon @ 1.19.1<br />
+
 
 Install them all with the following two commands:
-__
+
 Production dependencies
 ```
 npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe 
 ```
-__
+
 Development dependencies
 ```
 npm install -D @babel/cli @babel/core @babel/preset-env ember-cli-materialize nodemon
@@ -56,16 +56,16 @@ npm install -D @babel/cli @babel/core @babel/preset-env ember-cli-materialize no
 
 ### Installing
 
-To run a development environment run the next scripts:__
+To run a development environment run the next scripts:
 
 
-Install the packages named above, then, start the server running:__
+Install the packages named above, then, start the server running:
 
 ```
 npm run dev
 ```
 
-Have in mind that morgan will log everything you do in localhost if you start with development environment, to avoid this, run production environment__
+Have in mind that morgan will log everything you do in localhost if you start with development environment, to avoid this, run production environment
 
 
 ```

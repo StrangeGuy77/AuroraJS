@@ -45,7 +45,9 @@
         "SaveSettings": "Einstellungen speichern",
         "ShowPublicName": "Namen öffentlich anzeigen",
         "ShowPublicEmail": "E-Mail öffentlich anzeigen",
-        "ShowPublicLocation": "Standort öffentlich anzeigen"
+        "ShowPublicLocation": "Standort öffentlich anzeigen",
+        "NotRegisteredYet": "Noch nicht registriert? ",
+        "SignUpHere": "Hier kostenlos anmelden"
     },
     "signUpInfo": {
         "passwordDoesntMatch": "Passwort stimmt nicht überein.",
@@ -57,6 +59,10 @@
         "TheresAnUserWithThatEmail": "Es ist ein Benutzer mit dieser E-Mail bereits registriert.",
         "TheresAnUserWithThatUsername": "Es ist bereits ein Benutzer mit diesem Namen registriert.",
         "WrongEmailOrPassword": "Falsche E-Mail-Adresse oder falsches Passwort."
+    },
+    "buyInfo": {
+        "youNeedToBeLogged": "Sie müssen sich anmelden, um herunterladen oder kaufen zu können",
+        "buy": "Kaufen"
     },
     "ourServices": "Unsere Leistungen",
     "contactUs": "Sprechen Sie uns an",

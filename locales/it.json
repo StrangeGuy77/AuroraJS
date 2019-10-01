@@ -45,7 +45,9 @@
         "SaveSettings": "Salva le impostazioni",
         "ShowPublicName": "Mostra nome pubblico",
         "ShowPublicEmail": "Mostra email pubblica",
-        "ShowPublicLocation": "Mostra posizione pubblica"
+        "ShowPublicLocation": "Mostra posizione pubblica",
+        "NotRegisteredYet": "Non sei ancora registrato? ",
+        "SignUpHere": "Iscriviti qui gratuitamente"
     },
     "signUpInfo": {
         "passwordDoesntMatch": "La password non corrisponde.",
@@ -57,6 +59,10 @@
         "TheresAnUserWithThatEmail": "C'è un utente con quell'email già registrato.",
         "TheresAnUserWithThatUsername": "C'è un utente con quel nome già registrato.",
         "WrongEmailOrPassword": "Indirizzo e-mail errato o password errata."
+    },
+    "buyInfo": {
+        "youNeedToBeLogged": "Devi effettuare l'accesso per scaricare o acquistare",
+        "buy": "Acquistare"
     },
     "ourServices": "Nostri servizi",
     "contactUs": "Contattaci",
@@ -98,7 +104,7 @@
         "howToUploadABook": "Come faccio a caricare un libro?",
         "htuBAnswer": "Vai alla sezione 'libreria' e da lì compila il modulo con tutti i campi che risultano obbligatori. Devi assicurarti che l'estensione del libro sia .pdf o .epub e che non pesa più di 50mb",
         "howLongDoesItTakesForAnAnswer": "Quanto tempo ci vuole per offrire una risposta alle e-mail?",
-        "hldtAnswer": "In generale, i tempi di risposta variano in base al tipo di domanda inviata e alla sua pertinenza. Il team di sviluppo Aurora cerca sempre di dare una risposta rapida e concisa a coloro che ci contattano, tuttavia, diamo priorità a coloro che ci contattano per presentare software, consulenza e sviluppi commerciali, ma inevitabilmente rispondiamo a tutte le e-mail che arrivano in meno 24 ore",
+        "hldtAnswer": "In generale, i tempi di risposta variano in base al tipo di domanda inviata e alla sua pertinenza. Il team di Aurora Development cerca sempre di dare una risposta rapida e concisa a coloro che ci contattano, tuttavia, diamo priorità a coloro che ci contattano per presentare software, consulenza e sviluppi commerciali, ma inevitabilmente rispondiamo a tutte le e-mail che arrivano in meno 24 ore",
         "whereToFindCookiesAndUserAgreement": "Dove trovo le politiche sull'uso e sui cookie?",
         "wtfcAnswer": "Le nostre politiche di utilizzo sono accettate nel momento in cui l'utente utilizza il nostro servizio e questo viene notificato nel momento in cui accede alla pagina e sono disponibili nel seguente link:",
         "whereToFindAModerator": "Dove trovo un moderatore?",

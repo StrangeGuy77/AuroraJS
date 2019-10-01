@@ -45,7 +45,9 @@
         "SaveSettings": "設定を保存する",
         "ShowPublicName": "名前を公開",
         "ShowPublicEmail": "メールを公開する",
-        "ShowPublicLocation": "場所を公開する"
+        "ShowPublicLocation": "場所を公開する",
+        "NotRegisteredYet": "まだ登録されていませんか？ ",
+        "SignUpHere": "ここから無料でサインアップ"
     },
     "signUpInfo": {
         "passwordDoesntMatch": "パスワードが一致しません.",
@@ -57,6 +59,10 @@
         "TheresAnUserWithThatEmail": "そのメールを既に登録しているユーザーがいます。",
         "TheresAnUserWithThatUsername": "その名前のユーザーが既に登録されています。",
         "WrongEmailOrPassword": "間違ったメールアドレスまたは間違ったパスワード."
+    },
+    "buyInfo": {
+        "youNeedToBeLogged": "ダウンロードまたは購入するにはログインする必要があります",
+        "buy": "購入"
     },
     "ourServices": "私たちのサービス",
     "contactUs": "お問い合わせ",

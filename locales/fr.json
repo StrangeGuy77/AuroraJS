@@ -45,7 +45,9 @@
         "SaveSettings": "Enregistrer les paramètres",
         "ShowPublicName": "Afficher le nom public",
         "ShowPublicEmail": "Montrer email public",
-        "ShowPublicLocation": "Montrer lieu public"
+        "ShowPublicLocation": "Montrer lieu public",
+        "NotRegisteredYet": "Pas encore inscrit? ",
+        "SignUpHere": "Inscrivez-vous gratuitement ici"
     },
     "signUpInfo": {
         "passwordDoesntMatch": "Le mot de passe ne correspond pas.",
@@ -57,6 +59,10 @@
         "TheresAnUserWithThatEmail": "Il y a un utilisateur avec cet email déjà enregistré.",
         "TheresAnUserWithThatUsername": "Il y a un utilisateur avec ce nom déjà enregistré.",
         "WrongEmailOrPassword": "Email ou mot de passe incorrect."
+    },
+    "buyInfo": {
+        "youNeedToBeLogged": "Vous devez vous connecter pour télécharger ou acheter",
+        "buy": "Acheter"
     },
     "ourServices": "Nos services",
     "contactUs": "Nous contacter",
@@ -89,7 +95,7 @@
     "signCommentEmail": "E-Mail",
     "signCommentContent": "Commentaire",
     "actionComment": "Commenter sur",
-    "aboutAurora": "A propos du développement Aurora",
+    "aboutAurora": "A propos du Aurora Development",
     "aboutAuroraContent": "Aurora Development est un projet qui cherche à intégrer tous les besoins des développeurs sur une seule page de la manière la plus innovante possible, en offrant une variété de services, de langues et de disponibilité.",
     "faq": {
         "faq": "Questions fréquentes",
@@ -98,7 +104,7 @@
         "howToUploadABook": "Comment monter un livre?",
         "htuBAnswer": "Vous allez à la section 'bibliothèque' et à partir de là vous remplissez le formulaire avec tous les champs qui sont obligatoires. Vous devez vous assurer que l'extension du livre est .pdf ou .epub et qu'elle ne pèse pas plus de 50 Mb",
         "howLongDoesItTakesForAnAnswer": "Combien de temps faut-il pour offrir une réponse aux emails?",
-        "hldtAnswer": "En général, les temps de réponse varient en fonction du type de question que vous avez envoyé au courrier électronique et de sa pertinence. L’équipe de développement d’Aurora essaie toujours de donner une réponse rapide et concise à ceux qui nous contactent; cependant, nous donnons la priorité à ceux qui nous contactent pour présenter des logiciels, des conseils et des développements commerciaux, mais nous répondons inévitablement à tous les courriels qui arrivent en moins 24 heures",
+        "hldtAnswer": "En général, les temps de réponse varient en fonction du type de question que vous avez envoyé au courrier électronique et de sa pertinence. L’équipe de Aurora Development essaie toujours de donner une réponse rapide et concise à ceux qui nous contactent; cependant, nous donnons la priorité à ceux qui nous contactent pour présenter des logiciels, des conseils et des développements commerciaux, mais nous répondons inévitablement à tous les courriels qui arrivent en moins 24 heures",
         "whereToFindCookiesAndUserAgreement": "Où puis-je trouver les politiques d'utilisation et de cookies?",
         "wtfcAnswer": "Nos règles d'utilisation sont acceptées au moment où l'utilisateur utilise notre service. Cette notification est notifiée au moment où il entre sur la page. Vous pouvez les trouver à l'aide du lien suivant: ",
         "whereToFindAModerator": "Où puis-je trouver un modérateur?",

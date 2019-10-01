@@ -44,7 +44,9 @@
         "ShowPublicName": "Mostrar público el nombre",
         "ShowPublicEmail": "Mostrar público el correo electrónico",
         "ShowPublicLocation": "Mostrar pública la ubicación",
-        "InformationSuccessfullySaved": "La información ha sido guardada exitosamente."
+        "InformationSuccessfullySaved": "La información ha sido guardada exitosamente.",
+        "NotRegisteredYet": "Todavía no estás registrado? ",
+        "SignUpHere": "Regístrate aquí gratis"
     },
     "signUpInfo": {
         "passwordDoesntMatch": "Las contraseñas no coinciden.",
@@ -56,6 +58,10 @@
         "TheresAnUserWithThatEmail": "Hay un usuario con ese correo electrónico ya registrado.",
         "TheresAnUserWithThatUsername": "Hay un usuario con ese nombre ya registrado.",
         "WrongEmailOrPassword": "Correo electrónico o contraseña incorrecta."
+    },
+    "buyInfo": {
+        "youNeedToBeLogged": "Necesitas iniciar sesión para descargar o comprar",
+        "buy": "Comprar"
     },
     "library": "Biblioteca",
     "software": "Software",

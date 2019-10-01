@@ -8,7 +8,7 @@ const i18n = require("i18n");
 const errorHandler = require("errorhandler");
 
 module.exports = app => {
-  // Configuración
+  // Configuration
   app.set("port", process.env.PORT || 3000);
   app.set("views", path.join(__dirname, "../views"));
   app.engine(
@@ -27,7 +27,7 @@ module.exports = app => {
   i18n.configure({
     locales: ["es", "en", "de", "fr"],
     directory: path.join(__dirname, "../locales"),
-    cookie: 'language'
+    cookie: "language"
   });
 
   // Middlewares
@@ -44,10 +44,10 @@ module.exports = app => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  // Archivos estáticos
+  // Static files
   app.use("/public", express.static(path.join(__dirname, "../public")));
 
-  // Rutas
+  // Routes
   routes(app);
 
   // Error handler

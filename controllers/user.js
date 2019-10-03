@@ -1,7 +1,9 @@
 const { user } = require("../models/index");
 const helper = require("../helpers/libs");
-const { DefaultLocale, userSession } = require("../keys");
+const confirmationHtml = require("../helpers/confirmationEmail");
+const { DefaultLocale, userSession, Contactmailer } = require("../keys");
 const userSessionVerification = require("../helpers/userVerification");
+const mailer = require("nodemailer");
 
 const ctrl = {};
 
@@ -115,13 +117,13 @@ ctrl.signupProcess = async (req, res) => {
       res.send(JSON.stringify(toStringifyAnswer));
       res.status(500);
     } else {
-      let userId;
+      var userId;
       let idResult = 0;
       do {
         userId = helper.randomId();
         idResult = await user.find({ userId: userId });
       } while (idResult.length > 0);
-      const newUser = new user({
+      var newUser = new user({
         userId: userId,
         username: username,
         password: password,
@@ -136,10 +138,47 @@ ctrl.signupProcess = async (req, res) => {
       userSession.username = username;
       userSession.actualUserSession = 1;
       userSession.userId = userId;
-      let redirectLink = `/${DefaultLocale.preferedUserLanguage}`;
-      res.send(JSON.stringify(redirectLink));
     }
+
+    // Send confirmation email
+
+    let transporter = mailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: Contactmailer.user,
+        pass: Contactmailer.pass
+      }
+    });
+
+    let userData = {
+      username: username,
+      language: DefaultLocale.preferedUserLanguage,
+      user_id: userId,
+      verif_code: newUser.user_activation_key
+    };
+
+    let mailOptions = {
+      from: Contactmailer.user,
+      to: email,
+      subject: "Confirmation email",
+      text: "",
+      html: confirmationHtml(userData)
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+        res.status(200);
+      }
+    });
+    let redirectLink = `/${DefaultLocale.preferedUserLanguage}`;
+    res.send(JSON.stringify(redirectLink));
   }
+};
+
+ctrl.accountConfirmation = async (req, res) => {
+  console.log(req.params);
+  res.send("Huh this works!");
 };
 
 ctrl.saveProfileSettings = async (req, res) => {

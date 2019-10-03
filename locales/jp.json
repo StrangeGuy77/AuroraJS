@@ -64,6 +64,10 @@
         "youNeedToBeLogged": "ダウンロードまたは購入するにはログインする必要があります",
         "buy": "購入"
     },
+    "confirmationInfo": {
+
+    },
+    "loginToshareAcomment": "コメントを共有するにはログインしてください",
     "ourServices": "私たちのサービス",
     "contactUs": "お問い合わせ",
     "language": "言語",

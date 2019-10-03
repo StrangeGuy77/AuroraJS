@@ -63,6 +63,8 @@
         "youNeedToBeLogged": "Necesitas iniciar sesión para descargar o comprar",
         "buy": "Comprar"
     },
+    "loginToUpload": "Inicia sesión para subir",
+    "loginToshareAcomment": "Inicia sesión para comentar",
     "library": "Biblioteca",
     "software": "Software",
     "foro": "Foro",

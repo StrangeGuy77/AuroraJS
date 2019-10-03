@@ -53,10 +53,10 @@
                     <div class="card-footer">
                         <form action="/{{languageFinder}}/software/{{soft.uniqueId}}/download" method="GET">
                             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="pk_test_Z5JZQq8QxBrvoKf8bgss1PkH0072q9LKtb" data-amount="{{soft.price}}00"
-                                data-name="{{soft.title}}" data-description="{{soft.description}}"
-                                data-image="/public/upload/{{soft.filename}}" data-locale="auto" data-currency="usd"
-                                data-email="{{session.email}}">
+                                data-key="pk_test_Z5JZQq8QxBrvoKf8bgss1PkH0072q9LKtb" data-locale="{{languageFinder}}"
+                                data-amount="{{soft.price}}00" data-name="{{soft.title}}"
+                                data-description="{{soft.description}}" data-image="/public/upload/{{soft.filename}}"
+                                data-locale="auto" data-currency="usd" data-email="{{session.email}}">
                                 </script>
                             <script>
                                 document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
@@ -95,9 +95,15 @@
             <div class="card mt-2">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>{{language.comments}}</h3>
+                    {{#if session.aintLogged}}
+                    <button class="btn btn-info" id="btn-toggle-comment" disabled>
+                        <i class="fa fa-comment-o"></i> {{language.loginToshareAcomment}}
+                    </button>
+                    {{else}}
                     <button class="btn btn-info" id="btn-toggle-comment">
                         <i class="fa fa-comment-o"></i> {{language.shareAcomment}}
                     </button>
+                    {{/if}}
                 </div>
                 <div class="card-body">
                     <blockquote id="post-comment">

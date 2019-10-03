@@ -82,11 +82,19 @@
                             <input type="text" name="price" class="form-control"
                                 placeholder="{{language.signSoftwarePrice}}">
                         </div>
+                        {{#if session.nonlogged}}
+                        <div class="form-group">
+                            <button class="btn btn-success" disabled>
+                                <i class="fa fa-upload"></i> {{language.loginToUpload}}
+                            </button>
+                        </div>
+                        {{else}}
                         <div class="form-group">
                             <button class="btn btn-success">
                                 <i class="fa fa-upload"></i> {{language.upload}}
                             </button>
                         </div>
+                        {{/if}}
                     </form>
                 </div>
             </div>

@@ -24,6 +24,7 @@ module.exports = app => {
   router.get("/:language/software", software.index);
   router.get("/:language/software/:software_id", software.view);
   router.get("/:language/software/:software_id/download", software.download);
+  router.get("/:language/software/:software_id/buy", software.buy);
   router.post("/:language/software", software.create);
   router.post("/software/:software_id/like", software.like);
   router.post("/software/:software_id/comment", software.comment);
@@ -31,11 +32,22 @@ module.exports = app => {
 
   // Library routes
   router.get("/:language/library", library.index);
-  router.get("/:language/library/:book_id", library.view);
-  router.post("/library/upload", library.create);
-  router.post("/library/:book_id/like", library.like);
-  router.post("/library/:book_id/comment", library.comment);
-  router.delete("/library/:book_id/delete", library.delete);
+  // For books
+  router.get("/:language/library/books/upload", library.bookUploadView);
+  router.get("/:language/library/books/:book_id", library.bookView);
+  router.post("/library/books/upload", library.bookUploadProcess);
+  router.post("/library/books/:book_id/comment", library.bookComment);
+  router.post("/library/books/:book_id/like", library.bookLike);
+  router.delete("/library/:book_id/delete", library.bookDelete);
+  // For courses
+  router.get("/:language/library/courses/upload", library.courseUploadView);
+  router.get("/:language/library/courses/:course_id", library.courseView);
+  router.post("/library/courses/upload", library.courseUploadProcess);
+  router.post("/library/courses/:course_id/comment", library.courseComment);
+  router.post("/library/courses/:course_id/like", library.courseLike);
+  router.delete("/library/:course_id/delete", library.courseDelete);
+  // For both
+  router.post("/library/wishlist-add", library.wishlistAdd);
 
   // User routes
   router.get("/:language/login", user.login);

@@ -110,6 +110,10 @@ ctrl.view = async (req, res) => {
 };
 
 ctrl.download = async (req, res) => {
+  res.send("XD");
+};
+
+ctrl.buy = async (req, res) => {
   let softwareInformation = await software.findOne({
     filename: { $regex: req.params.software_id }
   });
@@ -125,7 +129,16 @@ ctrl.download = async (req, res) => {
     userId: userSession.userId
   });
 
+  let toPaymentHistory = {
+    name: softwareInformation.title,
+    price: softwareInformation.price,
+    paymentMethod: customer.payment_method_types,
+    currency: customer.currency,
+    date: Date.now()
+  };
+
   saveUserPaymentInformation.software_collection.push(softwareInformation);
+  saveUserPaymentInformation.payment_collection.push(toPaymentHistory);
 
   await saveUserPaymentInformation
     .save()
@@ -244,7 +257,7 @@ ctrl.delete = async (req, res) => {
     await comment.deleteOne({ soft_id: soft._id });
     await soft.remove();
     res.status(200);
-    let redirectLink = `/${DefaultLocale.preferedUserLanguage}/software`;
+    let redirectLink = `/${DefaultLocale.preferedUserLanguage}`;
     res.send(JSON.stringify(redirectLink));
   } else {
     res.render("partials/errors/error504");

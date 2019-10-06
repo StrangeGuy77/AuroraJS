@@ -27,7 +27,9 @@ const UserSchema = new Schema({
   times_posted: { type: Number, default: 0 },
   software_collection: { type: Array, default: [] },
   book_collection: { type: Array, default: [] },
-  payment_collection: { type: Array, default: [] }
+  payment_collection: { type: Array, default: [] },
+  courses_collection: { type: Array, default: [] },
+  wishlist: { type: Array, default: [] }
 });
 
 UserSchema.virtual("userUniqueId").get(function() {

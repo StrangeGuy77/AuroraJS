@@ -3,8 +3,14 @@ module.exports = {
     URI: "mongodb://localhost/auroradevelopment"
   },
   Contactmailer: {
-    user: "test@test.com",
-    pass: "password"
+    ContactEmail: {
+      user: "contact@auroradevelopment.com",
+      pass: "in)cIV{#u%7u"
+    },
+    ConfirmEmail: {
+      user: "confirmation@auroradevelopment.com",
+      pass: "So£;£fRgs{$^"
+    }
   },
   Api: {
     client_id: "0a17b0f0-4ec4-4530-af1a-f460a6b66716",
@@ -18,6 +24,7 @@ module.exports = {
     actualUserSession: 5,
     userId: 962330304877519,
     username: "StrangeGuy77",
+    email: "jhonatanrg@live.com",
     userIp: ""
   }
 };

@@ -120,10 +120,12 @@ ctrl.userAgreement = (req, res) => {
 
 ctrl.contactSend = async (req, res) => {
   let transporter = mailer.createTransport({
-    service: "gmail",
+    host: "smtp.stackmail.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: Contactmailer.user,
-      pass: Contactmailer.pass
+      user: Contactmailer.ContactEmail.user,
+      pass: Contactmailer.ContactEmail.pass
     }
   });
 
@@ -133,8 +135,8 @@ ctrl.contactSend = async (req, res) => {
   let email = req.body.sender;
 
   let mailOptions = {
-    from: pattern.test(email) ? email.toLowerCase() : "emailnotavailable",
-    to: "jhonatanrg@live.co",
+    from: Contactmailer.ContactEmail.user,
+    to: Contactmailer.ContactEmail.user,
     subject: req.body.subject,
     text: req.body.issue
   };

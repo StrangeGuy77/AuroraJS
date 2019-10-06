@@ -111,7 +111,7 @@ ctrl.signupProcess = async (req, res) => {
   } else {
     let emailResult = {};
     emailResult = await user.find({ user_email: email });
-    if (emailResult.length > 0) {
+    if (false /*emailResult.length > 0*/) {
       let toStringifyAnswer =
         toTranslateJSON.signUpInfo.TheresAnUserWithThatEmail;
       res.send(JSON.stringify(toStringifyAnswer));
@@ -132,9 +132,9 @@ ctrl.signupProcess = async (req, res) => {
         user_status: 1,
         user_role: 1
       });
-      await newUser.save().catch(reason => {
-        console.log("Error registering a new user: " + reason);
-      });
+      // await newUser.save().catch(reason => {
+      //   console.log("Error registering a new user: " + reason);
+      // });
       userSession.username = username;
       userSession.actualUserSession = 1;
       userSession.userId = userId;
@@ -143,10 +143,12 @@ ctrl.signupProcess = async (req, res) => {
     // Send confirmation email
 
     let transporter = mailer.createTransport({
-      service: "gmail",
+      host: "smtp.stackmail.com",
+      port: 587,
+      secure: false,
       auth: {
-        user: Contactmailer.user,
-        pass: Contactmailer.pass
+        user: Contactmailer.ConfirmEmail.user,
+        pass: Contactmailer.ConfirmEmail.pass
       }
     });
 
@@ -158,7 +160,7 @@ ctrl.signupProcess = async (req, res) => {
     };
 
     let mailOptions = {
-      from: Contactmailer.user,
+      from: Contactmailer.ConfirmEmail.user,
       to: email,
       subject: "Confirmation email",
       text: "",

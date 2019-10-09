@@ -4,7 +4,7 @@ const home = require("../controllers/home");
 const software = require("../controllers/software");
 const library = require("../controllers/library");
 const user = require("../controllers/user");
-const bcmb = require("../controllers/bancolombia");
+const bcmb = require("../controllers/apiConnections");
 
 module.exports = app => {
   // Index or single pages routes
@@ -72,6 +72,9 @@ module.exports = app => {
   router.get("/oauth2/authorize/customers/success", bcmb.checkUser);
   router.get("/oauth2/authorize/paying", bcmb.authorize), (bcmb.session = 2);
   router.get("/oauth2/authorize/paying/success", bcmb.payUser);
+
+  // Google auth
+  router.get("/google/auth", bcmb.googleAuthentication);
 
   // Error router
   router.get("/:language/admin", home.error403);

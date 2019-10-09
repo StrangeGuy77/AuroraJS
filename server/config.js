@@ -53,5 +53,7 @@ module.exports = app => {
   // Error handler
   "development" === process.env.env ? app.use(errorHandler) : null;
 
+  process.env.HTTPS = true;
+
   return app;
 };

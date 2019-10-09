@@ -1,3 +1,6 @@
+const { DefaultLocale, userSession, Contactmailer } = require("../keys");
+const userSessionVerification = require("../helpers/userVerification");
+
 const helper = {};
 
 helper.randomName = () => {
@@ -59,6 +62,25 @@ helper.checkBuy = (collection, object) => {
     }
   }
   return false;
+};
+
+helper.init = async language => {
+  let toTranslateJSON = require(`../locales/${language}.json`);
+  let actualUserSession = userSession.actualUserSession;
+  let userProperties = {};
+  userProperties = userSessionVerification.userSessionResponse(
+    actualUserSession
+  );
+
+  var viewModel = {
+    language: {}
+  };
+  viewModel.language = toTranslateJSON;
+  viewModel.language.CurrentLanguage = language;
+  viewModel.session = userProperties;
+  viewModel.session.username = userSession.username;
+  viewModel.session.email = userSession.email;
+  return viewModel;
 };
 
 module.exports = helper;

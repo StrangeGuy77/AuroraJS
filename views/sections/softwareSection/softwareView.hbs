@@ -61,7 +61,7 @@
                             <script>
                                 document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
                             </script>
-                            {{#if session.aintLogged}}
+                            {{#if session.nonlogged}}
                             <button class="btn btn-dark btn-block" disabled>
                                 {{language.buyInfo.youNeedToBeLogged}} <i class="fas fa-shopping-cart"></i>
                             </button>
@@ -95,7 +95,7 @@
             <div class="card mt-2">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>{{language.comments}}</h3>
-                    {{#if session.aintLogged}}
+                    {{#if session.nonlogged}}
                     <button class="btn btn-info" id="btn-toggle-comment" disabled>
                         <i class="fa fa-comment-o"></i> {{language.loginToshareAcomment}}
                     </button>

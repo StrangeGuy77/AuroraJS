@@ -12,31 +12,13 @@ const ctrl = {};
 
 ctrl.index = async (req, res) => {
   // First of all load the JSON where's the language to translate the page
-  let CurrentLanguage = req.params.language;
-  let toTranslateJSON = require(`../locales/${CurrentLanguage}.json`);
-  // User session verification
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `${viewModel.language.stats} - Aurora Development`;
   // Search & load 'softwares' with the search of softwares within the MongoDB database
   const softwares = await software.find().sort({ timestamp: -1 });
-
   // Load viewModel with an array for softwares and title.
-  let viewModel = {
-    softs: [],
-    title: `${toTranslateJSON.software} - Aurora Development`
-  };
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = CurrentLanguage;
   viewModel.softs = softwares;
-  viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
-
-  // Reassign preferedLanguage to the current selected language.
-  DefaultLocale.preferedUserLanguage = CurrentLanguage;
 
   if (softwares[0] === undefined) {
     res.render("sections/softwareSection/softwareIndex", viewModel);
@@ -48,28 +30,9 @@ ctrl.index = async (req, res) => {
 };
 
 ctrl.view = async (req, res) => {
-  let CurrentLanguage = req.params.language;
-  let toTranslateJSON = require(`../locales/${CurrentLanguage}.json`);
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-
-  let viewModel = {
-    soft: {},
-    comments: {},
-    language: {},
-    title: `${toTranslateJSON.software} - Aurora Development`
-  };
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = CurrentLanguage;
-  viewModel.session = userProperties;
-  userProperties.nonlogged === true
-    ? (viewModel.session.aintLogged = true)
-    : null;
-  viewModel.session.username = userSession.username;
-  viewModel.session.email = userSession.email;
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `${viewModel.language.software} - Aurora Development`;
 
   // Software which will be rendered.
   let softwareToFind = req.params.software_id;
@@ -78,7 +41,7 @@ ctrl.view = async (req, res) => {
     filename: { $regex: softwareToFind }
   });
 
-  if (!(userProperties.nonlogged === true)) {
+  if (!(viewModel.session.nonlogged === true)) {
     let userInfo = await user.findOne({
       userId: userSession.userId
     });
@@ -99,7 +62,6 @@ ctrl.view = async (req, res) => {
   if (soft) {
     soft.views = soft.views + 1;
     viewModel.soft = soft;
-    viewModel.soft.CurrentLanguage = req.params.language;
     await soft.save();
     viewModel.comments = await comment.find({ soft_id: soft._id });
     viewModel = await sidebar(viewModel);
@@ -140,29 +102,13 @@ ctrl.buy = async (req, res) => {
   saveUserPaymentInformation.software_collection.push(softwareInformation);
   saveUserPaymentInformation.payment_collection.push(toPaymentHistory);
 
-  await saveUserPaymentInformation
-    .save()
-    .catch(reason => {
-      console.log("Error saving information ", reason);
-    })
-    .then(data => {
-      console.log(data);
-    });
+  await saveUserPaymentInformation.save().catch(reason => {
+    console.log("Error saving information ", reason);
+  });
 
-  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-  let viewModel = {
-    title: `${toTranslateJSON.software} - Aurora Development`,
-    language: {}
-  };
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = req.params.language;
-  viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `${viewModel.language.stats} - Aurora Development`;
   res.render("sections/softwareSection/softwareDownload", viewModel);
 };
 

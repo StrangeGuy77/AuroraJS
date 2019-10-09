@@ -21,7 +21,7 @@ module.exports = {
     preferedUserLanguage: "en"
   },
   userSession: {
-    actualUserSession: 5,
+    actualUserSession: 0,
     userId: 962330304877519,
     username: "StrangeGuy77",
     email: "jhonatanrg@live.com",

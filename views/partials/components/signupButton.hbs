@@ -54,6 +54,34 @@
                                 name="signupModalConfirmPassword" required>
                         </div>
                     </div>
+                    <hr>
+                    <div id="spinner" style="
+        background: #4267b2;
+        border-radius: 5px;
+        color: white;
+        height: 40px;
+        text-align: center;
+        width: 250px;">
+                        <div class="fb-login-button" data-max-rows="1" data-size="large"
+                            data-button-type="continue_with" data-use-continue-as="true" onlogin="checkLoginState();">
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div id="gSignInWrapper">
+                        <span class="label">Sign in with:</span>
+                        <div id="customBtn" class="customGPlusSignIn">
+                            <span class="icon"></span>
+                            <span class="buttonText">Google</span>
+                        </div>
+                    </div>
+                    <div id="name"></div>
+                    <script>startApp();</script>
+                    <hr>
+                    <div id="status" class="text-black">
+                        <p></p>
+                    </div>
+                    <hr>
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">

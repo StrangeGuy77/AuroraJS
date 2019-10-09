@@ -1,62 +1,27 @@
 const { Contactmailer, DefaultLocale, userSession } = require("../keys");
 const userSessionVerification = require("../helpers/userVerification");
+const helper = require("../helpers/libs");
 
 const ctrl = {};
 
-ctrl.index = (req, res) => {
-  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = {
-    title: `${toTranslateJSON.library} - Aurora Development`,
-    language: {}
-  };
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = req.params.language;
-  viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
+ctrl.index = async (req, res) => {
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `Error 403 - Aurora Development`;
   res.render("sections/librarySection/libraryIndex", viewModel);
 };
 
-ctrl.bookView = (req, res) => {
-  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = {
-    title: `${toTranslateJSON.library} - Aurora Development`,
-    language: {}
-  };
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = req.params.language;
-  viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
+ctrl.bookView = async (req, res) => {
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `Error 403 - Aurora Development`;
   res.render("sections/librarySection/bookView", viewModel);
 };
 
 ctrl.bookUploadView = async (req, res) => {
-  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = {
-    title: `${toTranslateJSON.library} - Aurora Development`,
-    language: {}
-  };
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = req.params.language;
-  viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `Error 403 - Aurora Development`;
   res.render("sections/librarySection/bookUpload", viewModel);
 };
 
@@ -71,21 +36,9 @@ ctrl.bookComment = async (req, res) => {};
 ctrl.courseView = async (req, res) => {};
 
 ctrl.courseUploadView = async (req, res) => {
-  let toTranslateJSON = require(`../locales/${req.params.language}.json`);
-  let viewModel = {
-    title: `${toTranslateJSON.library} - Aurora Development`,
-    language: {}
-  };
-  let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
-    actualUserSession
-  );
-
-  viewModel.language = toTranslateJSON;
-  viewModel.language.CurrentLanguage = req.params.language;
-  viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
+  let language = req.params.language;
+  let viewModel = await helper.init(language);
+  viewModel.title = `Error 403 - Aurora Development`;
   res.render("sections/librarySection/bookUpload", viewModel);
 };
 

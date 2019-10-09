@@ -4,12 +4,12 @@ module.exports = {
   },
   Contactmailer: {
     ContactEmail: {
-      user: "contact@auroradevelopment.com",
-      pass: "in)cIV{#u%7u"
+      user: "email@auroradevelopment.com",
+      pass: "emailPassword"
     },
     ConfirmEmail: {
-      user: "confirmation@auroradevelopment.com",
-      pass: "So£;£fRgs{$^"
+      user: "email@auroradevelopment.com",
+      pass: "emailPassword"
     }
   },
   Api: {

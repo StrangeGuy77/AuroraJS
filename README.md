@@ -123,7 +123,8 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Jhonatan Restrepo Garzón** - *Backend and templated frontend* - [StrangeGuy77](https://github.com/StrangeGuy77)
-* **Juan David Ríos Galeano** - *Frontend final update* - [PercyWolfraim](https://github.com/PercyWolfraim)
+* **Juan David Ríos Galeano** - *Frontend developer* - [PercyWolfraim](https://github.com/PercyWolfraim)
+* **Sergio Valencia Aguirre** - *Frontend developer* - [Shecho](https://github.com/shecho)
 
 See also the list of [contributors](https://github.com) who participated in this project.
 

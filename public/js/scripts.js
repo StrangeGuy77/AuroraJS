@@ -14,7 +14,117 @@ $(document).ready(function() {
       console.log(data);
     }
   });
+
+  // Facebook analytics
+
+  window.fbAsyncInit = function() {
+    window.FB.init({
+      appId: "1006997812969524",
+      cookie: true,
+      xfbml: true,
+      version: "v4.0"
+    });
+
+    window.FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "facebook-jssdk");
 });
+
+function statusChangeCallback(response) {
+  if (response.status === "connected") {
+    // Logged into your app and Facebook.
+    FB.api("/me", function(response) {
+      response.from = "facebook";
+      $.ajax({
+        type: "POST",
+        url: "/signup",
+        data: response,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded",
+        success: data => {
+          if (data.length <= 3) {
+            window.location.href = data;
+          } else {
+            document.getElementById("signup-alert-section").innerHTML = data;
+          }
+        },
+        error: data => {
+          document.getElementById("signup-alert-section").innerHTML = data;
+        }
+      });
+    });
+  } else {
+    // The person is not logged into your app or we are unable to tell.
+    document.getElementById("signup-alert-section").innerHTML =
+      "There was an error login with facebook.";
+  }
+}
+
+// Signup with facebook
+function checkLoginState() {
+  var response = {};
+  window.FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+
+// // Sign in with google
+
+function onSignIn(googleUser) {
+  // Useful data for your client-side scripts:
+  var profile = googleUser.getBasicProfile();
+  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+  console.log("Full Name: " + profile.getName());
+  console.log("Given Name: " + profile.getGivenName());
+  console.log("Family Name: " + profile.getFamilyName());
+  console.log("Image URL: " + profile.getImageUrl());
+  console.log("Email: " + profile.getEmail());
+
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);
+}
+
+var googleUser = {};
+var startApp = function() {
+  gapi.load("auth2", function() {
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    auth2 = gapi.auth2.init({
+      client_id:
+        "275044837689-k5sh9mmu374376jc632i2ggqpfaqv00m.apps.googleusercontent.com",
+      cookiepolicy: "single_host_origin"
+      // Request scopes in addition to 'profile' and 'email'
+      //scope: 'additional_scope'
+    });
+    attachSignin(document.getElementById("customBtn"));
+  });
+};
+
+function attachSignin(element) {
+  console.log(element.id);
+  auth2.attachClickHandler(
+    element,
+    {},
+    function(googleUser) {
+      document.getElementById("name").innerText =
+        "Signed in: " + googleUser.getBasicProfile().getName();
+    },
+    function(error) {
+      alert(JSON.stringify(error, undefined, 2));
+    }
+  );
+}
 
 // Login button
 
@@ -98,7 +208,7 @@ $("#signup-button").click(function(e) {
   };
   JSON.stringify(data);
 
-  if (!(username === "") || !username === "Username") {
+  if (!(username === "") || !(username === "Username")) {
     if (!(email === "")) {
       // Pattern verifies:
       // An @, something after and before the @, a dot '.' after whatever comes after @, and something after the dot.
@@ -205,14 +315,13 @@ $("button[id=btn-delete]").click(function() {
     let softId = $this.data("id");
     $.ajax({
       url: `/software/${softId}/delete`,
-      type: "DELETE"
-    }).done(function(result) {
-      $this.removeClass("btn-danger").addClass("btn-success");
-      $this
-        .find("i")
-        .removeClass("fa-times")
-        .addClass("fa-check");
-      $this.append("<span>Eliminado!</span>");
+      type: "DELETE",
+      success: data => {
+        window.location.href = data;
+      },
+      error: data => {
+        console.log(data);
+      }
     });
   }
 });

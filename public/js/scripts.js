@@ -490,3 +490,130 @@ $("#saveSettings").click(function(e) {
     }
   }
 });
+
+var toggleControl = 1;
+var checkList = document.getElementById("list1");
+checkList.getElementsByClassName("anchor")[0].onclick = function(evt) {
+  if (checkList.classList.contains("visible"))
+    checkList.classList.remove("visible");
+  else checkList.classList.add("visible");
+};
+
+checkList.onblur = function(evt) {
+  checkList.classList.remove("visible");
+};
+$("#toggleFrameworks").hide();
+$("#language").change(function(e) {
+  e.preventDefault();
+  let x = 0;
+  let language = document.getElementById("language").value;
+  let actualClass = document.getElementById("iconToReplace").className;
+  switch (language) {
+    case "js":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("fab fa-react icon");
+
+      document.getElementById("1stFrame").innerHTML = "React";
+      document.getElementById("2ndFrame").innerHTML = "Angular";
+      document.getElementById("3rdFrame").innerHTML = "Vue";
+      document.getElementById("4thFrame").innerHTML = "React native";
+      document.getElementById("5thFrame").innerHTML = "Meteor";
+
+      break;
+
+    case "ruby":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("devicon-rails-plain-wordmark icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    case "python":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("devicon-django-plain icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    case "cpp":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("devicon-cplusplus-plain icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    case "cs":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("devicon-csharp-plain icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    case "c":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("devicon-c-plain icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    case "java":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("fas fa-leaf icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    case "php":
+      $("#iconToReplace")
+        .removeClass(`${actualClass}`)
+        .addClass("fab fa-laravel icon");
+
+      document.getElementById("1stFrame").innerHTML = "";
+      document.getElementById("2ndFrame").innerHTML = "";
+      document.getElementById("3rdFrame").innerHTML = "";
+      document.getElementById("4thFrame").innerHTML = "";
+      document.getElementById("5thFrame").innerHTML = "";
+      break;
+
+    default:
+      break;
+  }
+  if (language === "empty" || toggleControl === 1) {
+    $("#toggleFrameworks").slideToggle();
+    toggleControl = 2;
+    if (toggleControl === 2 && language === "empty") {
+      toggleControl = 1;
+    }
+  }
+});

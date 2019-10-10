@@ -32,6 +32,8 @@ Object.fromentries @ 2.0.0<br />
 Request @ 2.88.0<br />
 Requirejs @ 2.3.6<br />
 Stripe @ 7.9.1<br />
+@Authentication/google @ x.x.x <br />
+pm2 @ x.x.x <br />
 
 Development:<br />
 
@@ -46,7 +48,7 @@ Install them all with the following two commands:
 
 Production dependencies
 ```
-npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe 
+npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe @authentication/google pm2
 ```
 
 Development dependencies

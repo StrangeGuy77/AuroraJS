@@ -14,7 +14,7 @@ ctrl.index = async (req, res) => {
   // First of all load the JSON where's the language to translate the page
   let language = req.params.language;
   let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.stats} - Aurora Development`;
+  viewModel.title = `${viewModel.language.sectionsInfo.software} - Aurora Development`;
   // Search & load 'softwares' with the search of softwares within the MongoDB database
   const softwares = await software.find().sort({ timestamp: -1 });
   // Load viewModel with an array for softwares and title.
@@ -32,7 +32,7 @@ ctrl.index = async (req, res) => {
 ctrl.view = async (req, res) => {
   let language = req.params.language;
   let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.software} - Aurora Development`;
+  viewModel.title = `${viewModel.language.sectionsInfo.software} - Aurora Development`;
 
   // Software which will be rendered.
   let softwareToFind = req.params.software_id;
@@ -108,7 +108,7 @@ ctrl.buy = async (req, res) => {
 
   let language = req.params.language;
   let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.stats} - Aurora Development`;
+  viewModel.title = `${viewModel.language.softwareInfo.download} - Aurora Development`;
   res.render("sections/softwareSection/softwareDownload", viewModel);
 };
 

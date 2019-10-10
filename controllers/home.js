@@ -24,7 +24,7 @@ ctrl.index = async (req, res) => {
     DefaultLocale.preferedUserLanguage = lang;
     let language = req.params.language;
     let viewModel = await helper.init(language);
-    viewModel.title = `${viewModel.language.home} - Aurora Development`;
+    viewModel.title = `${viewModel.language.sectionsInfo.home} - Aurora Development`;
     res.render("sections/homeSection/homeIndex", viewModel);
   } else {
     res.send(`/${DefaultLocale.preferedUserLanguage}/not-available`);
@@ -36,7 +36,7 @@ ctrl.index = async (req, res) => {
 ctrl.services = async (req, res) => {
   let language = req.params.language;
   let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.ourServices} - Aurora Development`;
+  viewModel.title = `${viewModel.language.sectionsInfo.ourServices} - Aurora Development`;
   res.render("sections/ourServicesSection/ourServicesView", viewModel);
 };
 
@@ -55,7 +55,7 @@ ctrl.aboutUs = async (req, res) => {
 ctrl.contact = async (req, res) => {
   let language = req.params.language;
   let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.contactUs} - Aurora Development`;
+  viewModel.title = `${viewModel.language.sectionsInfo.contactUs} - Aurora Development`;
   res.render("sections/contactUsSection/mailer", viewModel);
 };
 

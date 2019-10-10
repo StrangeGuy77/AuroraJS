@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "env=production node src/index.js",
-    "dev": "env=development nodemon src/index.js && echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
+    "dev": "HTTPS=true env=development nodemon src/index.js && echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
   },
   "author": "StrangeGuy77",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "@authentication/google": "^0.1.1",
     "body-parser": "^1.19.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",

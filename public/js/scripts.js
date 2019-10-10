@@ -527,11 +527,11 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("devicon-rails-plain-wordmark icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "Ruby on rails";
+      document.getElementById("2ndFrame").innerHTML = "Hanami";
+      document.getElementById("3rdFrame").innerHTML = "Sinatra";
+      document.getElementById("4thFrame").innerHTML = "Cuba";
+      document.getElementById("5thFrame").innerHTML = "Nancy";
       break;
 
     case "python":
@@ -539,11 +539,11 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("devicon-django-plain icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "Django";
+      document.getElementById("2ndFrame").innerHTML = "Pyramid";
+      document.getElementById("3rdFrame").innerHTML = "Turbogears";
+      document.getElementById("4thFrame").innerHTML = "Web2py";
+      document.getElementById("5thFrame").innerHTML = "Flask";
       break;
 
     case "cpp":
@@ -551,11 +551,11 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("devicon-cplusplus-plain icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "STL";
+      document.getElementById("2ndFrame").innerHTML = "GNOME";
+      document.getElementById("3rdFrame").innerHTML = "Qt";
+      document.getElementById("4thFrame").innerHTML = "MFC";
+      document.getElementById("5thFrame").innerHTML = "NET";
       break;
 
     case "cs":
@@ -563,11 +563,12 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("devicon-csharp-plain icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "Xamarin";
+      document.getElementById("2ndFrame").innerHTML = "Unity";
+      document.getElementById("3rdFrame").innerHTML = "Mono";
+      document.getElementById("4thFrame").innerHTML = "NET";
+      document.getElementById("5thFrame").innerHTML =
+        "Windows platforms (Mac, iOS, Android)";
       break;
 
     case "c":
@@ -575,11 +576,11 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("devicon-c-plain icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "STL";
+      document.getElementById("2ndFrame").innerHTML = "GNOME";
+      document.getElementById("3rdFrame").innerHTML = "Qt";
+      document.getElementById("4thFrame").innerHTML = "MFC";
+      document.getElementById("5thFrame").innerHTML = "NET";
       break;
 
     case "java":
@@ -587,11 +588,11 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("fas fa-leaf icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "Spring";
+      document.getElementById("2ndFrame").innerHTML = "Blade";
+      document.getElementById("3rdFrame").innerHTML = "Dropwizard";
+      document.getElementById("4thFrame").innerHTML = "Grails";
+      document.getElementById("5thFrame").innerHTML = "GWT";
       break;
 
     case "php":
@@ -599,11 +600,11 @@ $("#language").change(function(e) {
         .removeClass(`${actualClass}`)
         .addClass("fab fa-laravel icon");
 
-      document.getElementById("1stFrame").innerHTML = "";
-      document.getElementById("2ndFrame").innerHTML = "";
-      document.getElementById("3rdFrame").innerHTML = "";
-      document.getElementById("4thFrame").innerHTML = "";
-      document.getElementById("5thFrame").innerHTML = "";
+      document.getElementById("1stFrame").innerHTML = "Laravel";
+      document.getElementById("2ndFrame").innerHTML = "Codeigniter";
+      document.getElementById("3rdFrame").innerHTML = "Symfony";
+      document.getElementById("4thFrame").innerHTML = "CakePHP";
+      document.getElementById("5thFrame").innerHTML = "Yii";
       break;
 
     default:

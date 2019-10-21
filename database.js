@@ -4,7 +4,7 @@ const { database } = require("./keys");
 mongoose.set("useFindAndModify", false);
 mongoose
   .connect(database.URI, { useNewUrlParser: true })
-  .then(value => {
+  .then(() => {
     console.log(`Conectado a la base de datos`);
   })
   .catch(reason => {

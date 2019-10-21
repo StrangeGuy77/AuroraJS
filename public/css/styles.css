@@ -1,17 +1,31 @@
 body {
-	background-color: #dcdde1
+	background-color: #dcdde1;
+	position: relative;
+	/* Background image is centered vertically and horizontally at all times */
+	background-position: center center;
+
+	/* Background image doesn't tile */
+	background-repeat: no-repeat;
+
+	/* Background image is fixed in the viewport so that it doesn't move when 
+the content's height is greater than the image's height */
+	background-attachment: fixed;
+
+	/* This is what makes the background image rescale based
+on the container's size */
+	background-size: cover;
+
+	/* Set a background color that will be displayed
+while the background image is loading */
+	background-color: #464646;
 }
 
 .navbar-brand img {
 	width: 20%;
 }
 
-.navbar-brand h3 {
-	font: normal 36px 'Cookie', cursive;
-}
-
-.nav-right {
-	text-align: right;
+.navbar-brand p {
+	font: normal 22px 'Cookie', cursive;
 }
 
 .nav-color {
@@ -247,8 +261,6 @@ body {
 .card-panel {
 	-webkit-transition: -webkit-box-shadow .25s;
 	transition: -webkit-box-shadow .25s;
-	transition: box-shadow .25s;
-	transition: box-shadow .25s, -webkit-box-shadow .25s;
 	padding: 24px;
 	margin: 0.5rem 0 1rem 0;
 	border-radius: 2px;
@@ -261,7 +273,6 @@ body {
 	background-color: #fff;
 	-webkit-transition: -webkit-box-shadow .25s;
 	transition: -webkit-box-shadow .25s;
-	transition: box-shadow .25s;
 	transition: box-shadow .25s, -webkit-box-shadow .25s;
 	border-radius: 2px;
 }
@@ -467,5 +478,110 @@ body {
 
 .card .card-reveal .card-title {
 	cursor: pointer;
+	display: block;
+}
+
+.login-sec {
+	margin-left: 70px;
+	color: #8f9296;
+}
+
+.user-profile-button {
+	margin-left: 50px;
+	color: #8f9296;
+}
+
+.divisor-line {
+	width: 3px;
+}
+
+#customBtn {
+	display: inline-block;
+	background: white;
+	color: #444;
+	width: 190px;
+	border-radius: 5px;
+	border: thin solid #888;
+	box-shadow: 1px 1px 1px grey;
+	white-space: nowrap;
+}
+
+#customBtn:hover {
+	cursor: pointer;
+}
+
+span.label {
+	font-family: serif;
+	font-weight: normal;
+}
+
+span.icon {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png') transparent 5px 50% no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	width: 42px;
+	height: 42px;
+}
+
+span.buttonText {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 42px;
+	padding-right: 42px;
+	font-size: 14px;
+	font-weight: bold;
+	/* Use the Roboto font that is loaded in the <head> */
+	font-family: 'Roboto', sans-serif;
+}
+
+.dropdown-check-list {
+	display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	padding: 5px 50px 5px 10px;
+	border: 1px solid #ccc;
+}
+
+.dropdown-check-list .anchor:after {
+	position: absolute;
+	content: "";
+	border-left: 2px solid black;
+	border-top: 2px solid black;
+	padding: 5px;
+	right: 10px;
+	top: 20%;
+	-moz-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	-o-transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+	right: 8px;
+	top: 21%;
+}
+
+.dropdown-check-list ul.items {
+	padding: 2px;
+	display: none;
+	margin: 0;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.dropdown-check-list ul.items li {
+	list-style: none;
+}
+
+.dropdown-check-list.visible .anchor {
+	color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
 	display: block;
 }

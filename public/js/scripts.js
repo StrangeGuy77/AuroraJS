@@ -81,50 +81,6 @@ function checkLoginState() {
 
 // // Sign in with google
 
-function onSignIn(googleUser) {
-  // Useful data for your client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log("Full Name: " + profile.getName());
-  console.log("Given Name: " + profile.getGivenName());
-  console.log("Family Name: " + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-}
-
-var googleUser = {};
-var startApp = function() {
-  gapi.load("auth2", function() {
-    // Retrieve the singleton for the GoogleAuth library and set up the client.
-    auth2 = gapi.auth2.init({
-      client_id:
-        "275044837689-k5sh9mmu374376jc632i2ggqpfaqv00m.apps.googleusercontent.com",
-      cookiepolicy: "single_host_origin"
-      // Request scopes in addition to 'profile' and 'email'
-      //scope: 'additional_scope'
-    });
-    attachSignin(document.getElementById("customBtn"));
-  });
-};
-
-function attachSignin(element) {
-  console.log(element.id);
-  auth2.attachClickHandler(
-    element,
-    {},
-    function(googleUser) {
-      document.getElementById("name").innerText =
-        "Signed in: " + googleUser.getBasicProfile().getName();
-    },
-    function(error) {
-      alert(JSON.stringify(error, undefined, 2));
-    }
-  );
-}
 
 // Login button
 
@@ -132,7 +88,7 @@ $("#login-button").click(function(e) {
   let email = document.getElementById("loginModalEmail").value;
   let password = document.getElementById("loginModalPassword").value;
 
-  data = {
+  const data = {
     email: email,
     password: password
   };
@@ -376,7 +332,7 @@ $("#saveSettings").click(function(e) {
   result = pattern.test(userSettings.email);
 
   // If userSettings ain't completely empty
-  if (checkProperties(userSettings).emptyProperties == 12) {
+  if (checkProperties(userSettings).emptyProperties === 12) {
     JSON.stringify(userSettings);
     $.ajax({
       type: "POST",
@@ -491,8 +447,8 @@ $("#saveSettings").click(function(e) {
   }
 });
 
-var toggleControl = 1;
-var checkList = document.getElementById("list1");
+let toggleControl = 1;
+const checkList = document.getElementById("list1");
 checkList.getElementsByClassName("anchor")[0].onclick = function(evt) {
   if (checkList.classList.contains("visible"))
     checkList.classList.remove("visible");

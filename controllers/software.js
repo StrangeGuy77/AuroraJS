@@ -5,15 +5,15 @@ const { software, comment, user } = require("../models/index");
 const md5 = require("md5");
 const sidebar = require("../helpers/sidebar");
 const { DefaultLocale, userSession } = require("../keys");
-const userSessionVerification = require("../helpers/userVerification");
 const stripe = require("stripe")("sk_test_PbVyc5UdjKaPyLjN1wQrVNOh00GsVyog6c");
+const moment = require("moment");
 
 const ctrl = {};
 
 ctrl.index = async (req, res) => {
   // First of all load the JSON where's the language to translate the page
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.software} - Aurora Development`;
   // Search & load 'softwares' with the search of softwares within the MongoDB database
   const softwares = await software.find().sort({ timestamp: -1 });
@@ -31,7 +31,7 @@ ctrl.index = async (req, res) => {
 
 ctrl.view = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true, true);
   viewModel.title = `${viewModel.language.sectionsInfo.software} - Aurora Development`;
 
   // Software which will be rendered.
@@ -93,10 +93,12 @@ ctrl.buy = async (req, res) => {
 
   let toPaymentHistory = {
     name: softwareInformation.title,
+    filename: softwareInformation.filename,
+    description: softwareInformation.description,
     price: softwareInformation.price,
     paymentMethod: customer.payment_method_types,
     currency: customer.currency,
-    date: Date.now()
+    date: moment().format("YYYY/MM/D hh:mm:ss SSS")
   };
 
   saveUserPaymentInformation.software_collection.push(softwareInformation);
@@ -107,7 +109,7 @@ ctrl.buy = async (req, res) => {
   });
 
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.softwareInfo.download} - Aurora Development`;
   res.render("sections/softwareSection/softwareDownload", viewModel);
 };
@@ -125,10 +127,15 @@ ctrl.create = async (req, res) => {
   // Linking the path where to save the software preview image && resolving extensions
   const imageTempPath = req.file.path;
   const ext = path.extname(req.file.originalname).toLowerCase();
-  const targetPath = path.resolve(`public/upload/${url}${ext}`);
-
+  const targetPath = path.resolve(`src/public/upload/${url}${ext}`);
   // Verifying software preview image extensions
-  if (ext === ".png" || ext === ".jpg" || ext === ".jpeg" || ext === ".gif") {
+  if (
+    ext === ".png" ||
+    ext === ".jpg" ||
+    ext === ".jpeg" ||
+    ext === ".gif" ||
+    ext === ".svg"
+  ) {
     // Therefore filesystem can rename images with their final name within db
     await fs.rename(imageTempPath, targetPath);
     // Model instance

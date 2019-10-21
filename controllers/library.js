@@ -25,31 +25,51 @@ ctrl.bookUploadView = async (req, res) => {
   res.render("sections/librarySection/bookUpload", viewModel);
 };
 
-ctrl.bookUploadProcess = async (req, res) => {};
+ctrl.bookUploadProcess = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.bookDelete = async (req, res) => {};
+ctrl.bookDelete = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.bookLike = async (req, res) => {};
+ctrl.bookLike = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.bookComment = async (req, res) => {};
+ctrl.bookComment = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.courseView = async (req, res) => {};
+ctrl.courseView = async (req, res) => {
+  res.send("works!");
+};
 
 ctrl.courseUploadView = async (req, res) => {
   let language = req.params.language;
   let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.sectionsInfo.library} - Aurora Development`;
-  res.render("sections/librarySection/bookUpload", viewModel);
+  viewModel.title = `${viewModel.language.sectionsInfo.courses} - Aurora Development`;
+  res.render("sections/librarySection/courseUpload", viewModel);
 };
 
-ctrl.courseUploadProcess = async (req, res) => {};
+ctrl.courseUploadProcess = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.courseDelete = async (req, res) => {};
+ctrl.courseDelete = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.courseLike = async (req, res) => {};
+ctrl.courseLike = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.courseComment = async (req, res) => {};
+ctrl.courseComment = async (req, res) => {
+  res.send("works!");
+};
 
-ctrl.wishlistAdd = async (req, res) => {};
+ctrl.wishlistAdd = async (req, res) => {
+  res.send("works!");
+};
 
 module.exports = ctrl;

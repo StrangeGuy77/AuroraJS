@@ -2,9 +2,9 @@ const { user } = require("../models/index");
 const helper = require("../helpers/libs");
 const confirmationHtml = require("../helpers/confirmationEmail");
 const { DefaultLocale, userSession, Contactmailer } = require("../keys");
-const userSessionVerification = require("../helpers/userVerification");
 const mailer = require("nodemailer");
 const GoogleAuthentication = require("@authentication/google");
+const moment = require("moment");
 
 const ctrl = {};
 
@@ -14,14 +14,17 @@ ctrl.index = (req, res) => {
 
 ctrl.login = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.login} - Aurora Development`;
-  res.render("sections/userSections/normalUserSections/login", viewModel);
+  if (userSession.actualUserSession === 0) {
+    let viewModel = await helper.init(language);
+    viewModel.title = `${viewModel.language.login} - Aurora Development`;
+    res.render("sections/userSections/normalUserSections/login", viewModel);
+  } else {
+    res.redirect("/");
+  }
 };
 
 ctrl.loginProcess = async (req, res) => {
-  let toTranslateJSON = {};
-  toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
+  let toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
 
   let email = req.body.email;
   let password = req.body.password;
@@ -43,21 +46,23 @@ ctrl.loginProcess = async (req, res) => {
 
 ctrl.profile = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
-  viewModel.title = `${viewModel.language.profile} - Aurora Development`;
-
-  if (userProperties.nonlogged) {
+  let viewModel = await helper.init(language, true, true);
+  viewModel.title = `${viewModel.language.userInfo.MyProfile} - Aurora Development`;
+  if (viewModel.session.nonlogged) {
     res.redirect(`/${DefaultLocale.preferedUserLanguage}/login`);
   } else {
     let userSettings = await user.find({ userId: userSession.userId });
     viewModel.session.userSettings = userSettings[0];
+    viewModel.payment_collection =
+      viewModel.session.userSettings.payment_collection;
+    console.log(viewModel.session.userSettings);
     res.render("sections/userSections/normalUserSections/profile", viewModel);
   }
 };
 
 ctrl.signup = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.register} - Aurora Development`;
   res.render("sections/userSections/normalUserSections/signup", viewModel);
 };
@@ -79,8 +84,7 @@ ctrl.signupProcess = async (req, res) => {
     }
   }
 
-  let usernameResult = {};
-  usernameResult = await user.find({ username: username });
+  let usernameResult = await user.find({ username: username });
   if (usernameResult.length > 0) {
     let toStringifyAnswer =
       toTranslateJSON.signUpInfo.TheresAnUserWithThatUsername;
@@ -141,7 +145,7 @@ ctrl.signupProcess = async (req, res) => {
     let mailOptions = {
       from: Contactmailer.ConfirmEmail.user,
       to: email,
-      subject: "Confirmation email",
+      subject: "Confirm your account!",
       text: "",
       html: confirmationHtml(userData)
     };
@@ -159,18 +163,17 @@ ctrl.signupProcess = async (req, res) => {
 
 ctrl.accountConfirmation = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true, true);
   viewModel.title = `${viewModel.language.profile} - Aurora Development`;
   console.log(req.params);
   res.send("Huh this works!");
 };
 
 ctrl.saveProfileSettings = async (req, res) => {
-  let toTranslateJSON = {};
-  toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
+  let toTranslateJSON = await require(`../locales/${DefaultLocale.preferedUserLanguage}.json`);
 
   let temporal = req.body;
-  let settings = {};
+  let settings;
 
   let actualUserInfo = await user.find({ userId: userSession.userId });
 
@@ -241,7 +244,7 @@ ctrl.saveProfileSettings = async (req, res) => {
 
   if (
     checkIfUserIsNotRepeated.length > 0 &&
-    checkIfUserIsNotRepeated[0].userId !== userSession.userId
+    checkIfUserIsNotRepeated[0].userId === userSession.userId
   ) {
     let toStringifyAnswer =
       toTranslateJSON.userInfo.TheresAnUserWithThatEmailAlready;
@@ -261,6 +264,7 @@ ctrl.saveProfileSettings = async (req, res) => {
       })
       .catch(reason => {
         res.send(JSON.stringify("There was an error saving the information"));
+        console.log(reason);
       });
   }
 };
@@ -274,16 +278,13 @@ ctrl.signout = (req, res) => {
   res.send(JSON.stringify(redirectLink));
 };
 
-ctrl.userVerification = () => {
-  res.send("Everything goes well!");
-};
-
 ctrl.visit = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   let user_id = req.params.user_id;
-  let userSettings = await user.find({ username: user_id });
-  viewModel.title = `${userSettings[0].username} - Aurora Development`;
+  let userInfo = await user.find({ username: user_id });
+  viewModel.userInfo = userInfo[0];
+  viewModel.title = `${userInfo[0].username} - Profile`;
   res.render(
     "sections/userSections/normalUserSections/otherUserProfile",
     viewModel
@@ -298,7 +299,7 @@ ctrl.stats = async (req, res) => {
     res.redirect(`/${DefaultLocale.preferedUserLanguage}/admin`);
   } else {
     let language = req.params.language;
-    let viewModel = await helper.init(language);
+    let viewModel = await helper.init(language, true, true);
     viewModel.title = `${viewModel.language.stats} - Aurora Development`;
     res.render("sections/userSections/adminSections/stats", viewModel);
   }

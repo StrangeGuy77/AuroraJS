@@ -1,13 +1,11 @@
 const mailer = require("nodemailer");
 const { Contactmailer, DefaultLocale, userSession } = require("../keys");
-const userSessionVerification = require("../helpers/userVerification");
 const helper = require("../helpers/libs");
 
 const ctrl = {};
 
 ctrl.firstRedirect = (req, res) => {
-  let ip = req.ip;
-  userSession.userIp = ip;
+  userSession.userIp = req.ip;
   res.redirect(`/${DefaultLocale.preferedUserLanguage}`);
 };
 
@@ -23,19 +21,20 @@ ctrl.index = async (req, res) => {
   ) {
     DefaultLocale.preferedUserLanguage = lang;
     let language = req.params.language;
-    let viewModel = await helper.init(language);
+    let viewModel = await helper.init(language, true);
     viewModel.title = `${viewModel.language.sectionsInfo.home} - Aurora Development`;
     res.render("sections/homeSection/homeIndex", viewModel);
   } else {
     res.send(`/${DefaultLocale.preferedUserLanguage}/not-available`);
   }
+
 };
 
 // For our services section
 
 ctrl.services = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.ourServices} - Aurora Development`;
   res.render("sections/ourServicesSection/ourServicesView", viewModel);
 };
@@ -54,14 +53,14 @@ ctrl.aboutUs = async (req, res) => {
 
 ctrl.contact = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.contactUs} - Aurora Development`;
   res.render("sections/contactUsSection/mailer", viewModel);
 };
 
 ctrl.userAgreement = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.userAgreementPolicy.userAgreementPolicyTitle} - Aurora Development`;
 
   res.render("partials/extras/userAgreementTerms", viewModel);
@@ -118,34 +117,30 @@ ctrl.getLanguageJSON = async (req, res) => {
 
 ctrl.error404 = async (req, res) => {
   let language = DefaultLocale.preferedUserLanguage;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `Error 404 - Aurora Development`;
   res.render("partials/errors/error404", viewModel);
 };
 
 ctrl.error403 = async (req, res) => {
   let language = DefaultLocale.preferedUserLanguage;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `Error 403 - Aurora Development`;
   res.render("partials/errors/error403", viewModel);
 };
 
 ctrl.error503 = async (req, res) => {
   let language = DefaultLocale.preferedUserLanguage;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `Error 503 - Aurora Development`;
   res.render("partials/errors/error503", viewModel);
 };
 
 ctrl.error504 = async (req, res) => {
   let language = DefaultLocale.preferedUserLanguage;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `Error 504 - Aurora Development`;
   res.render("partials/errors/error504", viewModel);
-};
-
-ctrl.unhandledPromise = (req, res) => {
-  console.log("Rechazo de promesa sin manejar");
 };
 
 module.exports = ctrl;

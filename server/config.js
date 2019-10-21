@@ -9,7 +9,7 @@ const errorHandler = require("errorhandler");
 
 module.exports = app => {
   // Configuration
-  app.set("port", process.env.PORT || 80);
+  app.set("port", process.env.PORT || 3000);
   app.set("views", path.join(__dirname, "../views"));
   app.engine(
     ".hbs",
@@ -38,7 +38,7 @@ module.exports = app => {
   }
   app.use(
     multer({
-      dest: path.join(__dirname, `../public/upload/temp`)
+      dest: path.join(__dirname, "../public/upload/temp")
     }).single(`image`)
   );
   app.use(express.urlencoded({ extended: false }));

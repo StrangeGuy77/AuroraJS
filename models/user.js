@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   user_activation_key: { type: Number },
   user_status: { type: Number },
   user_role: { type: Number },
+  profile_pic: { type: String, default: "" },
   name: { type: String, default: "" },
   lastname: { type: String, default: "" },
   cellphone: { type: String, default: "" },

@@ -1,11 +1,12 @@
 const moment = require("moment");
+const mongoose = require("mongoose");
 const { DefaultLocale } = require("../keys");
-const Handlebars = require("express-handlebars");
+const path = require("path");
 
 const reduceOp = function(args, reducer) {
   args = Array.from(args);
   args.pop(); // => options
-  var first = args.shift();
+  const first = args.shift();
   return args.reduce(reducer, first);
 };
 
@@ -44,6 +45,21 @@ helpers.timeago = timestamp => {
 
 helpers.languageFinder = () => {
   return DefaultLocale.preferedUserLanguage;
+};
+
+helpers.toUpperCase = string => {
+  let str = string[0];
+  if (str.length > 3) str = string[0];
+  if (str.length <= 3) str = string;
+  return str.toUpperCase();
+};
+
+helpers.gtz = string => {
+  let str = string;
+  if (str > 0) {
+    return true;
+  }
+  return false;
 };
 
 module.exports = helpers;

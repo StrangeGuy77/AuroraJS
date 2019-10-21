@@ -1,25 +1,6 @@
 <style>
     body {
         background-image: url("https://wallpaperplay.com/walls/full/b/2/d/44859.jpg");
-
-        background-position: center center;
-
-        /* Background image doesn't tile */
-        background-repeat: no-repeat;
-
-        /* Background image is fixed in the viewport so that it doesn't move when
-     the content's height is greater than the image's height */
-        background-attachment: fixed;
-
-        /* This is what makes the background image rescale based
-     on the container's size */
-        background-size: cover;
-
-        /* Set a background color that will be displayed
-     while the background image is loading */
-        background-color: #fcd6d6;
-
-        color: black;
     }
 </style>
 
@@ -41,22 +22,32 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="text-center">
+                    {{#if session.userSettings.profile_pic}}
+                    <img src="/public/upload/profile/{{session.userSettings.profile_pic}}"
+                        class="avatar img-circle img-thumbnail" alt="avatar">
+                    <hr>
+                    {{else}}
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
                         alt="avatar">
                     <hr>
+                    {{/if}}
                     <h6> Aurora CEO </h6>
                     <hr>
                     <h6> Little description </h6>
                     <hr>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">{{language.upload}}</span>
+                    <form action="/{{languageFinder}}/users/{{session.userSettings.userId}}/profile/pic-upload"
+                        method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="profilePicInput"
+                                    aria-describedby="inputGroupFileAddon" required>
+                                <label class="custom-file-label"
+                                    for="profilePicInput">{{language.softwareInfo.signSelectFile}}</label>
+                            </div>
+
                         </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01">
-                            <label class="custom-file-label" for="inputGroupFile01">{{language.signSelectFile}}</label>
-                        </div>
-                    </div>
+                        <button class="input-group-text btn btn-primary">{{language.softwareInfo.upload}}</button>
+                    </form>
                 </div>
                 </hr><br>
 

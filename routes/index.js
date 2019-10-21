@@ -63,6 +63,10 @@ module.exports = app => {
   router.post("/signup", user.signupProcess);
   router.post("/signout", user.signout);
   router.post("/save-settings", user.saveProfileSettings);
+  router.post(
+    "/:language/users/:user_id/profile/pic-upload",
+    user.profilePicUpload
+  );
 
   // User profile routes
   router.get("/:language/stats", user.stats);

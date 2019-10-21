@@ -32,8 +32,6 @@ Object.fromentries @ 2.0.0<br />
 Request @ 2.88.0<br />
 Requirejs @ 2.3.6<br />
 Stripe @ 7.9.1<br />
-@Authentication/google @ x.x.x <br />
-pm2 @ x.x.x <br />
 
 Development:<br />
 
@@ -48,7 +46,7 @@ Install them all with the following two commands:
 
 Production dependencies
 ```
-npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe @authentication/google pm2
+npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe 
 ```
 
 Development dependencies
@@ -61,22 +59,15 @@ npm install -D @babel/cli @babel/core @babel/preset-env ember-cli-materialize no
 To run a development environment run the next scripts:
 
 
-Install the packages named above, then, within the package.json write the following script:
+Install the packages named above, then, start the server running:
 
-```
-"dev":"env=development && nodemon src/index.js"
-```
-Then:
 ```
 npm run dev
 ```
 
 Have in mind that morgan will log everything you do in localhost if you start with development environment, to avoid this, run production environment
 
-```
-"start":"env=production && node src/index.js"
-```
-Then:
+
 ```
 npm start
 ```
@@ -101,8 +92,6 @@ Test explanation field
 ```
 No test available yet.
 ```
-## Live site
-http://165.227.200.177
 
 ## Deployment
 
@@ -125,8 +114,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Jhonatan Restrepo Garzón** - *Backend and templated frontend* - [StrangeGuy77](https://github.com/StrangeGuy77)
-* **Juan David Ríos Galeano** - *Frontend developer* - [PercyWolfraim](https://github.com/PercyWolfraim)
-* **Sergio Valencia Aguirre** - *Frontend developer* - [Shecho](https://github.com/shecho)
+* **Juan David Ríos Galeano** - *Frontend final update* - [Xpace100](https://github.com/StrangeGuy77)
 
 See also the list of [contributors](https://github.com) who participated in this project.
 

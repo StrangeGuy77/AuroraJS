@@ -3,6 +3,8 @@ const helper = require("../helpers/libs");
 const confirmationHtml = require("../helpers/confirmationEmail");
 const { DefaultLocale, userSession, Contactmailer } = require("../keys");
 const mailer = require("nodemailer");
+const path = require("path");
+const fs = require("fs-extra");
 const GoogleAuthentication = require("@authentication/google");
 const moment = require("moment");
 
@@ -57,6 +59,33 @@ ctrl.profile = async (req, res) => {
       viewModel.session.userSettings.payment_collection;
     console.log(viewModel.session.userSettings);
     res.render("sections/userSections/normalUserSections/profile", viewModel);
+  }
+};
+
+ctrl.profilePicUpload = async (req, res) => {
+  let CurrentLanguage = req.params.language;
+  let url = helper.randomId();
+  let result = await user.findOne({ userId: req.params.user_id });
+  const imageTempPath = req.file.path;
+  const ext = path.extname(req.file.originalname).toLowerCase();
+  const targetPath = path.resolve(`src/public/upload/profile/${url}${ext}`);
+  if (
+    ext === ".png" ||
+    ext === ".jpg" ||
+    ext === ".jpeg" ||
+    ext === ".gif" ||
+    ext === ".svg"
+  ) {
+    // Therefore filesystem can rename images with their final name within db
+    await fs.rename(imageTempPath, targetPath);
+    result.profile_pic = `${url}${ext}`;
+    await result.save();
+
+    res.redirect(`/${CurrentLanguage}/profile`);
+  } else {
+    // Not correct image extension? unlink from marked path before.
+    await fs.unlink(imageTempPath);
+    res.render("partials/errors/error500");
   }
 };
 
@@ -282,9 +311,9 @@ ctrl.visit = async (req, res) => {
   let language = req.params.language;
   let viewModel = await helper.init(language, true);
   let user_id = req.params.user_id;
-  let userInfo = await user.find({ username: user_id });
-  viewModel.userInfo = userInfo[0];
-  viewModel.title = `${userInfo[0].username} - Profile`;
+  let userInfo = await user.findOne({ username: user_id });
+  viewModel.userInfo = userInfo;
+  viewModel.title = `${userInfo.username} - Profile`;
   res.render(
     "sections/userSections/normalUserSections/otherUserProfile",
     viewModel

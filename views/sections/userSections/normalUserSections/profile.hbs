@@ -7,7 +7,7 @@
         /* Background image doesn't tile */
         background-repeat: no-repeat;
 
-        /* Background image is fixed in the viewport so that it doesn't move when 
+        /* Background image is fixed in the viewport so that it doesn't move when
      the content's height is greater than the image's height */
         background-attachment: fixed;
 
@@ -102,7 +102,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                 aria-controls="home" aria-selected="true" style="color: black"><i
-                                    class="fas fa-home"></i> {{language.home}}</a>
+                                    class="fas fa-home"></i> {{language.sectionsInfo.home}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#settings" role="tab"
@@ -115,14 +115,14 @@
                                     class="fas fa-id-card"></i> {{language.userInfo.Contact}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                aria-controls="contact" aria-selected="false" style="color: black"><i
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#payment" role="tab"
+                                aria-controls="payment" aria-selected="false" style="color: black"><i
                                     class="fas fa-shopping-cart"></i>
                                 {{language.userInfo.PayingHistory}}</a>
                         </li>
                     </ul>
                     <div class="container-fluid">
-                        {{> components/userConfig}}
+                        {{> components/profileComponents/main}}
                     </div>
                 </div>
             </div>

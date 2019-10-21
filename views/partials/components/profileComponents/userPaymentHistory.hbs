@@ -1,0 +1,57 @@
+{{#if payment_collection}}
+<div class="col-sm-8">
+    {{#each payment_collection }}
+    <div class="card-deck">
+        <div class="card mb-4">
+
+            <!--Card image-->
+            <div class="card-image">
+                <img class="image-thumbnail" src="/public/upload/{{filename}}" alt="Card image cap">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-content">
+
+                <!--Title-->
+                <h4 class="card-title">{{name}}</h4>
+                <!--Text-->
+                <p class="card-text">{{description}}</p>
+                <hr>
+                <strong>
+                    <p class="card-text">Price: {{price}}</p>
+                </strong>
+                <hr>
+                <strong>
+                    <p class="card-text">Payment method: {{toUpperCase paymentMethod}}</p>
+                </strong>
+                <hr>
+                <strong>
+                    <p class="card-text">Payment currency: {{toUpperCase currency}}</p>
+                </strong>
+                <hr>
+                <strong>
+                    <p class="card-text">Payment date: {{date}} GMT.</p>
+                </strong>
+                <hr>
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <button type="button" class="btn btn-light-blue btn-md"> <a
+                        href="/{{languageFinder}}/software/{{filename}}">Go there!</a> </button>
+
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<div class="col-sm-12 p-4">
+    <div class="card">
+        <div class="card-content">
+            <h3>There's nothing you've paid right now! Come back here when you buy anything within the page.</h3>
+        </div>
+    </div>
+</div>
+{{/if}}

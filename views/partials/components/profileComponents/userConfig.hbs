@@ -1,0 +1,116 @@
+<hr>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"><strong style="color: black"> <i class="fas fa-signature"></i>
+                    {{language.userInfo.FirstAndLastName}}</strong>
+            </span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control" placeholder="{{language.userInfo.FirstName}}"
+            id="firstname">
+        <input type="text" aria-label="Last name" class="form-control" placeholder="{{language.userInfo.Lastname}}"
+            id="lastname">
+    </div>
+</div>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"> <strong style="color: black"><i class="fas fa-envelope"></i>
+                    {{language.userInfo.ContactInfo}}</strong>
+            </span>
+        </div>
+        <input type="text" aria-label="Last name" class="form-control" placeholder="{{language.userInfo.cellphone}}"
+            id="cellphone">
+        <input type="text" aria-label="Last name" class="form-control"
+            placeholder="{{language.softwareInfo.signCommentEmail}}" id="email">
+    </div>
+</div>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"> <strong style="color: black"><i class="fas fa-briefcase"></i>
+                    {{language.userInfo.Work}}</strong>
+            </span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control" placeholder="{{language.userInfo.WorkSite}}"
+            id="worksite">
+        <input type="text" aria-label="Last name" class="form-control" placeholder="{{language.userInfo.Enterprise}}"
+            id="enterprise">
+    </div>
+</div>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"> <strong style="color: black"><i class="fas fa-map-marked-alt"></i>
+                    {{language.userInfo.Location}}</strong> </span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control" placeholder="{{language.userInfo.Country}}"
+            id="country">
+        <input type="text" aria-label="Last name" class="form-control" placeholder="{{language.userInfo.City}}"
+            id="city">
+    </div>
+</div>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"> <strong style="color: black"><i class="fas fa-key"></i>
+                    {{language.userInfo.password}}</strong></span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control"
+            placeholder="{{language.userInfo.ChangePassword}}" id="changepassword">
+        <input type="text" aria-label="Last name" class="form-control"
+            placeholder="{{language.userInfo.confirmPassword}}" id="confirmpassword">
+    </div>
+</div>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"><strong style="color: black"><i class="fab fa-github-square"></i>
+                    Github</strong></span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control" placeholder="{{language.userInfo.YourGithub}}"
+            id="usergithub">
+    </div>
+</div>
+<div class="form-group">
+    <div class="md-form input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text md-addon"><strong style="color: black"><i class="fa fa-link fa-1x"></i>
+                    Webpage</strong></span>
+        </div>
+        <input type="text" aria-label="First name" class="form-control" placeholder="{{language.userInfo.YourWebPage}}"
+            id="userwebpage">
+    </div>
+</div>
+<button class="btn btn-success" id="saveSettings">
+    {{language.userInfo.SaveSettings}}
+</button>
+<div class="form-group">
+    <div class="md-form input-group">
+        <i class="">
+            <p id="settingsWarning">
+
+            </p>
+        </i>
+    </div>
+</div>
+<hr>
+
+<div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="showpublicname">
+    <label class="custom-control-label" for="showpublicname" style="color: black">
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicName}}</p>
+    </label>
+</div>
+<div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="showpublicemail">
+    <label class="custom-control-label" for="showpublicemail" style="color: black">
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicEmail}}</p>
+    </label>
+</div>
+<div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="showpubliclocation">
+    <label class="custom-control-label" for="showpubliclocation" style="color: black">
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicLocation}}</p>
+    </label>
+</div>

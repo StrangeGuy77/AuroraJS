@@ -1,4 +1,4 @@
-const { DefaultLocale, userSession, Contactmailer } = require("../keys");
+const { userSession } = require("../keys");
 const userSessionVerification = require("../helpers/userVerification");
 
 const helper = {};
@@ -32,26 +32,11 @@ helper.verificationCode = () => {
 };
 
 helper.size = obj => {
-  let size = 0,
-    key;
+  let size = 0;
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) size++;
   }
   return size;
-};
-
-helper.toBoolean = string => {
-  switch (string) {
-    case "true":
-      return true;
-      break;
-    case "false":
-      return false;
-      break;
-    default:
-      return false;
-      break;
-  }
 };
 
 helper.checkBuy = (collection, object) => {
@@ -64,22 +49,25 @@ helper.checkBuy = (collection, object) => {
   return false;
 };
 
-helper.init = async language => {
+helper.init = async (language = "en", getUsername = false, getUseremail = false) => {
+  let includeUseremail = getUseremail;
+  let includeUsername = getUsername;
   let toTranslateJSON = require(`../locales/${language}.json`);
   let actualUserSession = userSession.actualUserSession;
-  let userProperties = {};
-  userProperties = userSessionVerification.userSessionResponse(
+  let userProperties = userSessionVerification.userSessionResponse(
     actualUserSession
   );
 
-  var viewModel = {
-    language: {}
-  };
+  const viewModel = {};
   viewModel.language = toTranslateJSON;
   viewModel.language.CurrentLanguage = language;
   viewModel.session = userProperties;
-  viewModel.session.username = userSession.username;
-  viewModel.session.email = userSession.email;
+  if (includeUsername) {
+    viewModel.session.username = userSession.username;
+  }
+  if (includeUseremail){
+    viewModel.session.email = userSession.email;
+  }
   return viewModel;
 };
 

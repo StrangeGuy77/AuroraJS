@@ -3,7 +3,7 @@ const Comment = require('../models/comment');
 
 
 async function softwaresCounter(){
-    return await Software.countDocuments();
+    return Software.countDocuments();
 }
 
 async function commentsCounter(){

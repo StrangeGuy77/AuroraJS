@@ -54,7 +54,7 @@ module.exports = app => {
   router.get("/:language/signup", user.signup);
   router.get("/:language/profile", user.profile);
   router.get("/:language/users/:user_id", user.visit);
-  router.get("/:language/users/verification/:userid", user.userVerification);
+  router.get("/:language/users/verification/:userid", user.accountConfirmation);
   router.get(
     "/:language/users/:user_id/:activation_code",
     user.accountConfirmation
@@ -67,12 +67,6 @@ module.exports = app => {
   // User profile routes
   router.get("/:language/stats", user.stats);
 
-  // Bancolombia router test
-  router.get("/oauth2/authorize/customers", bcmb.authorize), (bcmb.session = 1);
-  router.get("/oauth2/authorize/customers/success", bcmb.checkUser);
-  router.get("/oauth2/authorize/paying", bcmb.authorize), (bcmb.session = 2);
-  router.get("/oauth2/authorize/paying/success", bcmb.payUser);
-
   // Google auth
   router.get("/google/auth", bcmb.googleAuthentication);
 
@@ -81,10 +75,6 @@ module.exports = app => {
   router.get("/:language/not-available", home.error503);
   router.get("/:language/timeout", home.error504);
   router.get("*", home.error404);
-
-  // Process handler
-  process.on("UnhandledPromiseRejectionWarning", home.unhandledPromise);
-  process.on("UnhandledError", home.unhandledPromise);
 
   app.use(router);
 };

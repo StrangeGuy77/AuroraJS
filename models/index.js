@@ -3,5 +3,6 @@ module.exports = {
   contact: require("./contact"),
   comment: require("./comment"),
   user: require("./user"),
-  book: require("./books")
+  book: require("./books"),
+  courses: require("./courses")
 };

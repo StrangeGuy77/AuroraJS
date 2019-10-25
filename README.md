@@ -101,7 +101,7 @@ For deployment there's no need of code changing. Just insert within the JSON pac
 
 * [Express](https://expressjs.com/en/starter/installing.html) - Main framework
 * [Node](https://nodejs.org/en/docs/) - Environment and server 
-* [NPM](https://maven.apache.org/) - Dependency Management
+* [NPM](https://www.npmjs.com/) - Dependency Management
 
 ## Contributing
 
@@ -114,7 +114,9 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Jhonatan Restrepo Garzón** - *Backend and templated frontend* - [StrangeGuy77](https://github.com/StrangeGuy77)
-* **Juan David Ríos Galeano** - *Frontend final update* - [Xpace100](https://github.com/StrangeGuy77)
+* **Juan David Ríos Galeano** - *Frontend developer* - [Wolfram](https://github.com/wolfram)
+* **Sergio Valencia Aguirre** - *Frontend developer* - [Shecho](https://github.com/shecho)
+
 
 See also the list of [contributors](https://github.com) who participated in this project.
 

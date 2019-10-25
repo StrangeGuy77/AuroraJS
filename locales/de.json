@@ -122,6 +122,20 @@
         "actionComment": "Kommentar zu",
         "userWhoUploaded": "Hochgeladen von"
     },
+    "ourServicesSection": {
+        "WebDesigns": "Webdesigns",
+        "WebDesignsDesc": "Wir gestalten innovative und dynamische Websites mit dem Ziel, ein differenziertes Nutzererlebnis zu bieten.",
+        "WebDevelopment": "Web-Entwicklung",
+        "WebDevelopmentDesc": "Wir entwickeln Full Stack JS unter Verwendung moderner Technologien und Tools, die Effizienz garantieren.",
+        "ResponsiveDesigns": "Responsive Designs",
+        "ResponsiveDesignsDesc": "Alle unsere Entwicklungen haben an jedes Gerät anpassbare Benutzeroberflächen (PC, Tablet, Mobile)",
+        "Consulting": "Beratung",
+        "ConsultingDesc": "Wenn Sie ein Webprojekt gestartet haben, beraten wir Sie auf allen Ebenen.",
+        "Databases": "Datenbanken",
+        "DatabasesDesc": "Wir garantieren die Persistenz Ihrer Daten und raten Ihnen, zwischen relationalen und nicht relationalen Datenbanken zu wählen. Wir haben AWS-Zertifikate und verbinden Sie mit deren Cloud-Diensten.",
+        "AndroidIOS": "Android / iOS",
+        "AndroidIOSDesc": "Wir machen native Android- und iOS-Anwendungen skalierbar und wartungsfreundlich"
+    },
     "sectionsInfo": {
         "home": "Zuhause",
         "library": "Bibliothek",

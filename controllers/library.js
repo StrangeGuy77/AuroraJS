@@ -6,21 +6,21 @@ const ctrl = {};
 
 ctrl.index = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.library} - Aurora Development`;
   res.render("sections/librarySection/libraryIndex", viewModel);
 };
 
 ctrl.bookView = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.library} - Aurora Development`;
   res.render("sections/librarySection/bookView", viewModel);
 };
 
 ctrl.bookUploadView = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.library} - Aurora Development`;
   res.render("sections/librarySection/bookUpload", viewModel);
 };
@@ -47,7 +47,7 @@ ctrl.courseView = async (req, res) => {
 
 ctrl.courseUploadView = async (req, res) => {
   let language = req.params.language;
-  let viewModel = await helper.init(language);
+  let viewModel = await helper.init(language, true);
   viewModel.title = `${viewModel.language.sectionsInfo.courses} - Aurora Development`;
   res.render("sections/librarySection/courseUpload", viewModel);
 };

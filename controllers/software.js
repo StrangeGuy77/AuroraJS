@@ -41,6 +41,14 @@ ctrl.view = async (req, res) => {
     filename: { $regex: softwareToFind }
   });
 
+  let uploaderInfo = await user.findOne({ userId: soft.userUploaderId });
+  if (uploaderInfo) {
+    viewModel.session.uploaderInfo = uploaderInfo;
+    if (uploaderInfo.profile_pic === "") {
+      viewModel.session.profile_pic = false;
+    }
+  }
+
   if (!(viewModel.session.nonlogged === true)) {
     let userInfo = await user.findOne({
       userId: userSession.userId

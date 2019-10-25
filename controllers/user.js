@@ -286,6 +286,7 @@ ctrl.saveProfileSettings = async (req, res) => {
           res.status(500);
           res.send("There was an error saving the information");
         }
+        // Doc param has inside the updated info of the user.
         let toStringifyAnswer =
           toTranslateJSON.userInfo.InformationSuccessfullySaved;
         res.status(200);
@@ -312,12 +313,16 @@ ctrl.visit = async (req, res) => {
   let viewModel = await helper.init(language, true);
   let user_id = req.params.user_id;
   let userInfo = await user.findOne({ username: user_id });
-  viewModel.userInfo = userInfo;
-  viewModel.title = `${userInfo.username} - Profile`;
-  res.render(
-    "sections/userSections/normalUserSections/otherUserProfile",
-    viewModel
-  );
+  if (userInfo) {
+    viewModel.userInfo = userInfo;
+    viewModel.title = `${userInfo.username} - Profile`;
+    res.render(
+      "sections/userSections/normalUserSections/otherUserProfile",
+      viewModel
+    );
+  } else {
+    res.redirect(`/${language}`);
+  }
 };
 
 ctrl.stats = async (req, res) => {

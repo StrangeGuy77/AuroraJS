@@ -125,6 +125,20 @@
         "actionComment": "Comment",
         "userWhoUploaded": "Uploaded by"
     },
+    "ourServicesSection": {
+        "WebDesigns": "Web designs",
+        "WebDesignsDesc": "We design innovative and dynamic websites focused on giving a differentiating user experience.",
+        "WebDevelopment": "Web development",
+        "WebDevelopmentDesc": "We develop Full Stack JS with the use of modern technologies and tools that guarantee efficiency.",
+        "ResponsiveDesigns": "Responsive design",
+        "ResponsiveDesignsDesc": "All our developments have user interfaces adaptable to any device (PC, Tablet, Mobile)",
+        "Consulting": "Consulting / Advice",
+        "ConsultingDesc": "If you have a web project started we will advise you at all levels.",
+        "Databases": "Databases",
+        "DatabasesDesc": "We guarantee the persistence of your data and advise you to choose between relational and non-relational databases. We have AWS certificates and connect you with their cloud services.",
+        "AndroidIOS": "Android / iOS",
+        "AndroidIOSDesc": "We make native Android and iOS applications scalable and easy to maintain"
+    },
     "sectionsInfo": {
         "ourServices": "Our services",
         "contactUs": "Contact us",

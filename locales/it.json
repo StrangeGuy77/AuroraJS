@@ -54,7 +54,13 @@
     },
     "buyInfo": {
         "youNeedToBeLogged": "Devi effettuare l'accesso per scaricare o acquistare",
-        "buy": "Acquistare"
+        "buy": "Acquistare",
+        "PaymentMethod": "",
+        "PaymentCurrency": "",
+        "PaymentDate": "",
+        "": "",
+        "": "",
+        "": ""
     },
     "libraryInfo": {
         "recentBookUploads": "Caricamenti di libri recenti",
@@ -121,6 +127,20 @@
         "signCommentContent": "Soddisfare",
         "actionComment": "Commenta",
         "userWhoUploaded": "Caricato da"
+    },
+    "ourServicesSection": {
+        "WebDesigns": "Disegni Web",
+        "WebDesignsDesc": "Progettiamo siti Web innovativi e dinamici incentrati sul dare un'esperienza utente differenziata.",
+        "WebDevelopment": "Sviluppo web",
+        "WebDevelopmentDesc": "Sviluppiamo Full Stack JS con l'uso di moderne tecnologie e strumenti che garantiscono efficienza.",
+        "ResponsiveDesigns": "Design reattivo",
+        "ResponsiveDesignsDesc": "Tutti i nostri sviluppi hanno interfacce utente adattabili a qualsiasi dispositivo (PC, Tablet, Mobile)",
+        "Consulting": "Consulenza",
+        "ConsultingDesc": "Se hai avviato un progetto web, ti consiglieremo a tutti i livelli.",
+        "Databases": "Basi di dati",
+        "DatabasesDesc": "Garantiamo la persistenza dei tuoi dati e ti consigliamo di scegliere tra database relazionali e non relazionali. Abbiamo certificati AWS e ti colleghiamo con i loro servizi cloud.",
+        "AndroidIOS": "Android / iOS",
+        "AndroidIOSDesc": "Realizziamo applicazioni Android e iOS native scalabili e di facile manutenzione"
     },
     "sectionsInfo": {
         "ourServices": "Nostri servizi",

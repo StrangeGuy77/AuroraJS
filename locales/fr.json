@@ -122,6 +122,20 @@
         "actionComment": "Commenter sur",
         "userWhoUploaded": "Telechargé par"
     },
+    "ourServicesSection": {
+        "WebDesigns": "Conceptions Web",
+        "WebDesignsDesc": "Nous concevons des sites Web innovants et dynamiques axés sur une expérience utilisateur différenciante.",
+        "WebDevelopment": "Développement web",
+        "WebDevelopmentDesc": "Nous développons Full Stack JS en utilisant des technologies modernes et des outils garantissant l'efficacité.",
+        "ResponsiveDesigns": "Designs réactifs",
+        "ResponsiveDesignsDesc": "Tous nos développements ont des interfaces utilisateur adaptables à tout appareil (PC, tablette, mobile)",
+        "Consulting": "Conseil",
+        "ConsultingDesc": "Si vous avez démarré un projet Web, nous vous conseillerons à tous les niveaux.",
+        "Databases": "Base de données",
+        "DatabasesDesc": "Nous garantissons la pérennité de vos données et vous conseillons de choisir entre des bases de données relationnelles et non relationnelles. Nous avons des certificats AWS et vous connectons avec leurs services cloud.",
+        "AndroidIOS": "Android / iOS",
+        "AndroidIOSDesc": "Nous rendons les applications natives Android et iOS évolutives et faciles à gérer"
+    },
     "sectionsInfo": {
         "ourServices": "Nos services",
         "contactUs": "Nous contacter",

@@ -98,7 +98,6 @@ filter: blur(9px);
 /*dark overlay */
 .dark-overlay {
     margin: -50px -50px -200px -50px;
-
 }
 
 @media screen and (max-width:768px) {

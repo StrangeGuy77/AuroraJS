@@ -122,6 +122,20 @@
         "actionComment": "にコメントする",
         "userWhoUploaded": "アップロード者"
     },
+    "ourServicesSection": {
+        "WebDesigns": "ウェブデザイン",
+        "WebDesignsDesc": "差別化されたユーザーエクスペリエンスを提供することに焦点を当てた革新的でダイナミックなWebサイトを設計しています。",
+        "WebDevelopment": "ウェブ開発",
+        "WebDevelopmentDesc": "効率を保証する最新のテクノロジーとツールを使用して、フルスタックJSを開発しています。",
+        "ResponsiveDesigns": "レスポンシブデザイン",
+        "ResponsiveDesignsDesc": "すべての開発には、任意のデバイス（PC、タブレット、モバイル）に適応可能なユーザーインターフェイスがあります",
+        "Consulting": "コンサルティング/アドバイス",
+        "ConsultingDesc": "Webプロジェクトを開始している場合は、すべてのレベルでアドバイスします。",
+        "Databases": "データベース",
+        "DatabasesDesc": "データの永続性を保証し、リレーショナルデータベースと非リレーショナルデータベースを選択することをお勧めします。 AWS証明書があり、お客様をクラウドサービスに接続します。",
+        "AndroidIOS": "Android / iOS",
+        "AndroidIOSDesc": "スケーラブルでメンテナンスが容易なネイティブAndroidおよびiOSアプリケーションを実現します"
+    },
     "sectionsInfo": {
         "stats": "統計",
         "home": "ホーム",

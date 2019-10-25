@@ -46,7 +46,7 @@ Install them all with the following two commands:
 
 Production dependencies
 ```
-npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe 
+npm install --save errorhandler express express-handlebars fs-extra i18n jsonwebtoken materialize-css md5 moment mongoose morgan multer nodemailer object.fromentries request requirejs stripe @authentication/google
 ```
 
 Development dependencies

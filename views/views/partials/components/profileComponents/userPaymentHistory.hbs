@@ -1,0 +1,54 @@
+{{#if payment_collection}}
+<hr>
+<h4>Your payment history</h4>
+<hr>
+<div class="col-sm-8">
+    {{#each payment_collection }}
+    <div class="card-deck">
+        <div class="card mb-4">
+
+            <div class="card-image">
+                <img class="image-thumbnail" src="/public/upload/{{filename}}" alt="Card image cap">
+                <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <div class="card-content">
+                <h5 class="card-title">{{name}}</h5>
+
+                <p class="card-text">{{description}}</p>
+                <hr>
+                <strong>
+                    <p class="card-text">Price: {{price}}</p>
+                </strong>
+                <hr>
+                <strong>
+                    <p class="card-text">Payment method: {{toUpperCase paymentMethod}}</p>
+                </strong>
+                <hr>
+                <strong>
+                    <p class="card-text">Payment currency: {{toUpperCase currency}}</p>
+                </strong>
+                <hr>
+                <strong>
+                    <p class="card-text">Payment date: {{date}} GMT-5.</p>
+                </strong>
+                <hr>
+                <button type="button" class="btn btn-light-blue btn-md"> <a
+                        href="/{{languageFinder}}/software/{{filename}}">Go there!</a> </button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {{/each}}
+</div>
+{{else}}
+<div class="col-sm-12 p-4">
+    <div class="card">
+        <div class="card-content">
+            <h3>There's nothing you've paid right now! Come back here when you buy anything within the page.</h3>
+        </div>
+    </div>
+</div>
+{{/if}}

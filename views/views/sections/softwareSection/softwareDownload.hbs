@@ -1,0 +1,20 @@
+<style>
+    body {
+        background-image: url("https://wallpaperplay.com/walls/full/8/4/a/44843.jpg");
+    }
+</style>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
+    </div>
+    {{#if sidebar.stats.softwares}}
+    <div class="col-md-4">
+        {{> sidebar/stats}}
+        {{> sidebar/popular}}
+        {{> sidebar/comments}}
+    </div>
+    {{/if}}
+</div>

@@ -1,0 +1,139 @@
+<style>
+    body {
+        background-image: url("https://wallpaperplay.com/walls/full/8/4/a/44843.jpg");
+    }
+</style>
+
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="card-title">{{soft.title}}</h2>
+                    {{#if (or (or session.superuser)(or session.adminuser) (or session.moduser))}}
+                    <button class="btn btn-danger" id="btn-delete" data-id="{{soft.uniqueId}}">
+                        <i class="fa fa-times"></i> {{language.softwareInfo.delete}}
+                    </button>
+                    {{/if}}
+                </div>
+                <div class="card-body">
+                    <p style="font-weight: 700">{{language.softwareInfo.userWhoUploaded}}: <a
+                            href="/{{language.CurrentLanguage}}/users/{{soft.userUploaderName}}">{{soft.userUploaderName}}</a>
+                    </p>
+                    <p style="font-weight: 700">{{language.softwareInfo.price}}: {{soft.price}}$</p>
+                    <p style="font-weight: 700">{{language.softwareInfo.description}}: {{soft.description}}</p>
+                    <div class="text-center">
+                        <img src="/public/upload/{{soft.filename}}" alt="" class="img-fluid">
+                    </div>
+                    <p></p>
+                    {{#if session.isAlreadyBought}}
+                    <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'"
+                        class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
+                        <i class="fas fa-download"></i> {{language.softwareInfo.download}}
+                    </button>
+                    {{else}}
+                    <div class="card-footer">
+                        <form action="/{{languageFinder}}/software/{{soft.uniqueId}}/buy" method="GET">
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_Z5JZQq8QxBrvoKf8bgss1PkH0072q9LKtb" data-locale="{{languageFinder}}"
+                                data-amount="{{soft.price}}00" data-name="{{soft.title}}"
+                                data-description="{{soft.description}}" data-image="/public/upload/{{soft.filename}}"
+                                data-locale="auto" data-currency="usd" data-email="{{session.email}}">
+                                </script>
+                            <script>
+                                document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+                            </script>
+                            {{#if session.nonlogged}}
+                            <button class="btn btn-dark btn-block" disabled>
+                                {{language.buyInfo.youNeedToBeLogged}} <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            {{else}}
+                            <button class="btn btn-dark btn-block">
+                                {{language.buyInfo.buy}} <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            {{/if}}
+                        </form>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <button class="btn btn-success" id="btn-like" data-id="{{soft.filename}}">
+                        <i class="fas fa-thumbs-up"></i> {{language.softwareInfo.like}}
+                    </button>
+                    <p>
+                        <span class="likes-count">{{soft.likes}}</span>
+                        <i class="fas fa-heart"></i>
+                    </p>
+                    <p>
+                        {{soft.views}} <i class="fas fa-eye"></i>
+                    </p>
+                    <p>
+                        <i class="far fa-clock"></i>
+                        {{timeago soft.timestamp}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mt-2">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3>{{language.softwareInfo.comments}}</h3>
+                    {{#if session.nonlogged}}
+                    <button class="btn btn-info" id="btn-toggle-comment" disabled>
+                        <i class="fa fa-comment-o"></i> {{language.softwareInfo.loginToshareAcomment}}
+                    </button>
+                    {{else}}
+                    <button class="btn btn-info" id="btn-toggle-comment">
+                        <i class="fa fa-comment-o"></i> {{language.softwareInfo.shareAcomment}}
+                    </button>
+                    {{/if}}
+                </div>
+                <div class="card-body">
+                    <blockquote id="post-comment">
+                        <form action="/software/{{soft.uniqueId}}/comment" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name"
+                                    placeholder="{{language.softwareInfo.signCommentName}}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="email"
+                                    placeholder="{{language.softwareInfo.signCommentEmail}}">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="comment" rows="2" class="form-control"
+                                    placeholder="{{language.softwareInfo.signCommentContent}}"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" id="btn-comment">
+                                    <i class="fas fa-comment"> {{language.softwareInfo.actionComment}} </i>
+                                </button>
+                            </div>
+                        </form>
+                    </blockquote>
+                    <ul class="list-group p-4">
+                        {{#each comments}}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <a href="#" class="col text-center">
+                                    <img src="http://gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45" alt="">
+                                </a>
+                                <blockquote class="col">
+                                    <p class="lead">{{comment}}</p>
+                                    <footer class="blockquote-footer">
+                                        {{name}} - {{timeago timestamp}}
+                                    </footer>
+                                </blockquote>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{#if sidebar.stats.softwares}}
+        <div class="col-md-4">
+            {{> sidebar/stats}}
+            {{> components/softwareComponents/profilePreview}}
+        </div>
+        {{/if}}
+    </div>
+</div>

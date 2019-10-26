@@ -1,0 +1,106 @@
+<li class="logic-sec">
+    <button class="btn btn-dark" data-toggle="modal" data-target="#signupModal">
+        <i class="fas fa-user-plus"></i> {{language.sectionsInfo.register}}
+    </button>
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md-2" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">{{language.sectionsInfo.register}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{language.userInfo.username}}"
+                                aria-label="Username" aria-describedby="basic-addon1" id="signupModalUsername"
+                                name="signupModalUsername" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{language.userInfo.email}}"
+                                aria-label="Username" aria-describedby="basic-addon1" id="signupModalEmail"
+                                name="signupModalEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="{{language.userInfo.password}}"
+                                aria-label="Username" aria-describedby="basic-addon1" id="signupModalPassword"
+                                name="signupModalPassword" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control"
+                                placeholder="{{language.userInfo.confirmPassword}}" aria-label="Username"
+                                aria-describedby="basic-addon1" id="signupModalConfirmPassword"
+                                name="signupModalConfirmPassword" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="spinner" style="
+        background: #4267b2;
+        border-radius: 5px;
+        color: white;
+        height: 40px;
+        text-align: center;
+        width: 250px;">
+                        <div class="fb-login-button" data-max-rows="1" data-size="large"
+                            data-button-type="continue_with" data-use-continue-as="true" onlogin="checkLoginState();">
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div id="gSignInWrapper">
+                        <span class="label">Sign in with:</span>
+                        <div id="customBtn" class="customGPlusSignIn">
+                            <span class="icon"></span>
+                            <span class="buttonText">Google</span>
+                        </div>
+                    </div>
+                    <div id="name"></div>
+
+                    <hr>
+                    <div id="status" class="text-black">
+                        <p></p>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <p>{{language.userInfo.onceRegisteredAgreementAccepted}}
+                                    <a
+                                        href="/{{language.CurrentLanguage}}/user-agreement-terms">{{language.userAgreementPolicy.userAgreementModal}}</a>
+                                    <i class="far fa-check-circle"></i>
+                                </p>
+                            </div>
+                            <p id="signup-alert-section" style="color: red"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer form-group">
+                        <button class="btn btn-secondary" data-dismiss="modal"
+                            id="signup-dismiss">{{language.cancel}}</button>
+                        <button class="btn btn-primary btn-signup" id="signup-button">{{language.register}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

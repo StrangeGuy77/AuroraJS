@@ -1,0 +1,147 @@
+<style>
+    .card-profile {
+        width: 340px;
+        background: #f1f1f1;
+        overflow: hidden;
+        font-family: "montserrat", sans-serif;
+        box-shadow: 0 0 20px #00000070;
+    }
+
+    .top-section {
+        position: relative;
+    }
+
+    .top-section img {
+        width: 100%;
+    }
+
+    .menuicon {
+        position: absolute;
+        width: 22px;
+        left: 20px;
+        top: 20px;
+        cursor: pointer;
+    }
+
+    .menuicon span {
+        width: 100%;
+        height: 3px;
+        background: #000;
+        position: relative;
+        display: block;
+        margin-bottom: 6px;
+        opacity: .5;
+        transition: .4s;
+    }
+
+    .menuicon .s1 {
+        left: -5px;
+    }
+
+    .menuicon .s2 {
+        left: 5px;
+    }
+
+    .menuicon:hover span {
+        left: 0;
+    }
+
+    .name {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 40px;
+        font-weight: 900;
+        opacity: .5;
+    }
+
+    .name span {
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .info-section {
+        padding: 40px;
+        padding-top: 0;
+        color: #333;
+    }
+
+    h2 {
+        position: relative;
+        font-size: 16px;
+    }
+
+    .border {
+        width: 30px;
+        height: 3px;
+        background: #778beb;
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+    }
+
+    p {
+        text-align: justify;
+        font-size: 14px;
+    }
+
+    .s-m {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .s-m a {
+        text-decoration: none;
+        font-size: 20px;
+        color: #333;
+        padding: 0 14px;
+        transition: .4s;
+    }
+
+    .s-m a:hover {
+        color: #778beb;
+    }
+</style>
+
+
+<div class="card middle">
+    <div class="top-section">
+        {{#if session.uploaderInfo.profile_pic}}
+        <img src="/public/upload/profile/{{session.uploaderInfo.profile_pic}}" alt="">
+        {{else }}
+        <img src="/public/img/default_pic.png" alt="">
+        {{/if }}
+        <div class="menuicon">
+            <span class="s1"></span>
+            <span class="s2"></span>
+        </div>
+        <div class="name">
+            shecho <br>
+            <span>Cobac</span>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <hr>
+        <h2>About
+            <div class="border"></div>
+        </h2>
+        <hr>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's
+            standard dummy text ever since the 1500s.
+        </p>
+        <h2>contact
+            <div class="border"></div>
+        </h2>
+        <div class="s-m">
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-instagram"></a>
+            <a href="https://github.com/{{session.uploaderInfo.github}}" target="_blank"
+                class="fab fa-github-square"></a>
+            <a href="" class="fab fa-whatsapp"></a>
+        </div>
+    </div>
+</div>

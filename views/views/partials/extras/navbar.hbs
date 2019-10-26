@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-md navbar-dark nav-color">
+    <div class="row">
+        <a class="navbar-brand" href="/"><img src="/public/img/80.png" alt="logo">
+            <p class="navbar-brand"> Aurora Development</p>
+        </a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="collapsibleNavbar">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">{{language.sectionsInfo.home}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/library">{{language.sectionsInfo.library}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/software">{{language.sectionsInfo.software}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/{{language.CurrentLanguage}}/forum">{{language.sectionsInfo.foro}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/{{language.CurrentLanguage}}/our-services">{{language.sectionsInfo.ourServices}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="/{{language.CurrentLanguage}}/contact-us">{{language.sectionsInfo.contactUs}}</a>
+            </li>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto nav-item">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> <i
+                                class="fas fa-language"></i>
+                            {{language.sectionsInfo.language}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/es"><i class=""></i> Español</a>
+                            <a class="dropdown-item" href="/en"><i class=""></i> English</a>
+                            <a class="dropdown-item" href="/de"><i class=""></i> Deutsch</a>
+                            <a class="dropdown-item" href="/fr"><i class=""></i> Francais</a>
+                            <a class="dropdown-item" href="/jp"><i class=""></i> 日本語</a>
+                            <a class="dropdown-item" href="/it"><i class=""></i> Italiano</a>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </ul>
+        {{#if session.nonlogged}}
+        {{> components/loginButton}}
+        {{> components/signupButton}}
+        {{/if}}
+        {{#if (or (or session.loggeduser) (or session.nonverified))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/logged}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+        {{#if (or (or session.moduser))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/mod}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+        {{#if (or (or session.adminuser))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/admin}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+        {{#if (or (or session.superuser))}}
+        <ul class="navbar-nav ml-auto nav-item">
+            <li class="user-profile-button">
+                {{> components/profileButtons/superuser}}
+            </li>
+            <button class="btn btn-dark" id="signout-button">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </ul>
+        {{/if}}
+    </div>
+</nav>

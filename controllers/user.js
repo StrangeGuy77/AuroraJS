@@ -1,12 +1,17 @@
 const { user } = require("../models/index");
 const helper = require("../helpers/libs");
 const confirmationHtml = require("../helpers/confirmationEmail");
-const { DefaultLocale, userSession, Contactmailer } = require("../keys");
+const {
+  DefaultLocale,
+  userSession,
+  Contactmailer,
+  GithubApi
+} = require("../keys");
 const mailer = require("nodemailer");
 const path = require("path");
 const fs = require("fs-extra");
 const GoogleAuthentication = require("@authentication/google");
-const moment = require("moment");
+const fetch = require("node-fetch");
 
 const ctrl = {};
 
@@ -53,11 +58,34 @@ ctrl.profile = async (req, res) => {
   if (viewModel.session.nonlogged) {
     res.redirect(`/${DefaultLocale.preferedUserLanguage}/login`);
   } else {
-    let userSettings = await user.find({ userId: userSession.userId });
-    viewModel.session.userSettings = userSettings[0];
+    let userSettings = await user.findOne({ userId: userSession.userId });
+    viewModel.session.userSettings = userSettings;
     viewModel.payment_collection =
       viewModel.session.userSettings.payment_collection;
-    console.log(viewModel.session.userSettings);
+
+    // Contact section of profile.
+    // Github verification
+    if (userSettings.github !== "") {
+      // Delete this verification after development
+      if (userSettings.github === "StrangeGuy") {
+        userSettings.github = "StrangeGuy77";
+      }
+      const { client_id, client_secret } = GithubApi;
+      let gitInfo = await fetch(
+        `http://api.github.com/users/${userSettings.github}?client_id=${client_id}&client_secret=${client_secret}`
+      );
+      let gitRepos = await fetch(
+        `http://api.github.com/users/${userSettings.github}/repos?client_id=${client_id}&client_secret=${client_secret}&per_page=4&sort=committer-date-desc`
+      );
+
+      gitInfo = await gitInfo.json();
+      gitRepos = await gitRepos.json();
+      viewModel.gitInfo = gitInfo;
+      viewModel.gitRepos = gitRepos;
+    } else {
+      userSettings.github = false;
+    }
+
     res.render("sections/userSections/normalUserSections/profile", viewModel);
   }
 };
@@ -316,6 +344,26 @@ ctrl.visit = async (req, res) => {
   if (userInfo) {
     viewModel.userInfo = userInfo;
     viewModel.title = `${userInfo.username} - Profile`;
+    if (userInfo.github !== "") {
+      // Delete this verification after development
+      if (userInfo.github === "StrangeGuy") {
+        userInfo.github = "StrangeGuy77";
+      }
+      const { client_id, client_secret } = GithubApi;
+      let gitInfo = await fetch(
+        `http://api.github.com/users/${userInfo.github}?client_id=${client_id}&client_secret=${client_secret}`
+      );
+      let gitRepos = await fetch(
+        `http://api.github.com/users/${userInfo.github}/repos?client_id=${client_id}&client_secret=${client_secret}&per_page=4&sort=committer-date-desc`
+      );
+
+      gitInfo = await gitInfo.json();
+      gitRepos = await gitRepos.json();
+      viewModel.gitInfo = gitInfo;
+      viewModel.gitRepos = gitRepos;
+    } else {
+      userInfo.github = false;
+    }
     res.render(
       "sections/userSections/normalUserSections/otherUserProfile",
       viewModel

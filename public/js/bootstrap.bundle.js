@@ -103,7 +103,6 @@
 
   function transitionEndEmulator(duration) {
     var _this = this;
-
     var called = false;
     $(this).one(Util.TRANSITION_END, function () {
       called = true;

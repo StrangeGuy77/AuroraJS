@@ -81,7 +81,6 @@ function checkLoginState() {
 
 // // Sign in with google
 
-
 // Login button
 
 $("#login-button").click(function(e) {
@@ -458,10 +457,11 @@ checkList.getElementsByClassName("anchor")[0].onclick = function(evt) {
 checkList.onblur = function(evt) {
   checkList.classList.remove("visible");
 };
-$("#toggleFrameworks").hide();
+if ($("#toggleFrameworks")) $("#toggleFrameworks").hide();
+
 $("#language").change(function(e) {
   e.preventDefault();
-  let x = 0;
+  $("#softwareDetailsModal").show();
   let language = document.getElementById("language").value;
   let actualClass = document.getElementById("iconToReplace").className;
   switch (language) {

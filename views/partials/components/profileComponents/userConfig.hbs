@@ -95,22 +95,52 @@
     </div>
 </div>
 <hr>
+{{#if session.userSettings.show_public_name}}
+<div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="showpublicname" checked>
+    <label class="custom-control-label" for="showpublicname" style="color: black">
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicName}}</p>
+    </label>
+</div>
 
+{{else }}
 <div class="custom-control custom-checkbox custom-control-inline">
     <input type="checkbox" class="custom-control-input" id="showpublicname">
     <label class="custom-control-label" for="showpublicname" style="color: black">
         <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicName}}</p>
     </label>
 </div>
+{{/if}}
+
+{{#if session.userSettings.show_public_email}}
+<div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="showpublicemail" checked>
+    <label class="custom-control-label" for="showpublicemail" style="color: black">
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicEmail}}</p>
+    </label>
+</div>
+
+{{else }}
 <div class="custom-control custom-checkbox custom-control-inline">
     <input type="checkbox" class="custom-control-input" id="showpublicemail">
     <label class="custom-control-label" for="showpublicemail" style="color: black">
         <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicEmail}}</p>
     </label>
 </div>
+{{/if}}
+
+{{#if session.userSettings.show_public_location}}
+<div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="showpubliclocation" checked>
+    <label class="custom-control-label" for="showpubliclocation" style="color: black">
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicLocation}}</p>
+    </label>
+</div>
+{{else }}
 <div class="custom-control custom-checkbox custom-control-inline">
     <input type="checkbox" class="custom-control-input" id="showpubliclocation">
     <label class="custom-control-label" for="showpubliclocation" style="color: black">
         <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{language.userInfo.ShowPublicLocation}}</p>
     </label>
 </div>
+{{/if}}

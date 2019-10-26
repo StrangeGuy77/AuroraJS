@@ -1,10 +1,12 @@
 {{#if payment_collection}}
+<hr>
+<h4>Your payment history</h4>
+<hr>
 <div class="col-sm-8">
     {{#each payment_collection }}
     <div class="card-deck">
         <div class="card mb-4">
 
-            <!--Card image-->
             <div class="card-image">
                 <img class="image-thumbnail" src="/public/upload/{{filename}}" alt="Card image cap">
                 <a href="#!">
@@ -12,12 +14,9 @@
                 </a>
             </div>
 
-            <!--Card content-->
             <div class="card-content">
+                <h5 class="card-title">{{name}}</h5>
 
-                <!--Title-->
-                <h4 class="card-title">{{name}}</h4>
-                <!--Text-->
                 <p class="card-text">{{description}}</p>
                 <hr>
                 <strong>
@@ -36,14 +35,12 @@
                     <p class="card-text">Payment date: {{date}} GMT-5.</p>
                 </strong>
                 <hr>
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                 <button type="button" class="btn btn-light-blue btn-md"> <a
                         href="/{{languageFinder}}/software/{{filename}}">Go there!</a> </button>
-
             </div>
-
         </div>
     </div>
+    <hr>
     {{/each}}
 </div>
 {{else}}

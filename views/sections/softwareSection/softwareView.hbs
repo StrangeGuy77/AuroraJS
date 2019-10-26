@@ -29,7 +29,7 @@
                     {{#if session.isAlreadyBought}}
                     <button onclick="window.location.href='/{{languageFinder}}/software/{{soft.uniqueId}}/download'"
                         class="btn btn-info" id="btn-download" data-id="{{soft.filename}}">
-                        <i class="fas fa-download"></i> {{language.download}}
+                        <i class="fas fa-download"></i> {{language.softwareInfo.download}}
                     </button>
                     {{else}}
                     <div class="card-footer">
@@ -132,8 +132,7 @@
         {{#if sidebar.stats.softwares}}
         <div class="col-md-4">
             {{> sidebar/stats}}
-            {{> sidebar/popular}}
-            {{> sidebar/comments}}
+            {{> components/softwareComponents/profilePreview}}
         </div>
         {{/if}}
     </div>

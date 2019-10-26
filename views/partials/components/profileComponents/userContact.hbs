@@ -1,3 +1,50 @@
-<div class="XD">
-
+{{#if (or (or userSettings.github)(or userInfo.github))}}
+<div class="mt-4">
+    <div class="card mb-12" style="max-width: 750px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <a href="{{gitInfo.html_url}}" target="_blank"></a><img src="{{gitInfo.avatar_url}}" class="card-img"
+                    alt="..."></a>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <a href="{{gitInfo.html_url}}" target="_blank">
+                        <h5 class="card-title">{{gitInfo.name}} / {{gitInfo.login}}</h5>
+                    </a>
+                    <p class="card-text">{{gitInfo.bio}}.</p>
+                    <p class="card-text"><strong> Company: {{gitInfo.company}} </strong> </p>
+                    <p class="card-text"><strong> Blog: {{gitInfo.blog}} </strong> </p>
+                    <p class="card-text"><strong> Followers: {{gitInfo.followers}} </strong> </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="mt-2">
+    <hr>
+    <h4>
+        Git repositories:
+    </h4>
+    {{#each gitRepos}}
+    <div class="mt-4">
+        <div class="card mb-12" style="max-width: 750px;">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <a href="{{html_url}}" target="_blank">
+                            <h5 class="card-title">{{name}}</h5>
+                        </a>
+                        <p class="card-text">{{description}}.</p>
+                        <p class="card-text"><strong> Homepage: <a href="{{homepage}}" target="_blank">{{name}}</a>
+                            </strong> </p>
+                        <p class="card-text"><strong> Main language: {{language}} </strong> </p>
+                        <p class="card-text"><strong> Forks: {{forks}} </strong> </p>
+                        <p class="card-text"><strong> Following: {{following}} </strong> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}

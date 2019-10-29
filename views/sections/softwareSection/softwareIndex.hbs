@@ -24,6 +24,9 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     <i class="fas fa-file-code icon"></i>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
                                     <input type="file" name="image" class="custom-file-input" id="inputGroup"
                                         aria-describedby="inputGroupFileAddon" required>
                                     <label for="inputGroupFile"
@@ -116,7 +119,9 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title">{{title}}</span>
+                                    <hr>
                                     <p> <i class="fas fa-info-circle"> </i> {{description}}</p>
+                                    <hr>
                                     <p> <i class="fas fa-money-bill-wave"> </i> {{price}}$ </p>
                                 </div>
                             </div>

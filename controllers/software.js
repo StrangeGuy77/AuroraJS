@@ -135,7 +135,7 @@ ctrl.create = async (req, res) => {
   // Linking the path where to save the software preview image && resolving extensions
   const imageTempPath = req.file.path;
   const ext = path.extname(req.file.originalname).toLowerCase();
-  const targetPath = path.resolve(`src/public/upload/${url}${ext}`);
+  const targetPath = path.resolve(`public/upload/${url}${ext}`);
   // Verifying software preview image extensions
   if (
     ext === ".png" ||

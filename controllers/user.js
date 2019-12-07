@@ -96,7 +96,7 @@ ctrl.profilePicUpload = async (req, res) => {
   let result = await user.findOne({ userId: req.params.user_id });
   const imageTempPath = req.file.path;
   const ext = path.extname(req.file.originalname).toLowerCase();
-  const targetPath = path.resolve(`src/public/upload/profile/${url}${ext}`);
+  const targetPath = path.resolve(`public/upload/profile/${url}${ext}`);
   if (
     ext === ".png" ||
     ext === ".jpg" ||

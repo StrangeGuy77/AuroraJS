@@ -4,7 +4,7 @@ const home = require("../controllers/home");
 const software = require("../controllers/software");
 const library = require("../controllers/library");
 const user = require("../controllers/user");
-const bcmb = require("../controllers/apiConnections");
+const googleAuth = require('../controllers/googleAuth')
 
 module.exports = app => {
   // Index or single pages routes
@@ -72,7 +72,7 @@ module.exports = app => {
   router.get("/:language/stats", user.stats);
 
   // Google auth
-  router.get("/google/auth", bcmb.googleAuthentication);
+  router.get("/google/auth", googleAuth.googleAuthentication);
 
   // Error router
   router.get("/:language/admin", home.error403);
